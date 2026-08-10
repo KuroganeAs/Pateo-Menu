@@ -1,28 +1,28 @@
 /* ----------------------------------------------------
-   PATEO CAFÉ & RETROSTORE - TABLE MENU DESIGN SYSTEM
-   Modern, Mobile-First, Rich Coffee Theme
+   PATEO - TABLE MENU DESIGN SYSTEM
+   Modern, Mobile-First, Blue Brand Theme
    ---------------------------------------------------- */
 
 :root {
-  /* Color Palette */
-  --bg-color: #110c0a;        /* Deep espresso base */
-  --bg-gradient: linear-gradient(135deg, #16110f 0%, #0d0806 100%);
-  --card-bg: rgba(30, 24, 21, 0.8);
-  --card-bg-solid: #1e1815;
-  --card-border: rgba(207, 168, 123, 0.15); /* Light warm brass border */
+  /* Color Palette - Inspired by Páteo Supermarket Logo */
+  --bg-color: #060c16;        /* Deep midnight blue base */
+  --bg-gradient: linear-gradient(135deg, #0b1424 0%, #03070f 100%);
+  --card-bg: rgba(13, 23, 42, 0.8);
+  --card-bg-solid: #0d172a;
+  --card-border: rgba(59, 130, 246, 0.15); /* Light blue border */
   
-  --primary-color: #cfa87b;   /* Warm brass / roasted crema */
-  --primary-hover: #e3bc8f;   
-  --accent-color: #df7b51;    /* Warm terracotta orange */
-  --accent-light: rgba(223, 123, 81, 0.1);
+  --primary-color: #0c60a3;   /* Páteo Royal Blue */
+  --primary-hover: #1e7bc4;   
+  --accent-color: #4a8ec7;    /* Páteo Light Slate Blue */
+  --accent-light: rgba(12, 96, 163, 0.1);
   
-  --text-main: #f5eedf;      /* Soft parchment white */
-  --text-muted: #aa9c91;     /* Coffee-chaff brown */
-  --text-dark: #120e0c;      /* Contrast text */
+  --text-main: #f1f5f9;      /* Soft ice white */
+  --text-muted: #94a3b8;     /* Slate grey */
+  --text-dark: #0f172a;      /* Contrast dark text */
   
   /* Shadows & Glassmorphism */
-  --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   --glass-blur: blur(16px);
   --border-radius: 16px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -76,30 +76,33 @@ html, body {
 /* Header Area */
 .main-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 24px 0 16px 0;
   border-bottom: 1px solid var(--card-border);
   margin-bottom: 24px;
 }
 
-.logo-area h1 {
-  font-family: var(--font-title);
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--text-main);
-  line-height: 1;
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff; /* Frame for the logo */
+  padding: 10px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: var(--transition);
 }
 
-.logo-area .subtitle {
-  font-family: var(--font-title);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.35em;
-  color: var(--primary-color);
-  margin-top: 4px;
-  text-transform: uppercase;
+.logo-wrap:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(12, 96, 163, 0.25);
+}
+
+.logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
 }
 
 /* Sections */
