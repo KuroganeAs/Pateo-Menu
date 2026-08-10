@@ -10,6 +10,13 @@ const CONFIG = {
   fbLoadTimeout: 3500 // Time in ms before showing fallback if Facebook widget fails
 };
 
+// Global state variables
+let pdfDocument = null;
+let currentLightboxPage = 1;
+let totalPages = 0;
+let renderQueue = [];
+let isRendering = false;
+
 // Lightbox Zoom & Pan State
 let zoomState = {
   scale: 1,
