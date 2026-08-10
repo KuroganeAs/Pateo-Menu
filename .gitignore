@@ -7,3 +7,6 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Local alternate menu version folder (untracked/unpushed)
+Digital/
