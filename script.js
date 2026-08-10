@@ -132,12 +132,12 @@ function showFacebookFallback() {
     <div class="fb-fallback-header">
       <div class="fb-fallback-avatar">P</div>
       <div class="fb-fallback-meta">
-        <h4>Pateo Café & Retrostore</h4>
-        <span>Promotions & Events</span>
+        <h4>Pateo</h4>
+        <span>Promoções e Eventos</span>
       </div>
     </div>
     <div class="fb-fallback-content">
-      <p>We share daily breakfast specials, retail retro arrivals, and fresh pastry announcements on our Facebook timeline. Tap the button below to see today's deals!</p>
+      <p>Partilhamos diariamente os nossos especiais, pastelaria fresca e novidades na nossa cronologia do Facebook. Toque no botão abaixo para ver as ofertas de hoje!</p>
     </div>
   `;
   fbContainer.appendChild(fallbackCard);
@@ -170,7 +170,7 @@ function initPDFMenu() {
   loadingTask.promise.then(pdf => {
     pdfDocument = pdf;
     totalPages = pdf.numPages;
-    document.getElementById('lightbox-page-num').textContent = `Page 1 of ${totalPages}`;
+    document.getElementById('lightbox-page-num').textContent = `Página 1 de ${totalPages}`;
 
     // Hide navigation arrows if there's only 1 page
     if (totalPages <= 1) {
@@ -183,9 +183,9 @@ function initPDFMenu() {
   }).catch(err => {
     console.error('Error loading PDF menu:', err);
     loader.innerHTML = `
-      <p style="color: var(--accent-color); font-weight: 600;">Unable to load PDF Menu</p>
-      <p style="font-size: 0.75rem; margin-top: 4px;">Please try scanning the code again or ask the staff.</p>
-      <a href="${CONFIG.pdfPath}" target="_blank" class="btn" style="background: var(--primary-color); color: var(--text-dark); margin-top: 12px; width: auto;">Open Direct PDF Link</a>
+      <p style="color: var(--accent-color); font-weight: 600;">Não foi possível carregar o menu</p>
+      <p style="font-size: 0.75rem; margin-top: 4px;">Por favor, tente ler o código QR novamente ou peça ajuda aos nossos funcionários.</p>
+      <a href="${CONFIG.pdfPath}" target="_blank" class="btn" style="background: var(--primary-color); color: var(--text-dark); margin-top: 12px; width: auto;">Abrir PDF Diretamente</a>
     `;
   });
 }
@@ -302,7 +302,7 @@ function loadLightboxPage(pageNum) {
   currentLightboxPage = pageNum;
   
   const pageNumText = document.getElementById('lightbox-page-num');
-  pageNumText.textContent = `Page ${pageNum} of ${totalPages}`;
+  pageNumText.textContent = `Página ${pageNum} de ${totalPages}`;
 
   // Update button states
   document.getElementById('prev-page-btn').disabled = (pageNum === 1);
