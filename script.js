@@ -122,8 +122,18 @@ function initPDFMenu() {
       document.getElementById('next-page-btn').style.display = 'none';
     }
 
-    // Begin rendering pages sequentially
-    renderAllPages(renderTarget, loader);
+    // Force progress bar to show 100% complete
+    progressFill.style.width = '100%';
+    progressFill.textContent = '100%';
+
+    // Wait a brief moment for the 100% visual state to render before building the pages
+    setTimeout(() => {
+      // Hide target container and set up opacity transition for a smooth fade-in
+      renderTarget.style.opacity = '0';
+      renderTarget.style.transition = 'opacity 0.6s ease';
+      
+      renderAllPages(renderTarget, loader);
+    }, 450);
   }).catch(err => {
     console.error('Error loading PDF menu:', err);
     loader.innerHTML = `
@@ -139,11 +149,12 @@ async function renderAllPages(target, loader) {
   for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
     await renderPageCanvas(pageNum, target);
   }
-  // All pages rendered, fade out loader
+  // All pages rendered, fade out loader and fade in the fully loaded menu pages at once
   loader.style.transition = 'opacity 0.4s ease';
   loader.style.opacity = '0';
   setTimeout(() => {
     loader.style.display = 'none';
+    target.style.opacity = '1';
   }, 400);
 }
 
