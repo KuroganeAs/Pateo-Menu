@@ -7,7 +7,18 @@
 const CONFIG = {
   pdfPath: 'Menu/MENU PAINES CAFETARIA.pdf',
   facebookPageUrl: 'https://www.facebook.com/PateoRetrostoreCafe/', // Café FB Page
-  fbLoadTimeout: 3500 // Time in ms before showing fallback if Facebook widget fails
+  promotions: [
+    {
+      image: 'Menu/Combo.png',
+      title: 'Especial Pateo Combo',
+      description: 'Aproveite o nosso menu de café + pastelaria a um preço exclusivo. Disponível a qualquer hora!'
+    },
+    {
+      image: 'Menu/Combo.png',
+      title: 'Menu de Pequeno-Almoço',
+      description: 'Comece o dia da melhor forma com os nossos menus frescos. Peça na mesa!'
+    }
+  ]
 };
 
 // Global state variables
@@ -16,6 +27,10 @@ let currentLightboxPage = 1;
 let totalPages = 0;
 let renderQueue = [];
 let isRendering = false;
+
+// Carousel State
+let currentPromoSlide = 0;
+let promoTimer = null;
 
 // Lightbox Zoom & Pan State
 let zoomState = {
@@ -37,7 +52,7 @@ let zoomState = {
 // Initialize elements on load
 document.addEventListener('DOMContentLoaded', () => {
   initTableNumber();
-  initFacebookWidget();
+  initPromoCarousel();
   initPDFMenu();
   initLightbox();
 });
@@ -72,76 +87,87 @@ function initTableNumber() {
 /* ==========================================
    2. Facebook Promo & Fallback
    ========================================== */
-function initFacebookWidget() {
-  const fbContainer = document.getElementById('fb-iframe-container');
-  const fbLoader = document.getElementById('fb-loader');
+/* ==========================================
+   2. Promotions Carousel & Auto-scroll
+   ========================================== */
+function initPromoCarousel() {
+  const track = document.getElementById('promo-carousel-track');
+  const dotsContainer = document.getElementById('promo-carousel-dots');
   const fbPageLink = document.getElementById('fb-page-link');
 
-  // Set the fallback/view more button URL
-  fbPageLink.href = CONFIG.facebookPageUrl;
+  // Set the view more button URL
+  if (fbPageLink) fbPageLink.href = CONFIG.facebookPageUrl;
 
-  // Build the Facebook Page Plugin Widget iframe URL
-  // Encoded URL of the FB page
-  const encodedUrl = encodeURIComponent(CONFIG.facebookPageUrl);
-  // Using 340px width (fits standard mobile screen padding nicely), dark timeline tab
-  const iframeSrc = `https://www.facebook.com/plugins/page.php?href=${encodedUrl}&tabs=timeline&width=340&height=250&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false`;
+  const promos = CONFIG.promotions;
+  if (!promos || promos.length === 0) {
+    // If no promos, hide wrapper
+    const wrapper = document.getElementById('promo-carousel-wrapper');
+    if (wrapper) wrapper.style.display = 'none';
+    return;
+  }
 
-  // Create iframe element
-  const iframe = document.createElement('iframe');
-  iframe.src = iframeSrc;
-  iframe.title = 'Pateo Café Facebook Feed';
-  iframe.scrolling = 'no';
-  iframe.frameBorder = '0';
-  iframe.allowFullscreen = true;
-  iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
-  
-  // Set inline styles to hide it initially until loaded
-  iframe.style.width = '100%';
-  iframe.style.height = '100%';
-  iframe.style.border = 'none';
-  iframe.style.opacity = '0';
-  iframe.style.transition = 'opacity 0.4s ease';
+  // Populate slides and dots
+  promos.forEach((promo, index) => {
+    // Create slide element
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+    slide.innerHTML = `
+      <img src="${promo.image}" alt="${promo.title}">
+      <div class="carousel-caption">
+        <h3>${promo.title}</h3>
+        <p>${promo.description}</p>
+      </div>
+    `;
+    track.appendChild(slide);
 
-  // Timeout backup: if iframe load takes too long or is blocked by ad-blocker
-  let loadTimeout = setTimeout(() => {
-    showFacebookFallback();
-  }, CONFIG.fbLoadTimeout);
+    // Create dot element
+    const dot = document.createElement('button');
+    dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+    dot.setAttribute('data-slide', index);
+    dot.setAttribute('aria-label', `Ir para slide ${index + 1}`);
+    dot.addEventListener('click', () => {
+      goToSlide(index);
+      resetAutoScroll();
+    });
+    dotsContainer.appendChild(dot);
+  });
 
-  iframe.onload = () => {
-    clearTimeout(loadTimeout);
-    fbLoader.style.display = 'none';
-    iframe.style.opacity = '1';
-  };
-
-  // Append iframe to container
-  fbContainer.appendChild(iframe);
+  // Start auto scrolling with 3-second interval
+  startAutoScroll();
 }
 
-// Renders a styled premium promo card when Facebook widget fails or is blocked
-function showFacebookFallback() {
-  const fbContainer = document.getElementById('fb-iframe-container');
-  const fbLoader = document.getElementById('fb-loader');
-  if (fbLoader) fbLoader.style.display = 'none';
+function goToSlide(index) {
+  const track = document.getElementById('promo-carousel-track');
+  const dots = document.querySelectorAll('.carousel-dot');
   
-  // Clear previous contents (like the incomplete or blocked iframe)
-  fbContainer.innerHTML = '';
+  if (index >= CONFIG.promotions.length) index = 0;
+  if (index < 0) index = CONFIG.promotions.length - 1;
+  
+  currentPromoSlide = index;
+  
+  // Slide transition via transform translateX
+  if (track) track.style.transform = `translateX(-${index * 100}%)`;
+  
+  // Update active dot indicator
+  dots.forEach((dot, idx) => {
+    if (idx === index) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+}
 
-  const fallbackCard = document.createElement('div');
-  fallbackCard.className = 'fb-fallback-card';
-  fallbackCard.innerHTML = `
-    <div class="fb-fallback-header">
-      <div class="fb-fallback-avatar">P</div>
-      <div class="fb-fallback-meta">
-        <h4>Pateo</h4>
-        <span>Promoções e Eventos</span>
-      </div>
-    </div>
-    <div class="fb-fallback-content">
-      <p>Partilhamos diariamente os nossos especiais, pastelaria fresca e novidades na nossa cronologia do Facebook. Toque no botão abaixo para ver as ofertas de hoje!</p>
-    </div>
-  `;
-  fbContainer.appendChild(fallbackCard);
-  fbContainer.style.height = 'auto';
+function startAutoScroll() {
+  if (CONFIG.promotions.length <= 1) return;
+  promoTimer = setInterval(() => {
+    goToSlide(currentPromoSlide + 1);
+  }, 3000); // 3-second interval
+}
+
+function resetAutoScroll() {
+  clearInterval(promoTimer);
+  startAutoScroll();
 }
 
 /* ==========================================
