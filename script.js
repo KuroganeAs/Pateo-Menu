@@ -5,8 +5,8 @@
 
 // Configurable settings for the café owner
 const CONFIG = {
-  pdfPath: 'Menu/MENU PAINES CAFETARIA.pdf',
-  facebookPageUrl: 'https://www.facebook.com/pateo.timor', // Café FB Page
+  pdfPath: 'Menu/MENU%20PAINES%20CAFETARIA.pdf',
+  facebookPageUrl: 'https://www.facebook.com/PateoDili/', // Public Business Page URL
   fbLoadTimeout: 3500 // Time in ms before showing fallback if Facebook widget fails
 };
 
@@ -115,7 +115,7 @@ function showFacebookFallback() {
    ========================================== */
 function initPDFMenu() {
   // Specify CDN worker source for performance
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js';
 
   const loader = document.getElementById('menu-loader');
   const progressFill = document.getElementById('menu-progress-fill');
