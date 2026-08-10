@@ -6,7 +6,7 @@
 // Configurable settings for the café owner
 const CONFIG = {
   pdfPath: 'Menu/MENU%20PAINES%20CAFETARIA.pdf',
-  facebookPageUrl: 'https://www.facebook.com/PateoDili/', // Public Business Page URL
+  facebookPageUrl: 'https://www.facebook.com/pateo.timor', // Café FB Page
   fbLoadTimeout: 3500 // Time in ms before showing fallback if Facebook widget fails
 };
 
