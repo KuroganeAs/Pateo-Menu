@@ -102,34 +102,6 @@ html, body {
   text-transform: uppercase;
 }
 
-/* Header Table Badge */
-.table-tag {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent-light);
-  border: 1px solid rgba(223, 123, 81, 0.3);
-  padding: 6px 12px;
-  border-radius: 8px;
-}
-
-.table-tag span {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent-color);
-  font-weight: 600;
-}
-
-.table-tag strong {
-  font-family: var(--font-title);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent-color);
-  line-height: 1;
-}
-
 /* Sections */
 .section {
   margin-bottom: 32px;
@@ -446,39 +418,6 @@ html, body {
   margin-top: auto;
   border-top: 1px solid var(--card-border);
   padding-top: 24px;
-}
-
-/* Table Badge in Footer */
-.footer-badge-row {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.table-badge {
-  display: inline-flex;
-  align-items: center;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  padding: 6px 16px;
-  gap: 8px;
-  box-shadow: var(--card-shadow);
-}
-
-.table-badge .badge-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.table-badge .badge-value {
-  font-family: var(--font-title);
-  font-weight: 700;
-  color: var(--primary-color);
-  font-size: 1.1rem;
 }
 
 /* Info Card */

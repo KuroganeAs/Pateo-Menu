@@ -29,38 +29,11 @@ let zoomState = {
 
 // Initialize elements on load
 document.addEventListener('DOMContentLoaded', () => {
-  initTableNumber();
   initFacebookWidget();
   initPDFMenu();
   initLightbox();
 });
 
-/* ==========================================
-   1. Table Number Query Parser
-   ========================================== */
-function initTableNumber() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const tableNum = urlParams.get('table');
-
-  const headerBadge = document.getElementById('header-table-badge');
-  const headerNum = document.getElementById('header-table-num');
-  const footerNum = document.getElementById('footer-table-num');
-
-  if (tableNum) {
-    // Sanitize input to prevent injection, limiting to alphanumeric/hyphen
-    const sanitizedTable = tableNum.replace(/[^a-zA-Z0-9-]/g, '').substring(0, 5);
-    
-    // Display in header
-    headerNum.textContent = sanitizedTable;
-    headerBadge.style.display = 'flex';
-    
-    // Display in footer
-    footerNum.textContent = sanitizedTable;
-  } else {
-    // Fallback if no table parameter is supplied
-    footerNum.textContent = 'Café';
-  }
-}
 
 /* ==========================================
    2. Facebook Promo & Fallback
