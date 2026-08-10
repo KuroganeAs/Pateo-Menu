@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="Welcome to Pateo Café! Scan the QR code at your table to view our digital menu, current Facebook deals, and connect to Wi-Fi.">
+  <title>Pateo Café - Table Menu</title>
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- PDF.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+</head>
+<body>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo-area">
+        <h1>PATEO</h1>
+        <p class="subtitle">CAFÉ & RETROSTORE</p>
+      </div>
+      <div class="table-tag" id="header-table-badge" style="display: none;">
+        <span>Table</span>
+        <strong id="header-table-num">--</strong>
+      </div>
+    </header>
+
+    <!-- Facebook Promo Section -->
+    <section class="section promo-section">
+      <div class="section-title-wrap">
+        <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5m14 0-4 4m4-4-4-4"/>
+        </svg>
+        <h2>Latest Promotions</h2>
+      </div>
+
+      <!-- Facebook Embed Container -->
+      <div class="fb-widget-wrapper">
+        <!-- Loader for Widget -->
+        <div class="fb-loader" id="fb-loader">
+          <div class="spinner-dot"></div>
+          <p>Loading Facebook Feed...</p>
+        </div>
+        <!-- Iframe loaded dynamically in script.js -->
+        <div id="fb-iframe-container"></div>
+      </div>
+
+      <!-- Fallback / View More Button -->
+      <a id="fb-page-link" href="#" target="_blank" class="btn btn-facebook">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>View Deals on Facebook</span>
+      </a>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section menu-section">
+      <div class="section-title-wrap">
+        <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+        <h2>Café & Kitchen Menu</h2>
+      </div>
+
+      <p class="menu-tip">Tap the menu pages below to zoom in and browse full screen</p>
+
+      <!-- Menu Canvas Container -->
+      <div class="menu-container">
+        <!-- Loading PDF State -->
+        <div class="menu-loader" id="menu-loader">
+          <div class="coffee-cup">
+            <div class="steam"></div>
+            <div class="cup"></div>
+          </div>
+          <p>Preparing menu details...</p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="menu-progress-fill">0%</div>
+          </div>
+        </div>
+
+        <!-- Render Target for Canvas pages -->
+        <div id="pdf-pages-render-target"></div>
+      </div>
+    </section>
+
+    <!-- Footer / Store Info Section -->
+    <footer class="main-footer">
+      <div class="footer-badge-row">
+        <div class="table-badge">
+          <span class="badge-label">Table</span>
+          <span id="footer-table-num" class="badge-value">--</span>
+        </div>
+      </div>
+
+      <!-- Wi-Fi Details Card -->
+      <div class="wifi-card card" id="wifi-card">
+        <div class="wifi-header">
+          <svg class="wifi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h.01M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 14 0M1.5 9.5a15 15 0 0 1 21 0"/>
+          </svg>
+          <div class="wifi-details">
+            <h3>Guest Wi-Fi</h3>
+            <p>Tap credentials to copy password</p>
+          </div>
+        </div>
+        <div class="wifi-creds">
+          <div class="cred-item" id="wifi-ssid-btn">
+            <span class="cred-label">Network</span>
+            <strong id="wifi-ssid">PateoGuest_5G</strong>
+          </div>
+          <div class="cred-item copyable" id="wifi-pass-btn" title="Copy Password">
+            <span class="cred-label">Password</span>
+            <strong id="wifi-password">pateocafe101</strong>
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Store Info Card -->
+      <div class="info-card card">
+        <div class="info-row">
+          <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+          <div>
+            <h4>Hours</h4>
+            <p>Mon - Sat: 8:00 AM - 8:00 PM</p>
+            <p>Sunday: 9:00 AM - 6:00 PM</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <div>
+            <h4>Address</h4>
+            <p>Rua dos Padeiros, 142, Lisbon</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Pateo Café & Retrostore. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox-modal">
+    <div class="lightbox-overlay"></div>
+    <div class="lightbox-content-wrapper">
+      
+      <!-- Toolbar -->
+      <div class="lightbox-toolbar">
+        <span class="lightbox-page-num" id="lightbox-page-num">Page 1 of 1</span>
+        <div class="toolbar-actions">
+          <button id="zoom-out-btn" class="toolbar-btn" aria-label="Zoom Out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+          </button>
+          <button id="zoom-in-btn" class="toolbar-btn" aria-label="Zoom In">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+          </button>
+          <a id="download-pdf-btn" href="Menu/MENU PAINES CAFETARIA.pdf" target="_blank" class="toolbar-btn" aria-label="Open PDF">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
+          </a>
+          <button id="lightbox-close" class="toolbar-btn close-btn" aria-label="Close Lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Zoom/Pan Container -->
+      <div id="lightbox-zoom-container" class="lightbox-zoom-container">
+        <canvas id="lightbox-canvas"></canvas>
+      </div>
+
+      <!-- Navigation Arrows for Multi-page Menu -->
+      <button id="prev-page-btn" class="nav-btn prev-btn" aria-label="Previous Page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <button id="next-page-btn" class="nav-btn next-btn" aria-label="Next Page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
