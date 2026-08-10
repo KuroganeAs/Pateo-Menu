@@ -53,6 +53,13 @@ function initFacebookWidget() {
   // Set the fallback/view more button URL
   if (fbPageLink) fbPageLink.href = CONFIG.facebookPageUrl;
 
+  // Personal profile accounts (like pateo.timor) are not embeddable by Meta's Page Plugin widget.
+  // We immediately load the fallback card for these cases to avoid displaying a blank iframe.
+  if (CONFIG.facebookPageUrl.includes('pateo.timor')) {
+    showFacebookFallback();
+    return;
+  }
+
   // Build the Facebook Page Plugin Widget iframe URL
   const encodedUrl = encodeURIComponent(CONFIG.facebookPageUrl);
   const iframeSrc = `https://www.facebook.com/plugins/page.php?href=${encodedUrl}&tabs=timeline&width=340&height=250&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false`;
