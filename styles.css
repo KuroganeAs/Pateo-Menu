@@ -477,70 +477,6 @@ html, body {
   font-size: 1.1rem;
 }
 
-/* Wi-Fi Credentials Styling */
-.wifi-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.wifi-icon {
-  width: 24px;
-  height: 24px;
-  color: var(--primary-color);
-}
-
-.wifi-details h3 {
-  font-family: var(--font-title);
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.wifi-details p {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
-.wifi-creds {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.cred-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.02);
-  font-size: 0.85rem;
-}
-
-.cred-label {
-  color: var(--text-muted);
-}
-
-.copyable {
-  cursor: pointer;
-  transition: var(--transition);
-  position: relative;
-}
-
-.copyable:hover, .copyable:active {
-  background: rgba(207, 168, 123, 0.08);
-  border-color: rgba(207, 168, 123, 0.3);
-}
-
-.copy-icon {
-  width: 14px;
-  height: 14px;
-  color: var(--primary-color);
-  opacity: 0.7;
-}
-
 /* Info Card */
 .info-row {
   display: flex;
@@ -741,48 +677,6 @@ html, body {
   pointer-events: none;
 }
 
-/* Toasts styling */
-.toast-container {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 90%;
-  max-width: 320px;
-  pointer-events: none;
-}
-
-.toast {
-  background: var(--card-bg-solid);
-  border: 1px solid var(--primary-color);
-  color: var(--text-main);
-  padding: 12px 18px;
-  border-radius: var(--border-radius);
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  transform: translateY(20px);
-  opacity: 0;
-  animation: toastIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
-  pointer-events: auto;
-}
-
-.toast.fade-out {
-  animation: toastOut 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
-}
-
-.toast-success-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--primary-color);
-}
-
 /* Keyframes & Animations */
 @keyframes spin {
   to { transform: rotate(360deg); }
@@ -813,19 +707,6 @@ html, body {
   }
 }
 
-@keyframes toastIn {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes toastOut {
-  to {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-}
 
 /* Make sure user can't select canvas elements */
 canvas {

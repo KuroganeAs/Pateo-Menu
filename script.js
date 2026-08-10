@@ -7,8 +7,6 @@
 const CONFIG = {
   pdfPath: 'Menu/MENU PAINES CAFETARIA.pdf',
   facebookPageUrl: 'https://www.facebook.com/PateoRetrostoreCafe/', // Café FB Page
-  wifiSSID: 'PateoGuest_5G',
-  wifiPassword: 'pateocafe101',
   fbLoadTimeout: 3500 // Time in ms before showing fallback if Facebook widget fails
 };
 
@@ -39,7 +37,6 @@ let zoomState = {
 // Initialize elements on load
 document.addEventListener('DOMContentLoaded', () => {
   initTableNumber();
-  initWiFiDetails();
   initFacebookWidget();
   initPDFMenu();
   initLightbox();
@@ -526,83 +523,3 @@ function resetZoomState() {
   applyTransform();
 }
 
-/* ==========================================
-   6. Guest Wi-Fi Copy Utilities
-   ========================================== */
-function initWiFiDetails() {
-  const wifiSSID = document.getElementById('wifi-ssid');
-  const wifiPass = document.getElementById('wifi-password');
-
-  // Fill in configured values
-  wifiSSID.textContent = CONFIG.wifiSSID;
-  wifiPass.textContent = CONFIG.wifiPassword;
-
-  const passBtn = document.getElementById('wifi-pass-btn');
-  const ssidBtn = document.getElementById('wifi-ssid-btn');
-
-  // Copy password to clipboard on tap
-  passBtn.addEventListener('click', () => {
-    copyToClipboard(CONFIG.wifiPassword, 'Password');
-  });
-
-  // Copy network name to clipboard on tap
-  ssidBtn.addEventListener('click', () => {
-    copyToClipboard(CONFIG.wifiSSID, 'Network Name');
-  });
-}
-
-function copyToClipboard(text, label) {
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text)
-      .then(() => showToast(`${label} copied to clipboard!`))
-      .catch(() => copyFallback(text, label));
-  } else {
-    copyFallback(text, label);
-  }
-}
-
-// Fallback method for older/insecure mobile browsers
-function copyFallback(text, label) {
-  const textArea = document.createElement('textarea');
-  textArea.value = text;
-  textArea.style.position = 'fixed'; // Keep it offscreen
-  textArea.style.opacity = '0';
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-  
-  try {
-    document.execCommand('copy');
-    showToast(`${label} copied to clipboard!`);
-  } catch (err) {
-    console.error('Fallback copy failed', err);
-    showToast(`Unable to copy automatically. Key: ${text}`);
-  }
-  document.body.removeChild(textArea);
-}
-
-/* ==========================================
-   7. Toast Notification Engine
-   ========================================== */
-function showToast(message) {
-  const container = document.getElementById('toast-container');
-  
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.innerHTML = `
-    <svg class="toast-success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="20 6 9 17 4 12"/>
-    </svg>
-    <span>${message}</span>
-  `;
-
-  container.appendChild(toast);
-
-  // Transition offscreen after 2.5s, then remove
-  setTimeout(() => {
-    toast.classList.add('fade-out');
-    toast.addEventListener('animationend', () => {
-      toast.remove();
-    });
-  }, 2500);
-}
