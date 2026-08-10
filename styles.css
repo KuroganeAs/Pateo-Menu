@@ -199,49 +199,7 @@ html, body {
   color-scheme: dark; /* Signals dark mode preference to Meta widget */
 }
 
-/* Fallback Card Design (Used if FB Embed isn't loaded/wanted) */
-.fb-fallback-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 20px;
-  width: 100%;
-  text-align: left;
-}
 
-.fb-fallback-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.fb-fallback-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--primary-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: var(--text-dark);
-}
-
-.fb-fallback-meta h4 {
-  font-family: var(--font-title);
-  font-size: 0.95rem;
-}
-
-.fb-fallback-meta span {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.fb-fallback-content {
-  font-size: 0.85rem;
-  color: var(--text-main);
-  line-height: 1.5;
-}
 
 
 /* Button Styles */

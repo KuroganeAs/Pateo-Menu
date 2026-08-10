@@ -53,13 +53,6 @@ function initFacebookWidget() {
   // Set the fallback/view more button URL
   if (fbPageLink) fbPageLink.href = CONFIG.facebookPageUrl;
 
-  // Personal profile accounts (like pateo.timor) are not embeddable by Meta's Page Plugin widget.
-  // We immediately load the fallback card for these cases to avoid displaying a blank iframe.
-  if (CONFIG.facebookPageUrl.includes('pateo.timor')) {
-    showFacebookFallback();
-    return;
-  }
-
   // Build the Facebook Page Plugin Widget iframe URL
   const encodedUrl = encodeURIComponent(CONFIG.facebookPageUrl);
   const iframeSrc = `https://www.facebook.com/plugins/page.php?href=${encodedUrl}&tabs=timeline&width=340&height=250&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false`;
@@ -80,9 +73,9 @@ function initFacebookWidget() {
   iframe.style.opacity = '0';
   iframe.style.transition = 'opacity 0.4s ease';
 
-  // Timeout backup: if iframe load takes too long or is blocked by ad-blocker
+  // Timeout backup: hide loading spinner if load takes too long (e.g. adblocker)
   let loadTimeout = setTimeout(() => {
-    showFacebookFallback();
+    if (fbLoader) fbLoader.style.display = 'none';
   }, CONFIG.fbLoadTimeout);
 
   iframe.onload = () => {
@@ -93,35 +86,6 @@ function initFacebookWidget() {
 
   // Append iframe to container
   if (fbContainer) fbContainer.appendChild(iframe);
-}
-
-// Renders a styled premium promo card when Facebook widget fails or is blocked
-function showFacebookFallback() {
-  const fbContainer = document.getElementById('fb-iframe-container');
-  const fbLoader = document.getElementById('fb-loader');
-  if (fbLoader) fbLoader.style.display = 'none';
-  
-  // Clear previous contents (like the incomplete or blocked iframe)
-  if (fbContainer) {
-    fbContainer.innerHTML = '';
-
-    const fallbackCard = document.createElement('div');
-    fallbackCard.className = 'fb-fallback-card';
-    fallbackCard.innerHTML = `
-      <div class="fb-fallback-header">
-        <div class="fb-fallback-avatar">P</div>
-        <div class="fb-fallback-meta">
-          <h4>Pateo</h4>
-          <span>Promoções e Eventos</span>
-        </div>
-      </div>
-      <div class="fb-fallback-content">
-        <p>Partilhamos diariamente os nossos especiais, pastelaria fresca e novidades na nossa cronologia do Facebook. Toque no botão abaixo para ver as ofertas de hoje!</p>
-      </div>
-    `;
-    fbContainer.appendChild(fallbackCard);
-    fbContainer.style.height = 'auto';
-  }
 }
 
 /* ==========================================
