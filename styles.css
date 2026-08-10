@@ -1,28 +1,29 @@
 /* ----------------------------------------------------
    PATEO - TABLE MENU DESIGN SYSTEM
-   Modern, Mobile-First, Blue Brand Theme
+   Modern, Mobile-First, Blue Balanced Theme
    ---------------------------------------------------- */
 
 :root {
-  /* Color Palette - Inspired by Páteo Supermarket Logo */
-  --bg-color: #060c16;        /* Deep midnight blue base */
-  --bg-gradient: linear-gradient(135deg, #0b1424 0%, #03070f 100%);
-  --card-bg: rgba(13, 23, 42, 0.8);
-  --card-bg-solid: #0d172a;
-  --card-border: rgba(59, 130, 246, 0.15); /* Light blue border */
+  /* Balanced Brand Palette - Inspired by Páteo Supermarket Logo */
+  --bg-color: #f1f5f9;        /* Clean light grey-blue background */
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --card-bg: #ffffff;         /* Clean white cards */
+  --card-bg-solid: #ffffff;
+  --card-border: rgba(12, 96, 163, 0.08); /* Very subtle blue border */
   
   --primary-color: #0c60a3;   /* Páteo Royal Blue */
   --primary-hover: #1e7bc4;   
   --accent-color: #4a8ec7;    /* Páteo Light Slate Blue */
-  --accent-light: rgba(12, 96, 163, 0.1);
+  --accent-light: rgba(12, 96, 163, 0.05);
   
-  --text-main: #f1f5f9;      /* Soft ice white */
-  --text-muted: #94a3b8;     /* Slate grey */
-  --text-dark: #0f172a;      /* Contrast dark text */
+  --text-main: #1e293b;      /* Dark slate grey for body text */
+  --text-muted: #64748b;     /* Muted grey for subtexts */
+  --text-dark: #0f172a;      /* Contrast dark slate */
+  --text-light: #f8fafc;     /* Ice white for dark sections */
   
   /* Shadows & Glassmorphism */
-  --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --box-shadow: 0 10px 30px rgba(12, 96, 163, 0.06);
+  --card-shadow: 0 4px 20px rgba(12, 96, 163, 0.04);
   --glass-blur: blur(16px);
   --border-radius: 16px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,9 +79,13 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px 0 16px 0;
-  border-bottom: 1px solid var(--card-border);
+  background-color: #0b1424; /* Deep dark blue brand color */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  margin-top: 16px;
   margin-bottom: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .logo-wrap {
@@ -88,9 +93,9 @@ html, body {
   align-items: center;
   justify-content: center;
   background: #ffffff; /* Frame for the logo */
-  padding: 10px 24px;
+  padding: 8px 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: var(--transition);
 }
 
@@ -100,7 +105,7 @@ html, body {
 }
 
 .logo-img {
-  height: 48px;
+  height: 44px;
   width: auto;
   display: block;
 }
@@ -407,7 +412,7 @@ html, body {
   border: 1px solid var(--card-border);
   background-color: #ffffff;
   cursor: zoom-in;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(12, 96, 163, 0.08); /* Soft blue shadow for the light theme */
   transition: var(--transition);
   animation: fadeInUp 0.4s ease forwards;
 }
@@ -419,8 +424,18 @@ html, body {
 /* Footer Section */
 .main-footer {
   margin-top: auto;
-  border-top: 1px solid var(--card-border);
-  padding-top: 24px;
+  background-color: #0b1424; /* Deep dark blue brand color */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.main-footer .card {
+  background: rgba(255, 255, 255, 0.03); /* Frame overlay inside dark footer */
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+  margin-bottom: 0;
 }
 
 /* Info Card */
@@ -438,7 +453,7 @@ html, body {
 .info-icon {
   width: 18px;
   height: 18px;
-  color: var(--primary-color);
+  color: var(--primary-hover);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -446,20 +461,22 @@ html, body {
 .info-row h4 {
   font-family: var(--font-title);
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--text-light); /* Soft white on dark footer */
   margin-bottom: 2px;
 }
 
 .info-row p {
-  color: var(--text-muted);
+  color: #cbd5e1; /* Light slate text */
 }
 
 /* Footer Bottom text */
 .footer-bottom {
   text-align: center;
   font-size: 0.65rem;
-  color: var(--text-muted);
+  color: #64748b;
   margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 16px;
 }
 
 /* Premium Lightbox Modal */
