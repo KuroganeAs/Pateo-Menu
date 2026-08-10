@@ -4,26 +4,26 @@
    ---------------------------------------------------- */
 
 :root {
-  /* Balanced Brand Palette - Inspired by Páteo Supermarket Logo */
-  --bg-color: #f1f5f9;        /* Clean light grey-blue background */
-  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  --card-bg: #ffffff;         /* Clean white cards */
-  --card-bg-solid: #ffffff;
-  --card-border: rgba(12, 96, 163, 0.08); /* Very subtle blue border */
+  /* Medium-Dark Slate Palette - Inspired by Páteo Supermarket Logo */
+  --bg-color: #141b2b;        /* Midnight slate blue */
+  --bg-gradient: linear-gradient(135deg, #1a2336 0%, #0c111c 100%);
+  --card-bg: rgba(30, 41, 59, 0.75); /* Elevated slate blue card panel */
+  --card-bg-solid: #1e293b;
+  --card-border: rgba(59, 130, 246, 0.15); /* Light blue border */
   
-  --primary-color: #0c60a3;   /* Páteo Royal Blue */
-  --primary-hover: #1e7bc4;   
+  --primary-color: #3b82f6;   /* Páteo Royal Blue */
+  --primary-hover: #60a5fa;   
   --accent-color: #4a8ec7;    /* Páteo Light Slate Blue */
-  --accent-light: rgba(12, 96, 163, 0.05);
+  --accent-light: rgba(59, 130, 246, 0.1);
   
-  --text-main: #1e293b;      /* Dark slate grey for body text */
-  --text-muted: #64748b;     /* Muted grey for subtexts */
+  --text-main: #e2e8f0;      /* Soft ice white */
+  --text-muted: #94a3b8;     /* Slate grey */
   --text-dark: #0f172a;      /* Contrast dark slate */
-  --text-light: #f8fafc;     /* Ice white for dark sections */
+  --text-light: #f8fafc;     /* Ice white */
   
   /* Shadows & Glassmorphism */
-  --box-shadow: 0 10px 30px rgba(12, 96, 163, 0.06);
-  --card-shadow: 0 4px 20px rgba(12, 96, 163, 0.04);
+  --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   --glass-blur: blur(16px);
   --border-radius: 16px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
