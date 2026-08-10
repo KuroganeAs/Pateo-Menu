@@ -168,90 +168,101 @@ html, body {
   margin-bottom: 16px;
 }
 
-/* Promotions Carousel Section */
-.carousel-wrapper {
-  position: relative;
-  background-color: var(--card-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--card-border);
+/* Facebook Promo Section */
+.fb-widget-wrapper {
+  background: rgba(0, 0, 0, 0.2);
   border-radius: var(--border-radius);
+  border: 1px solid var(--card-border);
+  min-height: 250px;
   overflow: hidden;
-  box-shadow: var(--card-shadow);
-  margin-bottom: 12px;
-  width: 100%;
-  aspect-ratio: 16 / 9; /* Professional aspect ratio */
-}
-
-.carousel-track {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.carousel-slide {
-  min-width: 100%;
-  height: 100%;
   position: relative;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
 }
 
-.carousel-slide img {
+.fb-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.spinner-dot {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--card-border);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+#fb-iframe-container {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#fb-iframe-container iframe {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
+  border: none;
+  background: transparent;
+  color-scheme: dark; /* Signals dark mode preference to Meta widget */
 }
 
-.carousel-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+/* Fallback Card Design (Used if FB Embed isn't loaded/wanted) */
+.fb-fallback-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
   width: 100%;
-  background: linear-gradient(to top, rgba(18, 14, 12, 0.95) 0%, rgba(18, 14, 12, 0.6) 75%, rgba(18, 14, 12, 0) 100%);
-  padding: 24px 16px 16px 16px;
-  color: var(--text-main);
+  text-align: left;
 }
 
-.carousel-caption h3 {
-  font-family: var(--font-title);
-  font-size: 1.05rem;
+.fb-fallback-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fb-fallback-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 700;
-  color: var(--primary-color);
-  margin-bottom: 4px;
+  color: var(--text-dark);
 }
 
-.carousel-caption p {
+.fb-fallback-meta h4 {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+}
+
+.fb-fallback-meta span {
   font-size: 0.75rem;
   color: var(--text-muted);
-  line-height: 1.4;
 }
 
-.carousel-dots {
-  position: absolute;
-  bottom: 12px;
-  right: 16px;
-  display: flex;
-  gap: 6px;
-  z-index: 5;
+.fb-fallback-content {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  line-height: 1.5;
 }
 
-.carousel-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.3);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: var(--transition);
-}
-
-.carousel-dot.active {
-  background-color: var(--primary-color);
-  transform: scale(1.3);
-}
 
 /* Button Styles */
 .btn {
