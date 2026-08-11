@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap');
+
+:root {
+  /* Lively Royal-Blue Palette - Páteo logo blue, energised with a warm gold pop */
+  --bg-color: #1a2038;        /* Richer, more saturated navy base */
+  --bg-gradient: linear-gradient(160deg, #223257 0%, #1a2036 58%, #221c3d 100%); /* blue → navy → subtle violet for depth */
+  --card-bg: rgba(40, 52, 82, 0.72); /* Livelier blue-tinted panel */
+  --card-bg-solid: #253150;
+  --card-border: rgba(96, 140, 230, 0.22); /* Vivid blue border */
+
+  --primary-color: #4d8bff;   /* Vivid Páteo royal blue */
+  --primary-hover: #7aa9ff;
+  --accent-color: #6fd0e8;    /* Lively cyan secondary */
+  --accent-light: rgba(77, 139, 255, 0.14);
+
+  --pop-color: #ffc24b;       /* Warm gold pop (prices, highlights) */
+  --pop-glow: rgba(255, 194, 75, 0.35);
+
+  --text-main: #eaedf5;      /* Bright ice white */
+  --text-muted: #a2acc4;     /* Lifted slate grey */
+  --text-dark: #0f1424;      /* Contrast dark slate */
+  --text-light: #ffffff;     /* Pure white */
+  
+  /* Shadows & Glassmorphism */
+  --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --glass-blur: blur(16px);
+  --border-radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-title: 'Outfit', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* Base Styles & Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 3px;
+}
+
+/* Base App container spacing */
+#root {
+  width: 100%;
+}

@@ -1,0 +1,109 @@
+.fb-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* Individual post card (reuses the global .card glass style for base look) */
+.fb-post {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  text-decoration: none;
+  color: var(--text-main);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.fb-post:hover,
+.fb-post:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.22);
+  outline: none;
+}
+
+.fb-post-media {
+  flex-shrink: 0;
+  width: 84px;
+  height: 84px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--accent-light);
+}
+
+.fb-post-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fb-post-body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.fb-post-date {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.fb-post-text {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--text-main);
+  /* Clamp long posts to 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fb-post-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-hover);
+  margin-top: 2px;
+}
+
+.fb-post-link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fb-post:hover .fb-post-link svg {
+  transform: translateX(3px);
+}
+
+/* Loading skeletons */
+.fb-post-skeleton {
+  height: 108px;
+  background: linear-gradient(
+    100deg,
+    var(--card-bg) 30%,
+    rgba(59, 130, 246, 0.08) 50%,
+    var(--card-bg) 70%
+  );
+  background-size: 200% 100%;
+  animation: fb-shimmer 1.3s ease-in-out infinite;
+}
+
+@keyframes fb-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fb-post-skeleton { animation: none; }
+}
