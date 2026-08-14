@@ -1,7 +1,14 @@
 export const categories = [
   { id: 'sandes', title: { en: 'Sandwiches', pt: 'Sandes', tet: 'Sande' } },
   { id: 'sandes-especiais', title: { en: 'Special Sandwiches & Toasts', pt: 'Sandes Especiais', tet: 'Sande Espesiál' } },
-  { id: 'barista', title: { en: 'Barista', pt: 'Barista', tet: 'Barista' } },
+  {
+    id: 'barista', title: { en: 'Barista', pt: 'Barista', tet: 'Barista' },
+    note: {
+      en: 'Takeaway adds $0.20 to your drink',
+      pt: 'Takeaway aumenta $0.20 à sua bebida',
+      tet: 'Takeaway aumenta $0.20 ba Ita-nia bebida'
+    }
+  },
   { id: 'croissants', title: { en: 'Croissants', pt: 'Croissants', tet: 'Kroisan' } },
   { id: 'pasteis-salgados', title: { en: 'Pastries & Savory', pt: 'Pastéis e Salgados', tet: 'Salgadu sira' } },
   { id: 'bolos-doces', title: { en: 'Cakes & Sweets', pt: 'Bolos e Doces', tet: 'Dose sira' } },
@@ -100,14 +107,14 @@ export const menuItems = [
     description: { en: 'Thick slices of toasted bread with toppings.', pt: 'Fatias grossas de pão torrado com cobertura.', tet: 'Paun torrada.' },
     price: 1.00,
     variants: [
-      { name: { en: '1/2 Butter', pt: '1/2 Manteiga', tet: '1/2 Manteiga' }, price: 1.00 },
-      { name: { en: 'Full Butter', pt: '1 Torrada Manteiga', tet: 'Torrada Manteiga' }, price: 1.50 },
-      { name: { en: '1/2 Cheese', pt: '1/2 Queijo', tet: '1/2 Keiju' }, price: 1.90 },
-      { name: { en: 'Full Cheese', pt: '1 Torrada Queijo', tet: 'Torrada Keiju' }, price: 2.75 },
-      { name: { en: '1/2 Ham', pt: '1/2 Fiambre', tet: '1/2 Fiambre' }, price: 1.50 },
-      { name: { en: 'Full Ham', pt: '1 Torrada Fiambre', tet: 'Torrada Fiambre' }, price: 2.75 },
-      { name: { en: '1/2 Mixed', pt: '1/2 Mista', tet: '1/2 Mista' }, price: 1.65 },
-      { name: { en: 'Full Mixed', pt: '1 Torrada Mista', tet: 'Torrada Mista' }, price: 3.00 }
+      { name: { en: '1/2 Butter', pt: '½ Torrada Manteiga', tet: '½ Torrada Manteiga' }, price: 1.00 },
+      { name: { en: 'Full Butter', pt: 'Torrada Manteiga', tet: 'Torrada Manteiga' }, price: 1.90 },
+      { name: { en: '1/2 Cheese', pt: '½ Tosta de Queijo', tet: '½ Tosta Keiju' }, price: 1.50 },
+      { name: { en: 'Full Cheese', pt: 'Tosta de Queijo', tet: 'Tosta Keiju' }, price: 2.75 },
+      { name: { en: '1/2 Ham', pt: '½ Tosta de Fiambre', tet: '½ Tosta Fiambre' }, price: 1.50 },
+      { name: { en: 'Full Ham', pt: 'Tosta de Fiambre', tet: 'Tosta Fiambre' }, price: 2.75 },
+      { name: { en: '1/2 Mixed', pt: '½ Tosta Mista', tet: '½ Tosta Mista' }, price: 1.65 },
+      { name: { en: 'Full Mixed', pt: 'Tosta Mista', tet: 'Tosta Mista' }, price: 3.00 }
     ]
   },
   {
@@ -158,9 +165,9 @@ export const menuItems = [
   { id: 'b-cap', categoryId: 'barista', image: null, price: 2.50, title: { en: 'Cappuccino', pt: 'Cappuccino', tet: 'Kapuxinu' }, description: { en: 'Espresso with steamed milk and thick foam.', pt: 'Expresso com leite vaporizado e espuma.', tet: 'Espresso ho susubeen frota.' } },
   { id: 'b-latte', categoryId: 'barista', image: null, price: 2.25, title: { en: 'Latte / Flat White', pt: 'Meia de Leite / Garoto', tet: 'Meia de Leite' }, description: { en: 'Milky espresso coffee.', pt: 'Café expresso com bastante leite.', tet: 'Kafé ho susubeen barak.' } },
   { id: 'b-carioca', categoryId: 'barista', image: null, price: 1.50, title: { en: 'Weak Espresso', pt: 'Carioca', tet: 'Karioka' }, description: { en: 'Diluted, weaker espresso shot.', pt: 'Expresso fraco e diluído.', tet: 'Espresso fraku.' } },
-  { id: 'b-americano', categoryId: 'barista', image: null, price: 1.50, title: { en: 'Americano / Long Black', pt: 'Abatanado', tet: 'Amerikanu' }, description: { en: 'Espresso poured over hot water.', pt: 'Expresso sobre água quente.', tet: 'Espresso ho bee manas.' } },
+  { id: 'b-americano', categoryId: 'barista', image: null, price: 1.50, title: { en: 'Americano / Long Black', pt: 'Café Americano', tet: 'Amerikanu' }, description: { en: 'Espresso poured over hot water.', pt: 'Expresso sobre água quente.', tet: 'Espresso ho bee manas.' } },
   { id: 'b-milk', categoryId: 'barista', image: null, price: 1.00, title: { en: 'Glass of Milk', pt: 'Copo de Leite', tet: 'Kopu Susubeen' }, description: { en: 'Hot or cold glass of milk.', pt: 'Copo de leite quente ou frio.', tet: 'Kopu susubeen malirin ka manas.' } },
-  { id: 'b-chocmilk', categoryId: 'barista', image: null, price: 1.70, title: { en: 'Chocolate Milk', pt: 'Leite com Chocolate', tet: 'Susubeen Xokolate' }, description: { en: 'Sweet chocolate milk.', pt: 'Leite com chocolate doce.', tet: 'Susubeen xokolate midar.' } },
+  { id: 'b-chocmilk', categoryId: 'barista', image: null, price: 1.70, title: { en: 'Chocolate Milk', pt: 'Copo de Leite c/ Chocolate', tet: 'Susubeen Xokolate' }, description: { en: 'Sweet chocolate milk.', pt: 'Leite com chocolate doce.', tet: 'Susubeen xokolate midar.' } },
   { id: 'b-tea', categoryId: 'barista', image: null, price: 2.00, title: { en: 'Tea', pt: 'Chá', tet: 'Xá' }, description: { en: 'Hot infused tea.', pt: 'Infusão de chá quente.', tet: 'Xá manas.' } },
   { id: 'b-teamilk', categoryId: 'barista', image: null, price: 2.25, title: { en: 'Tea with Milk', pt: 'Chá com Leite', tet: 'Xá ho Susubeen' }, description: { en: 'Hot tea served with milk.', pt: 'Chá quente servido com leite.', tet: 'Xá manas ho susubeen.' } },
 
@@ -222,15 +229,15 @@ export const menuItems = [
   { id: 'bd-nata', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Traditional Custard Tart', pt: 'Pastel de Nata', tet: 'Pastel de Nata' }, description: { en: 'Portuguese egg custard tart in flaky pastry.', pt: 'Pastel de nata tradicional português.', tet: 'Tarte manu-tolun Portugés.' } },
   { id: 'bd-chocnata', categoryId: 'bolos-doces', image: null, price: 1.80, title: { en: 'Chocolate Custard Tart', pt: 'Pastel de Nata de Chocolate', tet: 'Pastel Xokolate' }, description: { en: 'Custard tart infused with rich chocolate.', pt: 'Pastel de nata com chocolate.', tet: 'Pastel nata ho xokolate.' } },
   { id: 'bd-arroz', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Rice Cake', pt: 'Bolo de Arroz', tet: 'Bolu Arroz' }, description: { en: 'Sweet and buttery traditional rice flour cake.', pt: 'Bolo tradicional feito com farinha de arroz.', tet: 'Bolu tradisional husi farinha foos.' } },
-  { id: 'bd-almond', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Almond Pretzel', pt: 'Laço de Amêndoa', tet: 'Lasu Améndoa' }, description: { en: 'Sweet pastry shaped like a pretzel with almonds.', pt: 'Massa doce em forma de laço com amêndoas.', tet: 'Lasu midar ho améndoa.' } },
-  { id: 'bd-apple', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Alcobaça Apple Pretzel', pt: 'Laço de Maçã de Alcobaça', tet: 'Lasu Masán' }, description: { en: 'Sweet pastry pretzel filled with regional apple.', pt: 'Laço recheado com maçã de Alcobaça.', tet: 'Lasu midar ho masán.' } },
-  { id: 'bd-pecan', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Maple Pecan Pastry', pt: 'Trança de Noz Pecan e Maple', tet: 'Transa Noz Pekan' }, description: { en: 'Braided pastry with maple syrup and pecans.', pt: 'Trança folhada com xarope de ácer e nozes pecan.', tet: 'Transa folhadu ho noz pekan.' } },
-  { id: 'bd-sugardonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Sugar Donut', pt: 'Dot\'s Açúcar', tet: 'Donut Masin Midar' }, description: { en: 'Classic donut dusted with sugar.', pt: 'Donut clássico polvilhado com açúcar.', tet: 'Donut ho masin midar.' } },
+  { id: 'bd-almond', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Almond Pretzel', pt: 'Bretzel Amêndoa', tet: 'Bretzel Améndoa' }, description: { en: 'Sweet pastry shaped like a pretzel with almonds.', pt: 'Massa doce em forma de laço com amêndoas.', tet: 'Lasu midar ho améndoa.' } },
+  { id: 'bd-apple', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Alcobaça Apple Pretzel', pt: 'Bretzel Maçã Alcobaça', tet: 'Bretzel Masán' }, description: { en: 'Sweet pastry pretzel filled with regional apple.', pt: 'Laço recheado com maçã de Alcobaça.', tet: 'Lasu midar ho masán.' } },
+  { id: 'bd-pecan', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Maple Pecan Pastry', pt: 'Maple Pecan', tet: 'Maple Pecan' }, description: { en: 'Braided pastry with maple syrup and pecans.', pt: 'Trança folhada com xarope de ácer e nozes pecan.', tet: 'Transa folhadu ho noz pekan.' } },
+  { id: 'bd-sugardonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Sugar Donut', pt: 'Dot\'s Açucarado', tet: 'Donut Masin Midar' }, description: { en: 'Classic donut dusted with sugar.', pt: 'Donut clássico polvilhado com açúcar.', tet: 'Donut ho masin midar.' } },
   { id: 'bd-chocdonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Dark Chocolate Donut', pt: 'Dot\'s Negrito', tet: 'Donut Xokolate' }, description: { en: 'Donut covered in rich dark chocolate.', pt: 'Donut coberto com chocolate negro.', tet: 'Donut ho xokolate metan.' } },
-  { id: 'bd-glazeddonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Classic Glazed Donut', pt: 'Dot\'s Glaceado', tet: 'Donut Glaseadu' }, description: { en: 'Sweet glazed donut ring.', pt: 'Donut clássico com cobertura doce.', tet: 'Donut midar glaseadu.' } },
+  { id: 'bd-glazeddonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Classic Glazed Donut', pt: 'Dot\'s Classic Glace', tet: 'Donut Glaseadu' }, description: { en: 'Sweet glazed donut ring.', pt: 'Donut clássico com cobertura doce.', tet: 'Donut midar glaseadu.' } },
 
   // --- BEBIDAS E COCKTAILS ---
-  { id: 'bc-wine', categoryId: 'bebidas-cocktails', image: null, price: 2.50, title: { en: 'House Glass of Wine', pt: 'Copo de Vinho', tet: 'Kopu Tua-Uvas' }, description: { en: 'A glass of our selected house wine.', pt: 'Um copo do nosso vinho da casa.', tet: 'Tua-uvas husi uma.' } },
+  { id: 'bc-wine', categoryId: 'bebidas-cocktails', image: null, price: 2.50, title: { en: 'House Glass of Wine', pt: 'Copo de Vinho da Casa', tet: 'Kopu Tua-Uvas' }, description: { en: 'A glass of our selected house wine.', pt: 'Um copo do nosso vinho da casa.', tet: 'Tua-uvas husi uma.' } },
   { id: 'bc-ginjinha', categoryId: 'bebidas-cocktails', image: null, price: 2.00, title: { en: 'Ginjinha', pt: 'Ginjinha', tet: 'Ginjinha' }, description: { en: 'Traditional Portuguese cherry liqueur.', pt: 'Licor tradicional português de ginja.', tet: 'Likór tradisional husi ginja.' } },
   { id: 'bc-favaito', categoryId: 'bebidas-cocktails', image: null, price: 1.75, title: { en: 'Moscatel Favaito', pt: 'Moscatel Favaito', tet: 'Moscatel Favaito' }, description: { en: 'Sweet fortified muscat wine.', pt: 'Vinho doce moscatel.', tet: 'Tua-uvas midar moscatel.' } },
   { id: 'bc-aperol', categoryId: 'bebidas-cocktails', image: null, price: 6.00, title: { en: 'Aperol Spritz', pt: 'Aperol Spritz', tet: 'Aperol Spritz' }, description: { en: 'Refreshing Italian cocktail with prosecco.', pt: 'Cocktail italiano refrescante.', tet: 'Koktail fresku Italianu nian.' } },

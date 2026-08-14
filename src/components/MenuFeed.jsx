@@ -150,6 +150,11 @@ export default function MenuFeed({ onActiveCategoryChange, onItemSelect, searchQ
                 <span className="text-xs font-semibold text-muted tabular-nums shrink-0">{catItems.length}</span>
               </div>
 
+              {/* Category small print (e.g. Barista takeaway surcharge) */}
+              {cat.note && (
+                <p className="text-xs text-muted italic -mt-3 mb-4">{t(cat.note)}</p>
+              )}
+
               <div className={`grid ${gridClass} gap-4`}>
                 {catItems.map(item => (
                   <MenuItemCard
