@@ -5,6 +5,7 @@ import placeholderImg from '../assets/food-placeholder.svg';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { useViewport } from '../hooks/useViewport';
 import { ui } from '../data/strings';
+import { categories } from '../data/menu';
 import { cn } from '../lib/cn';
 
 export default function DishDetailModal({ item, onClose }) {
@@ -185,6 +186,13 @@ export default function DishDetailModal({ item, onClose }) {
             <p className="text-[15px] text-muted leading-relaxed">
               {desc}
             </p>
+            {/* Category small print (e.g. Barista takeaway surcharge) */}
+            {(() => {
+              const catNote = categories.find((c) => c.id === item.categoryId)?.note;
+              return catNote ? (
+                <p className="mt-3 text-xs text-muted italic">{t(catNote)}</p>
+              ) : null;
+            })()}
           </div>
 
           {/* Base Variant Carousel */}
