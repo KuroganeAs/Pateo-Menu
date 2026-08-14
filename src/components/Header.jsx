@@ -3,9 +3,10 @@ import { useLanguage } from '../context/LanguageContext';
 import { useViewport } from '../hooks/useViewport';
 import { useFeedScroll } from '../hooks/useFeedScroll';
 import { ui } from '../data/strings';
-import { Image as ImageIcon, Clock } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LanguageSwitch from './LanguageSwitch';
+import logo from '../assets/logo.png';
 
 const getTimeOfDay = () => {
   const hour = new Date().getHours();
@@ -66,9 +67,9 @@ export default function Header({ shrinkOnScroll = false }) {
         {/* Language Selector */}
         <LanguageSwitch />
 
-        {/* Logo Placeholder */}
-        <div className={`rounded-full bg-stone-200 flex items-center justify-center text-stone-400 shrink-0 transition-all duration-300 ${isCompact ? 'w-8 h-8' : 'w-10 h-10'}`}>
-          <ImageIcon size={isCompact ? 16 : 20} />
+        {/* Páteo Logo */}
+        <div className={`rounded-full bg-white shadow-card overflow-hidden shrink-0 flex items-center justify-center transition-all duration-300 ${isCompact ? 'w-8 h-8' : 'w-10 h-10'}`}>
+          <img src={logo} alt="Páteo" className="w-full h-full object-contain p-0.5" />
         </div>
       </div>
     </header>
