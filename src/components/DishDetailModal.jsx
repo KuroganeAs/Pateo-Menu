@@ -7,9 +7,10 @@ import { useViewport } from '../hooks/useViewport';
 import { ui } from '../data/strings';
 import { categories } from '../data/menu';
 import { cn } from '../lib/cn';
+import FadeText from './FadeText';
 
 export default function DishDetailModal({ item, onClose }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { isDesktop } = useViewport();
   const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
   const dragControls = useDragControls();
@@ -147,7 +148,7 @@ export default function DishDetailModal({ item, onClose }) {
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-none">
                 <AnimatePresence mode="wait">
                   <motion.span
-                    key={safeVariantIdx}
+                    key={`${safeVariantIdx}-${language}`}
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
@@ -175,7 +176,7 @@ export default function DishDetailModal({ item, onClose }) {
         <div className="px-5">
           <div className="flex justify-between items-start mb-4">
             <h2 className="font-display text-[24px] font-bold text-ink leading-tight max-w-[70%]">
-              {title}
+              <FadeText>{title}</FadeText>
             </h2>
             <span className="font-display text-[20px] font-semibold text-primary tabular-nums">
               ${price.toFixed(2)}
@@ -184,13 +185,13 @@ export default function DishDetailModal({ item, onClose }) {
 
           <div className="mt-4">
             <p className="text-[15px] text-muted leading-relaxed">
-              {desc}
+              <FadeText>{desc}</FadeText>
             </p>
             {/* Category small print (e.g. Barista takeaway surcharge) */}
             {(() => {
               const catNote = categories.find((c) => c.id === item.categoryId)?.note;
               return catNote ? (
-                <p className="mt-3 text-xs text-muted italic">{t(catNote)}</p>
+                <p className="mt-3 text-xs text-muted italic"><FadeText>{t(catNote)}</FadeText></p>
               ) : null;
             })()}
           </div>
@@ -198,7 +199,7 @@ export default function DishDetailModal({ item, onClose }) {
           {/* Base Variant Carousel */}
           {hasVariants && (
             <div className="mt-8">
-              <h4 className="text-sm font-bold text-ink mb-3 uppercase tracking-wider">{t(ui.selectOption)}</h4>
+              <h4 className="text-sm font-bold text-ink mb-3 uppercase tracking-wider"><FadeText>{t(ui.selectOption)}</FadeText></h4>
               <div ref={pillsRef} className="flex gap-3 overflow-x-auto hide-scrollbar pb-2 snap-x">
                 {item.variants.map((variant, idx) => (
                   <button
@@ -212,7 +213,7 @@ export default function DishDetailModal({ item, onClose }) {
                         : "border-stone-200 bg-white text-muted hover:border-stone-300"
                     )}
                   >
-                    {t(variant.name)}
+                    <FadeText>{t(variant.name)}</FadeText>
                   </button>
                 ))}
               </div>

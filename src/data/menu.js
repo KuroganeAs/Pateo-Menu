@@ -1,6 +1,6 @@
 export const categories = [
-  { id: 'sandes', title: { en: 'Sandwiches', pt: 'Sandes', tet: 'Sande' } },
-  { id: 'sandes-especiais', title: { en: 'Special Sandwiches & Toasts', pt: 'Sandes Especiais', tet: 'Sande Espesiál' } },
+  { id: 'sandes', title: { en: 'Sandwiches', pt: 'Sandes', tet: 'Sandes' } },
+  { id: 'sandes-especiais', title: { en: 'Special Sandwiches & Toasts', pt: 'Sandes Especiais', tet: 'Sandes Espesiál' } },
   {
     id: 'barista', title: { en: 'Barista', pt: 'Barista', tet: 'Barista' },
     note: {
@@ -119,22 +119,22 @@ export const menuItems = [
   },
   {
     id: 'se-omelet', categoryId: 'sandes-especiais', image: null,
-    title: { en: 'Omelette Sandwich', pt: 'Sandes Omelette', tet: 'Sande Omelette' },
+    title: { en: 'Omelette Sandwich', pt: 'Sandes Omelette', tet: 'Sandes Omelette' },
     description: { en: 'Freshly made omelette in bread.', pt: 'Omelete feita na hora no pão.', tet: 'Omelete fresku iha paun.' },
     price: 1.95,
     variants: [
       { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Meia Sandes' }, price: 1.95 },
-      { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sande Tomak' }, price: 3.50 }
+      { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sandes Tomak' }, price: 3.50 }
     ]
   },
   {
     id: 'se-tuna', categoryId: 'sandes-especiais', image: null,
-    title: { en: 'Tuna Sandwich', pt: 'Sandes de Atum', tet: 'Sande Atum' },
+    title: { en: 'Tuna Sandwich', pt: 'Sandes de Atum', tet: 'Sandes Atum' },
     description: { en: 'Tuna paste with fresh greens.', pt: 'Pasta de atum com folhas frescas.', tet: 'Pasta atum nian.' },
     price: 1.95,
     variants: [
       { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Meia Sandes' }, price: 1.95 },
-      { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sande Tomak' }, price: 3.50 }
+      { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sandes Tomak' }, price: 3.50 }
     ]
   },
   {
@@ -152,7 +152,7 @@ export const menuItems = [
   {
     id: 'se-bifana', categoryId: 'sandes-especiais', image: null,
     title: { en: 'Bifana', pt: 'Bifana', tet: 'Bifana' },
-    description: { en: 'Traditional Portuguese marinated pork sandwich.', pt: 'Sandes tradicional de carne de porco marinada.', tet: 'Sande naan fahi Portugés nian.' },
+    description: { en: 'Traditional Portuguese marinated pork sandwich.', pt: 'Sandes tradicional de carne de porco marinada.', tet: 'Sandes naan fahi Portugés nian.' },
     price: 4.00
   },
 
