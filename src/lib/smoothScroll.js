@@ -5,6 +5,14 @@
 
 let active = null;
 
+// True while a category-click animation is scrolling the feed.
+// The scroll-spy checks this so the active pill doesn't "walk" through
+// every intermediate category during the glide — it resumes on user
+// scroll automatically because wheel/touch input cancels the animation.
+export function isAutoScrolling() {
+  return active !== null;
+}
+
 function stop() {
   if (!active) return;
   cancelAnimationFrame(active.raf);
