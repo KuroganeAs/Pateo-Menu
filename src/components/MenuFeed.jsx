@@ -5,6 +5,7 @@ import { ui } from '../data/strings';
 import { useViewport } from '../hooks/useViewport';
 import MenuItemCard from './MenuItemCard';
 import GradualBlur from './GradualBlur';
+import { isAutoScrolling } from '../lib/smoothScroll';
 import {
   Sandwich, Sparkles, Coffee, Croissant, Cookie, CakeSlice, Martini, SearchX
 } from 'lucide-react';
@@ -41,6 +42,10 @@ export default function MenuFeed({ onActiveCategoryChange, onItemSelect, searchQ
     };
 
     const observer = new IntersectionObserver((entries) => {
+      // Ignore sections flying past during a category-click scroll animation;
+      // the clicked category is already active. User scrolling cancels the
+      // animation, so the spy always reacts to manual scrolls.
+      if (isAutoScrolling()) return;
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const categoryId = entry.target.getAttribute('data-section-id');
