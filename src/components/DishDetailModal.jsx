@@ -17,6 +17,30 @@ export default function DishDetailModal({ item, onClose }) {
   const heroRef = useRef(null);
   const pillsRef = useRef(null);
   const wheelCooldown = useRef(0);
+  const scrollRef = useRef(null);
+  const swipeState = useRef(null);
+
+  // Whole-sheet swipe-to-dismiss (mobile): begin the sheet drag only when
+  // the content is scrolled to the top AND the finger moves downward —
+  // otherwise the gesture belongs to normal content scrolling.
+  const onContentPointerDown = (e) => {
+    if (isDesktop) return;
+    swipeState.current = { y: e.clientY, armed: true };
+  };
+  const onContentPointerMove = (e) => {
+    const s = swipeState.current;
+    if (!s?.armed || isDesktop) return;
+    const dy = e.clientY - s.y;
+    if (dy > 12 && (scrollRef.current?.scrollTop ?? 0) <= 1) {
+      s.armed = false;
+      dragControls.start(e);
+    } else if (dy < -12) {
+      s.armed = false; // upward move — native scroll owns this gesture
+    }
+  };
+  const onContentPointerEnd = () => {
+    swipeState.current = null;
+  };
 
   // Prevent background scrolling when modal is open
   useEffect(() => {
@@ -82,11 +106,17 @@ export default function DishDetailModal({ item, onClose }) {
   // Rendered as a plain JSX variable (not a nested component) so variant
   // selection re-renders don't remount the DOM and reset scroll position.
   const modalContent = item && (
-    <div className="flex flex-col h-full bg-white relative">
+    <div
+      className="flex flex-col h-full bg-white relative"
+      onPointerDown={onContentPointerDown}
+      onPointerMove={onContentPointerMove}
+      onPointerUp={onContentPointerEnd}
+      onPointerCancel={onContentPointerEnd}
+    >
       {/* Drag Handle (Mobile) & Close Button */}
       <div
         className="sticky top-0 w-full z-10 flex justify-between items-center px-4 pt-4 pb-2 bg-gradient-to-b from-white via-white to-transparent touch-none"
-        onPointerDown={(e) => { if (!isDesktop) dragControls.start(e); }}
+        onPointerDown={(e) => { if (!isDesktop) { swipeState.current = null; dragControls.start(e); } }}
       >
         {!isDesktop && <div className="w-12 h-1.5 bg-stone-200 rounded-full mx-auto absolute left-1/2 -translate-x-1/2" />}
         <button
@@ -98,7 +128,7 @@ export default function DishDetailModal({ item, onClose }) {
         </button>
       </div>
 
-      <div className="overflow-y-auto pb-10 hide-scrollbar flex-1">
+      <div ref={scrollRef} className="overflow-y-auto pb-10 hide-scrollbar flex-1 overscroll-contain">
         {/* Hero Image Placeholder with Carousel */}
         <div className="px-4 pb-6">
           <div ref={heroRef} className="relative w-full aspect-square bg-stone-100 rounded-2xl overflow-hidden group">
@@ -267,7 +297,7 @@ export default function DishDetailModal({ item, onClose }) {
               onDragEnd={(e, info) => {
                 if (info.offset.y > 120 || info.velocity.y > 500) onClose();
               }}
-              className="absolute bottom-0 left-0 right-0 z-50 rounded-t-[28px] max-h-[90vh] h-[90vh] w-full mx-auto shadow-2xl overflow-hidden"
+              className="absolute bottom-0 left-0 right-0 z-50 rounded-t-[28px] h-[85dvh] max-h-[85dvh] w-full mx-auto shadow-2xl overflow-hidden"
               role="dialog"
               aria-modal="true"
               data-modal-open
