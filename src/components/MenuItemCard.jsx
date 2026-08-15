@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { ui } from '../data/strings';
 import { useViewport } from '../hooks/useViewport';
+import FadeText from './FadeText';
 import placeholderImg from '../assets/food-placeholder.svg';
 
 const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -83,7 +84,7 @@ export default function MenuItemCard({ item, onClick, searchQuery }) {
         {item.variants?.length > 0 && (
           <div className="absolute bottom-2 right-2 bg-white/85 backdrop-blur-sm px-2 py-1 rounded-full z-20 flex items-center justify-center">
             <span className="text-[10px] font-semibold text-ink tabular-nums leading-none">
-              {item.variants.length} {t(ui.optionsLabel)}
+              <FadeText>{item.variants.length} {t(ui.optionsLabel)}</FadeText>
             </span>
           </div>
         )}
@@ -92,11 +93,11 @@ export default function MenuItemCard({ item, onClick, searchQuery }) {
       {/* Dish Details */}
       <div className="pt-3 pb-2 px-1 flex flex-col h-[76px] justify-between">
         <h3 className="font-display text-[15px] font-semibold text-ink leading-tight line-clamp-2">
-          <HighlightText text={title} highlight={searchQuery} />
+          <FadeText><HighlightText text={title} highlight={searchQuery} /></FadeText>
         </h3>
 
         <p className="text-[12px] text-muted line-clamp-1 mt-1">
-          {desc}
+          <FadeText>{desc}</FadeText>
         </p>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react'
 import { useLanguage } from '../context/LanguageContext';
 import { categories, menuItems } from '../data/menu';
 import { useFeedScroll } from '../hooks/useFeedScroll';
+import FadeText from './FadeText';
 import { cn } from '../lib/cn';
 
 export default function CategoryNav({ activeCategoryId, onCategorySelect, isVertical = false }) {
@@ -61,7 +62,7 @@ export default function CategoryNav({ activeCategoryId, onCategorySelect, isVert
               )}
             >
               <div className="relative z-10 flex justify-between items-center">
-                <span>{t(cat.title)}</span>
+                <FadeText>{t(cat.title)}</FadeText>
                 {/* Live item count badge */}
                 <span
                   className={cn(
@@ -99,7 +100,7 @@ export default function CategoryNav({ activeCategoryId, onCategorySelect, isVert
                     : "bg-surface text-muted border border-stone-200 hover:border-primary/40 hover:text-ink"
                 )}
               >
-                {t(cat.title)}
+                <FadeText>{t(cat.title)}</FadeText>
               </button>
 
               {/* Scroll completion progress bar under active pill */}
