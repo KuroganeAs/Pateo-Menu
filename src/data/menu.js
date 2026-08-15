@@ -19,7 +19,7 @@ export const menuItems = [
   // --- SANDWICHES ---
   {
     id: 's-bola', categoryId: 'sandes', image: null,
-    title: { en: 'Bread Roll', pt: 'Bola', tet: 'Paun Bola' },
+    title: { en: 'Bread Roll', pt: 'Bola', tet: 'Bola' },
     description: { en: 'Traditional Portuguese soft bread roll.', pt: 'Bola de pão tradicional portuguesa.', tet: 'Paun bola tradisional Portugés.' },
     price: 0.80,
     variants: [
@@ -123,7 +123,7 @@ export const menuItems = [
     description: { en: 'Freshly made omelette in bread.', pt: 'Omelete feita na hora no pão.', tet: 'Omelete fresku iha paun.' },
     price: 1.95,
     variants: [
-      { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Sande Balun' }, price: 1.95 },
+      { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Meia Sandes' }, price: 1.95 },
       { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sande Tomak' }, price: 3.50 }
     ]
   },
@@ -133,19 +133,19 @@ export const menuItems = [
     description: { en: 'Tuna paste with fresh greens.', pt: 'Pasta de atum com folhas frescas.', tet: 'Pasta atum nian.' },
     price: 1.95,
     variants: [
-      { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Sande Balun' }, price: 1.95 },
+      { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Meia Sandes' }, price: 1.95 },
       { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sande Tomak' }, price: 3.50 }
     ]
   },
   {
     id: 'se-meatcutlet', categoryId: 'sandes-especiais', image: null,
-    title: { en: 'Breaded Meat Cutlet Sandwich', pt: 'Sandes de Panado de Carne', tet: 'Sande Naan Panadu' },
+    title: { en: 'Breaded Meat Cutlet Sandwich', pt: 'Sandes de Panado de Carne', tet: 'Sandes de Panado de Carne' },
     description: { en: 'Crispy breaded meat cutlet in a roll.', pt: 'Panado de carne crocante no pão.', tet: 'Naan panadu krispi iha paun.' },
     price: 4.50
   },
   {
     id: 'se-fishcutlet', categoryId: 'sandes-especiais', image: null,
-    title: { en: 'Breaded Fish Cutlet Sandwich', pt: 'Sandes de Panado de Peixe', tet: 'Sande Ikan Panadu' },
+    title: { en: 'Breaded Fish Cutlet Sandwich', pt: 'Sandes de Panado de Peixe', tet: 'Sandes de Panado de Peixe' },
     description: { en: 'Crispy breaded fish fillet in a roll.', pt: 'Filete de peixe panado no pão.', tet: 'Ikan panadu iha paun.' },
     price: 4.50
   },
@@ -168,8 +168,8 @@ export const menuItems = [
   { id: 'b-americano', categoryId: 'barista', image: null, price: 1.50, title: { en: 'Americano / Long Black', pt: 'Café Americano', tet: 'Americano' }, description: { en: 'Espresso poured over hot water.', pt: 'Expresso sobre água quente.', tet: 'Espresso ho bee manas.' } },
   { id: 'b-milk', categoryId: 'barista', image: null, price: 1.00, title: { en: 'Glass of Milk', pt: 'Copo de Leite', tet: 'Kopu Susubeen' }, description: { en: 'Hot or cold glass of milk.', pt: 'Copo de leite quente ou frio.', tet: 'Kopu susubeen malirin ka manas.' } },
   { id: 'b-chocmilk', categoryId: 'barista', image: null, price: 1.70, title: { en: 'Chocolate Milk', pt: 'Copo de Leite c/ Chocolate', tet: 'Susubeen Xokolate' }, description: { en: 'Sweet chocolate milk.', pt: 'Leite com chocolate doce.', tet: 'Susubeen xokolate midar.' } },
-  { id: 'b-tea', categoryId: 'barista', image: null, price: 2.00, title: { en: 'Tea', pt: 'Chá', tet: 'Xá' }, description: { en: 'Hot infused tea.', pt: 'Infusão de chá quente.', tet: 'Xá manas.' } },
-  { id: 'b-teamilk', categoryId: 'barista', image: null, price: 2.25, title: { en: 'Tea with Milk', pt: 'Chá com Leite', tet: 'Xá ho Susubeen' }, description: { en: 'Hot tea served with milk.', pt: 'Chá quente servido com leite.', tet: 'Xá manas ho susubeen.' } },
+  { id: 'b-tea', categoryId: 'barista', image: null, price: 2.00, title: { en: 'Tea', pt: 'Chá', tet: 'Chá' }, description: { en: 'Hot infused tea.', pt: 'Infusão de chá quente.', tet: 'Xá manas.' } },
+  { id: 'b-teamilk', categoryId: 'barista', image: null, price: 2.25, title: { en: 'Tea with Milk', pt: 'Chá com Leite', tet: 'Chá com Leite' }, description: { en: 'Hot tea served with milk.', pt: 'Chá quente servido com leite.', tet: 'Xá manas ho susubeen.' } },
 
   // --- CROISSANTS ---
   {
@@ -234,14 +234,14 @@ export const menuItems = [
   { id: 'bd-pecan', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Maple Pecan', pt: 'Maple Pecan', tet: 'Maple Pecan' }, description: { en: 'Braided pastry with maple syrup and pecans.', pt: 'Trança folhada com xarope de ácer e nozes pecan.', tet: 'Transa folhadu ho noz pekan.' } },
   { id: 'bd-sugardonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Dot\'s Sugar Donut', pt: 'Dot\'s Açucarado', tet: 'Donut Masin Midar' }, description: { en: 'Classic donut dusted with sugar.', pt: 'Donut clássico polvilhado com açúcar.', tet: 'Donut ho masin midar.' } },
   { id: 'bd-chocdonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Dot\'s Dark Chocolate Donut', pt: 'Dot\'s Negrito', tet: 'Donut Xokolate' }, description: { en: 'Donut covered in rich dark chocolate.', pt: 'Donut coberto com chocolate negro.', tet: 'Donut ho xokolate metan.' } },
-  { id: 'bd-glazeddonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Dot\'s Classic Glace', pt: 'Dot\'s Classic Glace', tet: 'Donut Glaseadu' }, description: { en: 'Sweet glazed donut ring.', pt: 'Donut clássico com cobertura doce.', tet: 'Donut midar glaseadu.' } },
+  { id: 'bd-glazeddonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Dot\'s Classic Glace', pt: 'Dot\'s Classic Glace', tet: 'Dot\'s Classic Glace' }, description: { en: 'Sweet glazed donut ring.', pt: 'Donut clássico com cobertura doce.', tet: 'Donut midar glaseadu.' } },
 
   // --- BEBIDAS E COCKTAILS ---
-  { id: 'bc-wine', categoryId: 'bebidas-cocktails', image: null, price: 2.50, title: { en: 'House Glass of Wine', pt: 'Copo de Vinho da Casa', tet: 'Kopu Tua-Uvas' }, description: { en: 'A glass of our selected house wine.', pt: 'Um copo do nosso vinho da casa.', tet: 'Tua-uvas husi uma.' } },
+  { id: 'bc-wine', categoryId: 'bebidas-cocktails', image: null, price: 2.50, title: { en: 'House Glass of Wine', pt: 'Copo de Vinho da Casa', tet: 'Copo de Vinho da Casa' }, description: { en: 'A glass of our selected house wine.', pt: 'Um copo do nosso vinho da casa.', tet: 'Tua-uvas husi uma.' } },
   { id: 'bc-ginjinha', categoryId: 'bebidas-cocktails', image: null, price: 2.00, title: { en: 'Ginjinha', pt: 'Ginjinha', tet: 'Ginjinha' }, description: { en: 'Traditional Portuguese cherry liqueur.', pt: 'Licor tradicional português de ginja.', tet: 'Likór tradisional husi ginja.' } },
   { id: 'bc-favaito', categoryId: 'bebidas-cocktails', image: null, price: 1.75, title: { en: 'Moscatel Favaito', pt: 'Moscatel Favaito', tet: 'Moscatel Favaito' }, description: { en: 'Sweet fortified muscat wine.', pt: 'Vinho doce moscatel.', tet: 'Tua-uvas midar moscatel.' } },
   { id: 'bc-aperol', categoryId: 'bebidas-cocktails', image: null, price: 6.00, title: { en: 'Aperol Spritz', pt: 'Aperol Spritz', tet: 'Aperol Spritz' }, description: { en: 'Refreshing Italian cocktail with prosecco.', pt: 'Cocktail italiano refrescante.', tet: 'Koktail fresku Italianu nian.' } },
-  { id: 'bc-gin', categoryId: 'bebidas-cocktails', image: null, price: 9.00, title: { en: 'Premium Gin & Tonic', pt: 'Gin Tónico Premium', tet: 'Gin Tóniku' }, description: { en: 'Premium gin mixed with tonic water and botanicals.', pt: 'Gin premium com água tónica e botânicos.', tet: 'Gin di\'ak ho bee tóniku.' } },
+  { id: 'bc-gin', categoryId: 'bebidas-cocktails', image: null, price: 9.00, title: { en: 'Premium Gin & Tonic', pt: 'Gin Tónico Premium', tet: 'Gin Tónico Premium' }, description: { en: 'Premium gin mixed with tonic water and botanicals.', pt: 'Gin premium com água tónica e botânicos.', tet: 'Gin di\'ak ho bee tóniku.' } },
   { id: 'bc-port', categoryId: 'bebidas-cocktails', image: null, price: 7.00, title: { en: 'Porto Tónico', pt: 'Porto Tónico', tet: 'Porto Tónico' }, description: { en: 'White port wine mixed with tonic water.', pt: 'Vinho do porto branco com água tónica.', tet: 'Tua-uvas Porto mutin ho bee tóniku.' } },
   { id: 'bc-whisky', categoryId: 'bebidas-cocktails', image: null, price: 4.00, title: { en: 'Whisky', pt: 'Whisky', tet: 'Whisky' }, description: { en: 'A shot of classic aged whisky.', pt: 'Uma dose de whisky envelhecido clássico.', tet: 'Whisky tuan klasiku.' } },
   { id: 'bc-cachaca', categoryId: 'bebidas-cocktails', image: null, price: 4.50, title: { en: 'Cachaça 51', pt: 'Cachaça 51', tet: 'Cachaça 51' }, description: { en: 'Popular Brazilian sugarcane spirit.', pt: 'Aguardente de cana brasileira popular.', tet: 'Bebida maka\'as husi tohu Brazil nian.' } }
