@@ -18,85 +18,85 @@ export const categories = [
 export const menuItems = [
   // --- SANDWICHES ---
   {
-    id: 's-bola', categoryId: 'sandes', image: null,
+    id: 's-bola', categoryId: 'sandes', image: '/dishes/b-bt.jpg',
     title: { en: 'Bread Roll', pt: 'Bola', tet: 'Bola' },
     description: { en: 'Traditional Portuguese soft bread roll.', pt: 'Bola de pão tradicional portuguesa.', tet: 'Paun bola tradisional Portugés.' },
     price: 0.80,
     variants: [
-      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 0.80 },
-      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 1.40 },
-      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 1.40 },
-      { name: { en: 'Cured Ham', pt: 'Presunto', tet: 'Presunto' }, price: 1.70 },
-      { name: { en: 'Mixed (Ham & Cheese)', pt: 'Mista', tet: 'Mista' }, price: 1.80 },
-      { name: { en: 'Mixed Cured Ham & Cheese', pt: 'Mista c/ Presunto', tet: 'Mista ho Presunto' }, price: 1.95 }
+      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 0.80, image: '/dishes/b-bt.jpg' },
+      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 1.40, image: '/dishes/b-c.jpg' },
+      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 1.40, image: '/dishes/b-h.jpg' },
+      { name: { en: 'Cured Ham', pt: 'Presunto', tet: 'Presunto' }, price: 1.70, image: '/dishes/b-ch.jpg' },
+      { name: { en: 'Mixed (Ham & Cheese)', pt: 'Mista', tet: 'Mista' }, price: 1.80, image: '/dishes/b-h-c.jpg' },
+      { name: { en: 'Mixed Cured Ham & Cheese', pt: 'Mista c/ Presunto', tet: 'Mista ho Presunto' }, price: 1.95, image: '/dishes/b-ch-c.jpg' }
     ]
   },
   {
-    id: 's-cereal', categoryId: 'sandes', image: null,
+    id: 's-cereal', categoryId: 'sandes', image: '/dishes/cers.jpg',
     title: { en: 'Cereal Roll', pt: 'Bola Cereais', tet: 'Paun Sereal' },
     description: { en: 'Healthy multi-grain cereal bread roll.', pt: 'Bola de cereais multigrãos.', tet: 'Paun sereal ho fini oin-oin.' },
     price: 1.70,
     variants: [
-      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.70 },
-      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.35 },
-      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.35 },
-      { name: { en: 'Cured Ham', pt: 'Presunto', tet: 'Presunto' }, price: 2.45 },
-      { name: { en: 'Mixed', pt: 'Mista', tet: 'Mista' }, price: 2.70 },
-      { name: { en: 'Mixed Cured Ham', pt: 'Mista c/ Presunto', tet: 'Mista ho Presunto' }, price: 2.95 }
+      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.70, image: '/dishes/cers-bt.jpg' },
+      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.35, image: '/dishes/cers-c.jpg' },
+      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.35, image: '/dishes/cers-h.jpg' },
+      { name: { en: 'Cured Ham', pt: 'Presunto', tet: 'Presunto' }, price: 2.45, image: '/dishes/cers-ch.jpg' },
+      { name: { en: 'Mixed', pt: 'Mista', tet: 'Mista' }, price: 2.70, image: '/dishes/cers-h-c.jpg' },
+      { name: { en: 'Mixed Cured Ham', pt: 'Mista c/ Presunto', tet: 'Mista ho Presunto' }, price: 2.95, image: '/dishes/cers-ch-c.jpg' }
     ]
   },
   {
-    id: 's-saloia', categoryId: 'sandes', image: null,
-    title: { en: 'Carcaça Saloia', pt: 'Carcaça Saloia', tet: 'Carcaça Saloia' },
+    id: 's-saloia', categoryId: 'sandes', image: '/dishes/cs-bt.jpg',
+    title: { en: 'Rustic Bread Roll', pt: 'Carcaça Saloia', tet: 'Carcaça Saloia' },
     description: { en: 'Traditional rustic crusty bread.', pt: 'Pão rústico tradicional com côdea estaladiça.', tet: 'Paun rustiku tradisional.' },
     price: 1.60,
     variants: [
-      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.60 },
-      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.25 },
-      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.25 },
-      { name: { en: 'Cured Ham', pt: 'Presunto', tet: 'Presunto' }, price: 2.35 },
-      { name: { en: 'Mixed', pt: 'Mista', tet: 'Mista' }, price: 2.75 },
-      { name: { en: 'Mixed Cured Ham', pt: 'Mista c/ Presunto', tet: 'Mista ho Presunto' }, price: 2.95 }
+      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.60, image: '/dishes/cs-bt.jpg' },
+      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.25, image: '/dishes/cs-c.jpg' },
+      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.25, image: '/dishes/cs-h.jpg' },
+      { name: { en: 'Cured Ham', pt: 'Presunto', tet: 'Presunto' }, price: 2.35, image: '/dishes/cs-ch.jpg' },
+      { name: { en: 'Mixed', pt: 'Mista', tet: 'Mista' }, price: 2.75, image: '/dishes/cs-h-c.jpg' },
+      { name: { en: 'Mixed Cured Ham', pt: 'Mista c/ Presunto', tet: 'Mista ho Presunto' }, price: 2.95, image: '/dishes/cs-ch-c.jpg' }
     ]
   },
   {
-    id: 's-centeio', categoryId: 'sandes', image: null,
+    id: 's-centeio', categoryId: 'sandes', image: '/dishes/bc.jpg',
     title: { en: 'Rye Roll', pt: 'Bola Centeio', tet: 'Paun Senteiu' },
     description: { en: 'Dark and hearty rye bread roll.', pt: 'Bola de pão de centeio escuro.', tet: 'Paun senteiu metan.' },
     price: 1.70,
     variants: [
-      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.70 },
-      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.35 },
-      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.35 },
-      { name: { en: 'Cured Ham', pt: 'Presunto', tet: 'Presunto' }, price: 2.45 },
-      { name: { en: 'Mixed', pt: 'Mista', tet: 'Mista' }, price: 2.70 },
-      { name: { en: 'Mixed Cured Ham', pt: 'Mista c/ Presunto', tet: 'Mista ho Presunto' }, price: 2.95 }
+      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.70, image: '/dishes/bc-bt.jpg' },
+      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.35, image: '/dishes/bc-c.jpg' },
+      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.35, image: '/dishes/bc-h.jpg' },
+      { name: { en: 'Cured Ham', pt: 'Presunto', tet: 'Presunto' }, price: 2.45, image: '/dishes/bc-ch.jpg' },
+      { name: { en: 'Mixed', pt: 'Mista', tet: 'Mista' }, price: 2.70, image: '/dishes/bc-h-c.jpg' },
+      { name: { en: 'Mixed Cured Ham', pt: 'Mista c/ Presunto', tet: 'Mista ho Presunto' }, price: 2.95, image: '/dishes/bc-ch-c.jpg' }
     ]
   },
   {
-    id: 's-leite', categoryId: 'sandes', image: null,
-    title: { en: 'Pão de Leite', pt: 'Pão de Leite', tet: 'Pão de Leite' },
+    id: 's-leite', categoryId: 'sandes', image: '/dishes/pdl.jpg',
+    title: { en: 'Milk Bread', pt: 'Pão de Leite', tet: 'Pão de Leite' },
     description: { en: 'Soft, sweet milk bread.', pt: 'Pão de leite macio e adocicado.', tet: 'Paun susubeen mamar no midar.' },
     price: 1.50,
     variants: [
-      { name: { en: 'Plain', pt: 'Simples', tet: 'Simples' }, price: 1.50 },
-      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.85 },
-      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.35 },
-      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.35 },
-      { name: { en: 'Mixed', pt: 'Misto', tet: 'Misto' }, price: 2.50 }
+      { name: { en: 'Plain', pt: 'Simples', tet: 'Simples' }, price: 1.50, image: '/dishes/pdl.jpg' },
+      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.85, image: '/dishes/pdl-bt.jpg' },
+      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.35, image: '/dishes/pdl-c.jpg' },
+      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.35, image: '/dishes/pdl-h.jpg' },
+      { name: { en: 'Mixed', pt: 'Misto', tet: 'Misto' }, price: 2.50, image: '/dishes/pdl-h-c.jpg' }
     ]
   },
   {
-    id: 's-deus', categoryId: 'sandes', image: null,
-    title: { en: 'Pão de Deus', pt: 'Pão de Deus', tet: 'Pão de Deus' },
+    id: 's-deus', categoryId: 'sandes', image: '/dishes/ccn.jpg',
+    title: { en: 'Coconut Sweet Bread', pt: 'Pão de Deus', tet: 'Pão de Deus' },
     description: { en: 'Sweet bread topped with toasted coconut.', pt: 'Pão doce coberto com coco tostado.', tet: 'Paun midar ho nuu tunu.' },
     price: 1.80,
     variants: [
-      { name: { en: 'Plain', pt: 'Simples', tet: 'Simples' }, price: 1.80 },
-      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 2.40 },
-      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.70 },
-      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.70 },
-      { name: { en: 'Mixed', pt: 'Misto', tet: 'Misto' }, price: 2.95 }
+      { name: { en: 'Plain', pt: 'Simples', tet: 'Simples' }, price: 1.80, image: '/dishes/ccn.jpg' },
+      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 2.40, image: '/dishes/ccn-bt.jpg' },
+      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.70, image: '/dishes/ccn-c.jpg' },
+      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.70, image: '/dishes/ccn-h.jpg' },
+      { name: { en: 'Mixed', pt: 'Misto', tet: 'Misto' }, price: 2.95, image: '/dishes/ccn-h-c.jpg' }
     ]
   },
 

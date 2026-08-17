@@ -70,6 +70,8 @@ export default function DishDetailModal({ item, onClose }) {
   const hasVariants = !!(item?.variants && item.variants.length > 0);
   const safeVariantIdx = hasVariants ? Math.min(selectedVariantIdx, item.variants.length - 1) : 0;
   const price = hasVariants ? item.variants[safeVariantIdx].price : item?.price ?? 0;
+  // Selected variant's own photo wins; falls back to the item photo, then the placeholder
+  const heroImage = (hasVariants && item.variants[safeVariantIdx].image) || item?.image || placeholderImg;
 
   const goVariant = (dir) => {
     if (!hasVariants) return;
@@ -133,10 +135,13 @@ export default function DishDetailModal({ item, onClose }) {
         <div className="px-4 pb-6">
           <div ref={heroRef} className="relative w-full aspect-square bg-stone-100 rounded-2xl overflow-hidden group">
             <img
-              src={item.image || placeholderImg}
+              src={heroImage}
               alt=""
               className="absolute inset-0 w-full h-full object-cover"
             />
+
+            {/* Subtle dark inner edge — separates white-background photos from the sheet */}
+            <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-ink/10 shadow-[inset_0_1px_10px_rgba(46,42,38,0.07)] pointer-events-none" aria-hidden="true" />
 
             {/* Swipe/drag layer: swipe the image left/right to change variant */}
             {hasVariants && (
