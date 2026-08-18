@@ -32,7 +32,7 @@ export const menuItems = [
     ]
   },
   {
-    id: 's-cereal', categoryId: 'sandes', image: '/dishes/cers.jpg',
+    id: 's-cereal', categoryId: 'sandes', image: '/dishes/cers-bt.jpg',
     title: { en: 'Cereal Roll', pt: 'Bola Cereais', tet: 'Paun Sereal' },
     description: { en: 'Healthy multi-grain cereal bread roll.', pt: 'Bola de cereais multigrãos.', tet: 'Paun sereal ho fini oin-oin.' },
     price: 1.70,
@@ -150,7 +150,7 @@ export const menuItems = [
     price: 4.50
   },
   {
-    id: 'se-bifana', categoryId: 'sandes-especiais', image: null,
+    id: 'se-bifana', categoryId: 'sandes-especiais', image: '/dishes/bifana.jpg',
     title: { en: 'Bifana', pt: 'Bifana', tet: 'Bifana' },
     description: { en: 'Traditional Portuguese marinated pork sandwich.', pt: 'Sandes tradicional de carne de porco marinada.', tet: 'Sandes naan fahi Portugés nian.' },
     price: 4.00
@@ -173,47 +173,47 @@ export const menuItems = [
 
   // --- CROISSANTS ---
   {
-    id: 'c-normal', categoryId: 'croissants', image: null,
+    id: 'c-normal', categoryId: 'croissants', image: '/dishes/croissant.jpg',
     title: { en: 'Croissant', pt: 'Croissant', tet: 'Croissant' },
     description: { en: 'Flaky and buttery baked croissant.', pt: 'Croissant folhado e amanteigado.', tet: 'Kroisan amanteigadu.' },
     price: 1.50,
     variants: [
-      { name: { en: 'Plain', pt: 'Simples', tet: 'Simples' }, price: 1.50 },
-      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.85 },
-      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.35 },
-      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.35 },
-      { name: { en: 'Mixed', pt: 'Misto', tet: 'Misto' }, price: 2.50 }
+      { name: { en: 'Plain', pt: 'Simples', tet: 'Simples' }, price: 1.50, image: '/dishes/croissant.jpg' },
+      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 1.85, image: '/dishes/croissant-bt.jpg' },
+      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.35, image: '/dishes/croissant-c.jpg' },
+      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.35, image: '/dishes/croissant-h.jpg' },
+      { name: { en: 'Mixed', pt: 'Misto', tet: 'Misto' }, price: 2.50, image: '/dishes/croissant-h-c.jpg' }
     ]
   },
   {
-    id: 'c-xl', categoryId: 'croissants', image: null,
+    id: 'c-xl', categoryId: 'croissants', image: '/dishes/croissant-xl.jpg',
     title: { en: 'XL Croissant', pt: 'Croissant XL', tet: 'Croissant XL' },
     description: { en: 'Extra large flaky croissant.', pt: 'Croissant folhado extra grande.', tet: 'Kroisan boot tebes.' },
     price: 2.30,
     variants: [
-      { name: { en: 'Plain', pt: 'Simples', tet: 'Simples' }, price: 2.30 },
-      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 2.40 },
-      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.70 },
-      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.70 },
-      { name: { en: 'Mixed', pt: 'Misto', tet: 'Misto' }, price: 3.25 }
+      { name: { en: 'Plain', pt: 'Simples', tet: 'Simples' }, price: 2.30, image: '/dishes/croissant-xl.jpg' },
+      { name: { en: 'Butter', pt: 'Manteiga', tet: 'Manteiga' }, price: 2.40, image: '/dishes/croissant-xl-bt.jpg' },
+      { name: { en: 'Cheese', pt: 'Queijo', tet: 'Keiju' }, price: 2.70, image: '/dishes/croissant-xl-c.jpg' },
+      { name: { en: 'Ham', pt: 'Fiambre', tet: 'Fiambre' }, price: 2.70, image: '/dishes/croissant-xl-h.jpg' },
+      { name: { en: 'Mixed', pt: 'Misto', tet: 'Misto' }, price: 3.25, image: '/dishes/croissant-xl-h-c.jpg' }
     ]
   },
-  { id: 'c-brioche', categoryId: 'croissants', image: null, price: 2.00, title: { en: 'Brioche Croissant with Custard', pt: 'Croissant Brioche c/ Creme', tet: 'Croissant Brioche ho Kreme' }, description: { en: 'Soft brioche dough filled with custard.', pt: 'Massa de brioche recheada com creme.', tet: 'Kroisan brioxe mamar ho kreme.' } },
-  { id: 'c-choc', categoryId: 'croissants', image: null, price: 2.00, title: { en: 'Chocolate Croissant', pt: 'Croissant de Chocolate', tet: 'Croissant Xokolate' }, description: { en: 'Filled with rich chocolate.', pt: 'Recheado com chocolate rico.', tet: 'Kroisan ho xokolate.' } },
-  { id: 'c-puff', categoryId: 'croissants', image: null, price: 2.00, title: { en: 'Puff Pastry Croissant with Custard', pt: 'Croissant Folhado c/ Creme', tet: 'Croissant Folhadu ho Kreme' }, description: { en: 'Flaky pastry filled with egg custard.', pt: 'Massa folhada recheada com creme de ovo.', tet: 'Kroisan krispi ho kreme.' } },
+  { id: 'c-brioche', categoryId: 'croissants', image: '/dishes/croissant-brioche.jpg', price: 2.00, title: { en: 'Brioche Croissant with Custard', pt: 'Croissant Brioche c/ Creme', tet: 'Croissant Brioche ho Kreme' }, description: { en: 'Soft brioche dough filled with custard.', pt: 'Massa de brioche recheada com creme.', tet: 'Kroisan brioxe mamar ho kreme.' } },
+  { id: 'c-choc', categoryId: 'croissants', image: '/dishes/croissant-choc.jpg', price: 2.00, title: { en: 'Chocolate Croissant', pt: 'Croissant de Chocolate', tet: 'Croissant Xokolate' }, description: { en: 'Filled with rich chocolate.', pt: 'Recheado com chocolate rico.', tet: 'Kroisan ho xokolate.' } },
+  { id: 'c-puff', categoryId: 'croissants', image: '/dishes/croissant-folhado.jpg', price: 2.00, title: { en: 'Puff Pastry Croissant with Custard', pt: 'Croissant Folhado c/ Creme', tet: 'Croissant Folhadu ho Kreme' }, description: { en: 'Flaky pastry filled with egg custard.', pt: 'Massa folhada recheada com creme de ovo.', tet: 'Kroisan krispi ho kreme.' } },
 
   // --- PASTEIS E SALGADOS ---
   { id: 'ps-veg', categoryId: 'pasteis-salgados', image: null, price: 1.30, title: { en: 'Vegetarian Samosa', pt: 'Chamuça Vegetariana', tet: 'Samosa Vejetariana' }, description: { en: 'Crispy fried pastry filled with spiced veggies.', pt: 'Pastel frito recheado com vegetais.', tet: 'Samosa ho vejetais.' } },
   { id: 'ps-chicken', categoryId: 'pasteis-salgados', image: null, price: 1.75, title: { en: 'Chicken Samosa', pt: 'Chamuça de Frango', tet: 'Samosa Naan Manu' }, description: { en: 'Crispy fried pastry filled with chicken.', pt: 'Pastel frito recheado com frango.', tet: 'Samosa ho naan manu.' } },
-  { id: 'ps-tuna', categoryId: 'pasteis-salgados', image: null, price: 2.00, title: { en: 'Tuna Puff Pastry', pt: 'Folhado de Atum', tet: 'Folhadu Atum' }, description: { en: 'Puff pastry pocket with savory tuna filling.', pt: 'Folhado com recheio salgado de atum.', tet: 'Folhadu ho atum.' } },
-  { id: 'ps-meat', categoryId: 'pasteis-salgados', image: null, price: 2.00, title: { en: 'Meat Puff Pastry', pt: 'Folhado de Carne', tet: 'Folhadu Naan' }, description: { en: 'Puff pastry pocket with savory minced meat.', pt: 'Folhado com carne picada.', tet: 'Folhadu ho naan.' } },
-  { id: 'ps-spinach', categoryId: 'pasteis-salgados', image: null, price: 2.00, title: { en: 'Spinach Puff Pastry', pt: 'Folhado de Espinafres', tet: 'Folhadu Espinafre' }, description: { en: 'Puff pastry pocket with creamy spinach.', pt: 'Folhado com espinafres cremosos.', tet: 'Folhadu ho espinafre.' } },
-  { id: 'ps-chickenpuff', categoryId: 'pasteis-salgados', image: null, price: 2.00, title: { en: 'Chicken Puff Pastry', pt: 'Folhado de Frango', tet: 'Folhadu Naan Manu' }, description: { en: 'Puff pastry pocket with chicken filling.', pt: 'Folhado com recheio de frango.', tet: 'Folhadu ho naan manu.' } },
-  { id: 'ps-pizza', categoryId: 'pasteis-salgados', image: null, price: 2.00, title: { en: 'Pizza Puff Pastry', pt: 'Folhado de Pizza', tet: 'Folhadu Piza' }, description: { en: 'Cheese and oregano pizza pocket.', pt: 'Folhado de queijo e orégãos.', tet: 'Folhadu ho keiju no orégaun.' } },
-  { id: 'ps-sausage', categoryId: 'pasteis-salgados', image: null, price: 2.00, title: { en: 'Sausage & Cheese Puff Pastry', pt: 'Folhado Salsicha e Queijo', tet: 'Folhadu Salsixa no Keiju' }, description: { en: 'Sausage and melted cheese wrapped in pastry.', pt: 'Salsicha e queijo derretido em massa.', tet: 'Folhadu ho salsixa no keiju.' } },
-  { id: 'ps-lanche', categoryId: 'pasteis-salgados', image: null, price: 2.00, title: { en: 'Stuffed Bread', pt: 'Lanche', tet: 'Lanche' }, description: { en: 'Soft bread baked with ham and cheese inside.', pt: 'Pão macio com fiambre e queijo.', tet: 'Paun mamar ho fiambre no keiju.' } },
-  { id: 'ps-panikecereal', categoryId: 'pasteis-salgados', image: null, price: 2.00, title: { en: 'Mixed Cereal Panike', pt: 'Panike Cereal Misto', tet: 'Panike Sereal Misto' }, description: { en: 'Cereal dough pocket with ham and cheese.', pt: 'Massa de cereais com fiambre e queijo.', tet: 'Panike sereal ho fiambre no keiju.' } },
-  { id: 'ps-panikemixed', categoryId: 'pasteis-salgados', image: null, price: 2.00, title: { en: 'Mixed Panike', pt: 'Panike Misto', tet: 'Panike Misto' }, description: { en: 'Puff pastry with ham and cheese.', pt: 'Massa folhada com fiambre e queijo.', tet: 'Panike folhadu ho fiambre no keiju.' } },
+  { id: 'ps-tuna', categoryId: 'pasteis-salgados', image: '/dishes/folhado-atum.jpg', price: 2.00, title: { en: 'Tuna Puff Pastry', pt: 'Folhado de Atum', tet: 'Folhadu Atum' }, description: { en: 'Puff pastry pocket with savory tuna filling.', pt: 'Folhado com recheio salgado de atum.', tet: 'Folhadu ho atum.' } },
+  { id: 'ps-meat', categoryId: 'pasteis-salgados', image: '/dishes/folhado-carne.jpg', price: 2.00, title: { en: 'Meat Puff Pastry', pt: 'Folhado de Carne', tet: 'Folhadu Naan' }, description: { en: 'Puff pastry pocket with savory minced meat.', pt: 'Folhado com carne picada.', tet: 'Folhadu ho naan.' } },
+  { id: 'ps-spinach', categoryId: 'pasteis-salgados', image: '/dishes/folhado-espinafres.jpg', price: 2.00, title: { en: 'Spinach Puff Pastry', pt: 'Folhado de Espinafres', tet: 'Folhadu Espinafre' }, description: { en: 'Puff pastry pocket with creamy spinach.', pt: 'Folhado com espinafres cremosos.', tet: 'Folhadu ho espinafre.' } },
+  { id: 'ps-chickenpuff', categoryId: 'pasteis-salgados', image: '/dishes/folhado-frango.jpg', price: 2.00, title: { en: 'Chicken Puff Pastry', pt: 'Folhado de Frango', tet: 'Folhadu Naan Manu' }, description: { en: 'Puff pastry pocket with chicken filling.', pt: 'Folhado com recheio de frango.', tet: 'Folhadu ho naan manu.' } },
+  { id: 'ps-pizza', categoryId: 'pasteis-salgados', image: '/dishes/folhado-pizza.jpg', price: 2.00, title: { en: 'Pizza Puff Pastry', pt: 'Folhado de Pizza', tet: 'Folhadu Piza' }, description: { en: 'Cheese and oregano pizza pocket.', pt: 'Folhado de queijo e orégãos.', tet: 'Folhadu ho keiju no orégaun.' } },
+  { id: 'ps-sausage', categoryId: 'pasteis-salgados', image: '/dishes/folhado-salsicha.jpg', price: 2.00, title: { en: 'Sausage & Cheese Puff Pastry', pt: 'Folhado Salsicha e Queijo', tet: 'Folhadu Salsixa no Keiju' }, description: { en: 'Sausage and melted cheese wrapped in pastry.', pt: 'Salsicha e queijo derretido em massa.', tet: 'Folhadu ho salsixa no keiju.' } },
+  { id: 'ps-lanche', categoryId: 'pasteis-salgados', image: '/dishes/lanches.jpg', price: 2.00, title: { en: 'Stuffed Bread', pt: 'Lanche', tet: 'Lanche' }, description: { en: 'Soft bread baked with ham and cheese inside.', pt: 'Pão macio com fiambre e queijo.', tet: 'Paun mamar ho fiambre no keiju.' } },
+  { id: 'ps-panikecereal', categoryId: 'pasteis-salgados', image: '/dishes/panike-cereal.jpg', price: 2.00, title: { en: 'Mixed Cereal Panike', pt: 'Panike Cereal Misto', tet: 'Panike Sereal Misto' }, description: { en: 'Cereal dough pocket with ham and cheese.', pt: 'Massa de cereais com fiambre e queijo.', tet: 'Panike sereal ho fiambre no keiju.' } },
+  { id: 'ps-panikemixed', categoryId: 'pasteis-salgados', image: '/dishes/panike-misto.jpg', price: 2.00, title: { en: 'Mixed Panike', pt: 'Panike Misto', tet: 'Panike Misto' }, description: { en: 'Puff pastry with ham and cheese.', pt: 'Massa folhada com fiambre e queijo.', tet: 'Panike folhadu ho fiambre no keiju.' } },
   {
     id: 'ps-rissol', categoryId: 'pasteis-salgados', image: null,
     title: { en: 'Rissol', pt: 'Rissol', tet: 'Rissol' },
@@ -226,15 +226,15 @@ export const menuItems = [
   },
 
   // --- BOLOS E DOCES ---
-  { id: 'bd-nata', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Pastel de Nata', pt: 'Pastel de Nata', tet: 'Pastel de Nata' }, description: { en: 'Portuguese egg custard tart in flaky pastry.', pt: 'Pastel de nata tradicional português.', tet: 'Tarte manu-tolun Portugés.' } },
-  { id: 'bd-chocnata', categoryId: 'bolos-doces', image: null, price: 1.80, title: { en: 'Pastel de Nata Chocolate', pt: 'Pastel de Nata Chocolate', tet: 'Pastel de Nata Xokolate' }, description: { en: 'Custard tart infused with rich chocolate.', pt: 'Pastel de nata com chocolate.', tet: 'Pastel nata ho xokolate.' } },
-  { id: 'bd-arroz', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Bolo de Arroz', pt: 'Bolo de Arroz', tet: 'Bolo de Arroz' }, description: { en: 'Sweet and buttery traditional rice flour cake.', pt: 'Bolo tradicional feito com farinha de arroz.', tet: 'Bolu tradisional husi farinha foos.' } },
+  { id: 'bd-nata', categoryId: 'bolos-doces', image: '/dishes/pastel-nata.jpg', price: 1.50, title: { en: 'Pastel de Nata', pt: 'Pastel de Nata', tet: 'Pastel de Nata' }, description: { en: 'Portuguese egg custard tart in flaky pastry.', pt: 'Pastel de nata tradicional português.', tet: 'Tarte manu-tolun Portugés.' } },
+  { id: 'bd-chocnata', categoryId: 'bolos-doces', image: '/dishes/pastel-nata-choc.jpg', price: 1.80, title: { en: 'Pastel de Nata Chocolate', pt: 'Pastel de Nata Chocolate', tet: 'Pastel de Nata Xokolate' }, description: { en: 'Custard tart infused with rich chocolate.', pt: 'Pastel de nata com chocolate.', tet: 'Pastel nata ho xokolate.' } },
+  { id: 'bd-arroz', categoryId: 'bolos-doces', image: '/dishes/bolo-arroz.jpg', price: 2.50, title: { en: 'Bolo de Arroz', pt: 'Bolo de Arroz', tet: 'Bolo de Arroz' }, description: { en: 'Sweet and buttery traditional rice flour cake.', pt: 'Bolo tradicional feito com farinha de arroz.', tet: 'Bolu tradisional husi farinha foos.' } },
   { id: 'bd-almond', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Almond Bretzel', pt: 'Bretzel Amêndoa', tet: 'Bretzel Améndoa' }, description: { en: 'Sweet pastry shaped like a pretzel with almonds.', pt: 'Massa doce em forma de laço com amêndoas.', tet: 'Lasu midar ho améndoa.' } },
   { id: 'bd-apple', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Alcobaça Apple Bretzel', pt: 'Bretzel Maçã Alcobaça', tet: 'Bretzel Masán' }, description: { en: 'Sweet pastry pretzel filled with regional apple.', pt: 'Laço recheado com maçã de Alcobaça.', tet: 'Lasu midar ho masán.' } },
-  { id: 'bd-pecan', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Maple Pecan', pt: 'Maple Pecan', tet: 'Maple Pecan' }, description: { en: 'Braided pastry with maple syrup and pecans.', pt: 'Trança folhada com xarope de ácer e nozes pecan.', tet: 'Transa folhadu ho noz pekan.' } },
-  { id: 'bd-sugardonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Dot\'s Sugar Donut', pt: 'Dot\'s Açucarado', tet: 'Donut Masin Midar' }, description: { en: 'Classic donut dusted with sugar.', pt: 'Donut clássico polvilhado com açúcar.', tet: 'Donut ho masin midar.' } },
-  { id: 'bd-chocdonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Dot\'s Dark Chocolate Donut', pt: 'Dot\'s Negrito', tet: 'Donut Xokolate' }, description: { en: 'Donut covered in rich dark chocolate.', pt: 'Donut coberto com chocolate negro.', tet: 'Donut ho xokolate metan.' } },
-  { id: 'bd-glazeddonut', categoryId: 'bolos-doces', image: null, price: 1.50, title: { en: 'Dot\'s Classic Glace', pt: 'Dot\'s Classic Glace', tet: 'Dot\'s Classic Glace' }, description: { en: 'Sweet glazed donut ring.', pt: 'Donut clássico com cobertura doce.', tet: 'Donut midar glaseadu.' } },
+  { id: 'bd-pecan', categoryId: 'bolos-doces', image: '/dishes/maple-pecan.jpg', price: 2.50, title: { en: 'Maple Pecan', pt: 'Maple Pecan', tet: 'Maple Pecan' }, description: { en: 'Braided pastry with maple syrup and pecans.', pt: 'Trança folhada com xarope de ácer e nozes pecan.', tet: 'Transa folhadu ho noz pekan.' } },
+  { id: 'bd-sugardonut', categoryId: 'bolos-doces', image: '/dishes/donut-sugar.jpg', price: 1.50, title: { en: 'Dot\'s Sugar Donut', pt: 'Dot\'s Açucarado', tet: 'Donut Masin Midar' }, description: { en: 'Classic donut dusted with sugar.', pt: 'Donut clássico polvilhado com açúcar.', tet: 'Donut ho masin midar.' } },
+  { id: 'bd-chocdonut', categoryId: 'bolos-doces', image: '/dishes/donut-choc.jpg', price: 1.50, title: { en: 'Dot\'s Dark Chocolate Donut', pt: 'Dot\'s Negrito', tet: 'Donut Xokolate' }, description: { en: 'Donut covered in rich dark chocolate.', pt: 'Donut coberto com chocolate negro.', tet: 'Donut ho xokolate metan.' } },
+  { id: 'bd-glazeddonut', categoryId: 'bolos-doces', image: '/dishes/donut-glazed.jpg', price: 1.50, title: { en: 'Dot\'s Classic Glace', pt: 'Dot\'s Classic Glace', tet: 'Dot\'s Classic Glace' }, description: { en: 'Sweet glazed donut ring.', pt: 'Donut clássico com cobertura doce.', tet: 'Donut midar glaseadu.' } },
 
   // --- BEBIDAS E COCKTAILS ---
   { id: 'bc-wine', categoryId: 'bebidas-cocktails', image: null, price: 2.50, title: { en: 'House Glass of Wine', pt: 'Copo de Vinho da Casa', tet: 'Copo de Vinho da Casa' }, description: { en: 'A glass of our selected house wine.', pt: 'Um copo do nosso vinho da casa.', tet: 'Tua-uvas husi uma.' } },
