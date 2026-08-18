@@ -60,7 +60,7 @@ export const menuItems = [
     ]
   },
   {
-    id: 's-centeio', categoryId: 'sandes', image: '/dishes/bc.jpg',
+    id: 's-centeio', categoryId: 'sandes', image: '/dishes/bc-bt.jpg',
     title: { en: 'Rye Roll', pt: 'Bola Centeio', tet: 'Paun Senteiu' },
     description: { en: 'Dark and hearty rye bread roll.', pt: 'Bola de pão de centeio escuro.', tet: 'Paun senteiu metan.' },
     price: 1.70,
@@ -102,29 +102,29 @@ export const menuItems = [
 
   // --- SPECIAL SANDWICHES & TOASTS ---
   {
-    id: 'se-toast', categoryId: 'sandes-especiais', image: null,
+    id: 'se-toast', categoryId: 'sandes-especiais', image: '/dishes/toast-bt.jpg',
     title: { en: 'Toast', pt: 'Torrada', tet: 'Torrada' },
     description: { en: 'Thick slices of toasted bread with toppings.', pt: 'Fatias grossas de pão torrado com cobertura.', tet: 'Paun torrada.' },
     price: 1.00,
     variants: [
-      { name: { en: '1/2 Butter', pt: '½ Torrada Manteiga', tet: '½ Torrada Manteiga' }, price: 1.00 },
-      { name: { en: 'Full Butter', pt: 'Torrada Manteiga', tet: 'Torrada Manteiga' }, price: 1.90 },
-      { name: { en: '1/2 Cheese', pt: '½ Tosta de Queijo', tet: '½ Tosta Keiju' }, price: 1.50 },
-      { name: { en: 'Full Cheese', pt: 'Tosta de Queijo', tet: 'Tosta Keiju' }, price: 2.75 },
-      { name: { en: '1/2 Ham', pt: '½ Tosta de Fiambre', tet: '½ Tosta Fiambre' }, price: 1.50 },
-      { name: { en: 'Full Ham', pt: 'Tosta de Fiambre', tet: 'Tosta Fiambre' }, price: 2.75 },
-      { name: { en: '1/2 Mixed', pt: '½ Tosta Mista', tet: '½ Tosta Mista' }, price: 1.65 },
-      { name: { en: 'Full Mixed', pt: 'Tosta Mista', tet: 'Tosta Mista' }, price: 3.00 }
+      { name: { en: '1/2 Butter', pt: '½ Torrada Manteiga', tet: '½ Torrada Manteiga' }, price: 1.00, image: '/dishes/toast-bt-half.jpg' },
+      { name: { en: 'Full Butter', pt: 'Torrada Manteiga', tet: 'Torrada Manteiga' }, price: 1.90, image: '/dishes/toast-bt.jpg' },
+      { name: { en: '1/2 Cheese', pt: '½ Tosta de Queijo', tet: '½ Tosta Keiju' }, price: 1.50, image: '/dishes/toast-c-half.jpg' },
+      { name: { en: 'Full Cheese', pt: 'Tosta de Queijo', tet: 'Tosta Keiju' }, price: 2.75, image: '/dishes/toast-c.jpg' },
+      { name: { en: '1/2 Ham', pt: '½ Tosta de Fiambre', tet: '½ Tosta Fiambre' }, price: 1.50, image: '/dishes/toast-h-half.jpg' },
+      { name: { en: 'Full Ham', pt: 'Tosta de Fiambre', tet: 'Tosta Fiambre' }, price: 2.75, image: '/dishes/toast-h.jpg' },
+      { name: { en: '1/2 Mixed', pt: '½ Tosta Mista', tet: '½ Tosta Mista' }, price: 1.65, image: '/dishes/toast-h-c-half.jpg' },
+      { name: { en: 'Full Mixed', pt: 'Tosta Mista', tet: 'Tosta Mista' }, price: 3.00, image: '/dishes/toast-h-c.jpg' }
     ]
   },
   {
-    id: 'se-omelet', categoryId: 'sandes-especiais', image: null,
+    id: 'se-omelet', categoryId: 'sandes-especiais', image: '/dishes/om.jpg',
     title: { en: 'Omelette Sandwich', pt: 'Sandes Omelette', tet: 'Sandes Omelette' },
     description: { en: 'Freshly made omelette in bread.', pt: 'Omelete feita na hora no pão.', tet: 'Omelete fresku iha paun.' },
     price: 1.95,
     variants: [
-      { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Meia Sandes' }, price: 1.95 },
-      { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sandes Tomak' }, price: 3.50 }
+      { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Meia Sandes' }, price: 1.95, image: '/dishes/om-half.jpg' },
+      { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sandes Tomak' }, price: 3.50, image: '/dishes/om.jpg' }
     ]
   },
   {
