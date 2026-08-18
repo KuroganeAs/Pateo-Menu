@@ -203,8 +203,8 @@ export const menuItems = [
   { id: 'c-puff', categoryId: 'croissants', image: '/dishes/croissant-folhado.jpg', price: 2.00, title: { en: 'Puff Pastry Croissant with Custard', pt: 'Croissant Folhado c/ Creme', tet: 'Croissant Folhadu ho Kreme' }, description: { en: 'Flaky pastry filled with egg custard.', pt: 'Massa folhada recheada com creme de ovo.', tet: 'Kroisan krispi ho kreme.' } },
 
   // --- PASTEIS E SALGADOS ---
-  { id: 'ps-veg', categoryId: 'pasteis-salgados', image: null, price: 1.30, title: { en: 'Vegetarian Samosa', pt: 'Chamuça Vegetariana', tet: 'Samosa Vejetariana' }, description: { en: 'Crispy fried pastry filled with spiced veggies.', pt: 'Pastel frito recheado com vegetais.', tet: 'Samosa ho vejetais.' } },
-  { id: 'ps-chicken', categoryId: 'pasteis-salgados', image: null, price: 1.75, title: { en: 'Chicken Samosa', pt: 'Chamuça de Frango', tet: 'Samosa Naan Manu' }, description: { en: 'Crispy fried pastry filled with chicken.', pt: 'Pastel frito recheado com frango.', tet: 'Samosa ho naan manu.' } },
+  { id: 'ps-veg', categoryId: 'pasteis-salgados', image: '/dishes/samosa-veg.jpg', price: 1.30, title: { en: 'Vegetarian Samosa', pt: 'Chamuça Vegetariana', tet: 'Samosa Vejetariana' }, description: { en: 'Crispy fried pastry filled with spiced veggies.', pt: 'Pastel frito recheado com vegetais.', tet: 'Samosa ho vejetais.' } },
+  { id: 'ps-chicken', categoryId: 'pasteis-salgados', image: '/dishes/samosa-chicken.jpg', price: 1.75, title: { en: 'Chicken Samosa', pt: 'Chamuça de Frango', tet: 'Samosa Naan Manu' }, description: { en: 'Crispy fried pastry filled with chicken.', pt: 'Pastel frito recheado com frango.', tet: 'Samosa ho naan manu.' } },
   { id: 'ps-tuna', categoryId: 'pasteis-salgados', image: '/dishes/folhado-atum.jpg', price: 2.00, title: { en: 'Tuna Puff Pastry', pt: 'Folhado de Atum', tet: 'Folhadu Atum' }, description: { en: 'Puff pastry pocket with savory tuna filling.', pt: 'Folhado com recheio salgado de atum.', tet: 'Folhadu ho atum.' } },
   { id: 'ps-meat', categoryId: 'pasteis-salgados', image: '/dishes/folhado-carne.jpg', price: 2.00, title: { en: 'Meat Puff Pastry', pt: 'Folhado de Carne', tet: 'Folhadu Naan' }, description: { en: 'Puff pastry pocket with savory minced meat.', pt: 'Folhado com carne picada.', tet: 'Folhadu ho naan.' } },
   { id: 'ps-spinach', categoryId: 'pasteis-salgados', image: '/dishes/folhado-espinafres.jpg', price: 2.00, title: { en: 'Spinach Puff Pastry', pt: 'Folhado de Espinafres', tet: 'Folhadu Espinafre' }, description: { en: 'Puff pastry pocket with creamy spinach.', pt: 'Folhado com espinafres cremosos.', tet: 'Folhadu ho espinafre.' } },
@@ -215,13 +215,13 @@ export const menuItems = [
   { id: 'ps-panikecereal', categoryId: 'pasteis-salgados', image: '/dishes/panike-cereal.jpg', price: 2.00, title: { en: 'Mixed Cereal Panike', pt: 'Panike Cereal Misto', tet: 'Panike Sereal Misto' }, description: { en: 'Cereal dough pocket with ham and cheese.', pt: 'Massa de cereais com fiambre e queijo.', tet: 'Panike sereal ho fiambre no keiju.' } },
   { id: 'ps-panikemixed', categoryId: 'pasteis-salgados', image: '/dishes/panike-misto.jpg', price: 2.00, title: { en: 'Mixed Panike', pt: 'Panike Misto', tet: 'Panike Misto' }, description: { en: 'Puff pastry with ham and cheese.', pt: 'Massa folhada com fiambre e queijo.', tet: 'Panike folhadu ho fiambre no keiju.' } },
   {
-    id: 'ps-rissol', categoryId: 'pasteis-salgados', image: null,
+    id: 'ps-rissol', categoryId: 'pasteis-salgados', image: '/dishes/rissol-meat.jpg',
     title: { en: 'Rissol', pt: 'Rissol', tet: 'Rissol' },
     description: { en: 'Traditional Portuguese breaded and fried savory patty.', pt: 'Pastel panado e frito tradicional.', tet: 'Rissol panadu no fritu.' },
     price: 1.50,
     variants: [
-      { name: { en: 'Meat', pt: 'Carne', tet: 'Naan' }, price: 1.50 },
-      { name: { en: 'Fish', pt: 'Peixe', tet: 'Ikan' }, price: 1.50 }
+      { name: { en: 'Meat', pt: 'Carne', tet: 'Naan' }, price: 1.50, image: '/dishes/rissol-meat.jpg' },
+      { name: { en: 'Fish', pt: 'Peixe', tet: 'Ikan' }, price: 1.50, image: '/dishes/rissol-fish.jpg' }
     ]
   },
 
@@ -229,8 +229,8 @@ export const menuItems = [
   { id: 'bd-nata', categoryId: 'bolos-doces', image: '/dishes/pastel-nata.jpg', price: 1.50, title: { en: 'Pastel de Nata', pt: 'Pastel de Nata', tet: 'Pastel de Nata' }, description: { en: 'Portuguese egg custard tart in flaky pastry.', pt: 'Pastel de nata tradicional português.', tet: 'Tarte manu-tolun Portugés.' } },
   { id: 'bd-chocnata', categoryId: 'bolos-doces', image: '/dishes/pastel-nata-choc.jpg', price: 1.80, title: { en: 'Pastel de Nata Chocolate', pt: 'Pastel de Nata Chocolate', tet: 'Pastel de Nata Xokolate' }, description: { en: 'Custard tart infused with rich chocolate.', pt: 'Pastel de nata com chocolate.', tet: 'Pastel nata ho xokolate.' } },
   { id: 'bd-arroz', categoryId: 'bolos-doces', image: '/dishes/bolo-arroz.jpg', price: 2.50, title: { en: 'Bolo de Arroz', pt: 'Bolo de Arroz', tet: 'Bolo de Arroz' }, description: { en: 'Sweet and buttery traditional rice flour cake.', pt: 'Bolo tradicional feito com farinha de arroz.', tet: 'Bolu tradisional husi farinha foos.' } },
-  { id: 'bd-almond', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Almond Bretzel', pt: 'Bretzel Amêndoa', tet: 'Bretzel Améndoa' }, description: { en: 'Sweet pastry shaped like a pretzel with almonds.', pt: 'Massa doce em forma de laço com amêndoas.', tet: 'Lasu midar ho améndoa.' } },
-  { id: 'bd-apple', categoryId: 'bolos-doces', image: null, price: 2.50, title: { en: 'Alcobaça Apple Bretzel', pt: 'Bretzel Maçã Alcobaça', tet: 'Bretzel Masán' }, description: { en: 'Sweet pastry pretzel filled with regional apple.', pt: 'Laço recheado com maçã de Alcobaça.', tet: 'Lasu midar ho masán.' } },
+  { id: 'bd-almond', categoryId: 'bolos-doces', image: '/dishes/bretzel-amendoa.jpg', price: 2.50, title: { en: 'Almond Bretzel', pt: 'Bretzel Amêndoa', tet: 'Bretzel Améndoa' }, description: { en: 'Sweet pastry shaped like a pretzel with almonds.', pt: 'Massa doce em forma de laço com amêndoas.', tet: 'Lasu midar ho améndoa.' } },
+  { id: 'bd-apple', categoryId: 'bolos-doces', image: '/dishes/bretzel-maca.jpg', price: 2.50, title: { en: 'Alcobaça Apple Bretzel', pt: 'Bretzel Maçã Alcobaça', tet: 'Bretzel Masán' }, description: { en: 'Sweet pastry pretzel filled with regional apple.', pt: 'Laço recheado com maçã de Alcobaça.', tet: 'Lasu midar ho masán.' } },
   { id: 'bd-pecan', categoryId: 'bolos-doces', image: '/dishes/maple-pecan.jpg', price: 2.50, title: { en: 'Maple Pecan', pt: 'Maple Pecan', tet: 'Maple Pecan' }, description: { en: 'Braided pastry with maple syrup and pecans.', pt: 'Trança folhada com xarope de ácer e nozes pecan.', tet: 'Transa folhadu ho noz pekan.' } },
   { id: 'bd-sugardonut', categoryId: 'bolos-doces', image: '/dishes/donut-sugar.jpg', price: 1.50, title: { en: 'Dot\'s Sugar Donut', pt: 'Dot\'s Açucarado', tet: 'Donut Masin Midar' }, description: { en: 'Classic donut dusted with sugar.', pt: 'Donut clássico polvilhado com açúcar.', tet: 'Donut ho masin midar.' } },
   { id: 'bd-chocdonut', categoryId: 'bolos-doces', image: '/dishes/donut-choc.jpg', price: 1.50, title: { en: 'Dot\'s Dark Chocolate Donut', pt: 'Dot\'s Negrito', tet: 'Donut Xokolate' }, description: { en: 'Donut covered in rich dark chocolate.', pt: 'Donut coberto com chocolate negro.', tet: 'Donut ho xokolate metan.' } },
