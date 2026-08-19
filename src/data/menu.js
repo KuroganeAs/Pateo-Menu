@@ -128,23 +128,23 @@ export const menuItems = [
     ]
   },
   {
-    id: 'se-tuna', categoryId: 'sandes-especiais', image: null,
+    id: 'se-tuna', categoryId: 'sandes-especiais', image: '/dishes/tuna.jpg',
     title: { en: 'Tuna Sandwich', pt: 'Sandes de Atum', tet: 'Sandes Atum' },
     description: { en: 'Tuna paste with fresh greens.', pt: 'Pasta de atum com folhas frescas.', tet: 'Pasta atum nian.' },
     price: 1.95,
     variants: [
-      { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Meia Sandes' }, price: 1.95 },
-      { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sandes Tomak' }, price: 3.50 }
+      { name: { en: '1/2 Sandwich', pt: 'Meia Sandes', tet: 'Meia Sandes' }, price: 1.95, image: '/dishes/tuna-half.jpg' },
+      { name: { en: 'Full Sandwich', pt: 'Sandes Inteira', tet: 'Sandes Tomak' }, price: 3.50, image: '/dishes/tuna.jpg' }
     ]
   },
   {
-    id: 'se-meatcutlet', categoryId: 'sandes-especiais', image: null,
+    id: 'se-meatcutlet', categoryId: 'sandes-especiais', image: '/dishes/panado-carne.jpg',
     title: { en: 'Breaded Meat Cutlet Sandwich', pt: 'Sandes de Panado de Carne', tet: 'Sandes de Panado de Carne' },
     description: { en: 'Crispy breaded meat cutlet in a roll.', pt: 'Panado de carne crocante no pão.', tet: 'Naan panadu krispi iha paun.' },
     price: 4.50
   },
   {
-    id: 'se-fishcutlet', categoryId: 'sandes-especiais', image: null,
+    id: 'se-fishcutlet', categoryId: 'sandes-especiais', image: '/dishes/panado-peixe.jpg',
     title: { en: 'Breaded Fish Cutlet Sandwich', pt: 'Sandes de Panado de Peixe', tet: 'Sandes de Panado de Peixe' },
     description: { en: 'Crispy breaded fish fillet in a roll.', pt: 'Filete de peixe panado no pão.', tet: 'Ikan panadu iha paun.' },
     price: 4.50
@@ -157,19 +157,19 @@ export const menuItems = [
   },
 
   // --- BARISTA ---
-  { id: 'b-esp', categoryId: 'barista', image: null, price: 1.50, title: { en: 'Espresso', pt: 'Expresso', tet: 'Espresso' }, description: { en: 'Classic short black coffee.', pt: 'Café preto curto clássico.', tet: 'Kafé metan.' } },
-  { id: 'b-desp', categoryId: 'barista', image: null, price: 2.00, title: { en: 'Double Espresso', pt: 'Expresso Duplo', tet: 'Espresso Duplu' }, description: { en: 'Double shot of espresso.', pt: 'Dupla dose de expresso.', tet: 'Espresso dala rua.' } },
-  { id: 'b-decesp', categoryId: 'barista', image: null, price: 1.75, title: { en: 'Decaf Espresso', pt: 'Descafeinado', tet: 'Kafé Deskafeinadu' }, description: { en: 'Caffeine-free espresso.', pt: 'Expresso sem cafeína.', tet: 'Kafé la iha kafeina.' } },
-  { id: 'b-capesp', categoryId: 'barista', image: null, price: 1.00, title: { en: 'Capsule Espresso', pt: 'Cápsula Expresso', tet: 'Kápsula Espresso' }, description: { en: 'Single origin capsule espresso.', pt: 'Expresso de cápsula.', tet: 'Kápsula espresso.' } },
-  { id: 'b-mac', categoryId: 'barista', image: null, price: 1.75, title: { en: 'Espresso Macchiato', pt: 'Pingado', tet: 'Pingadu' }, description: { en: 'Espresso marked with a drop of milk.', pt: 'Expresso com uma gota de leite.', tet: 'Espresso ho susubeen oituan.' } },
-  { id: 'b-cap', categoryId: 'barista', image: null, price: 2.50, title: { en: 'Cappuccino', pt: 'Cappuccino', tet: 'Cappuccino' }, description: { en: 'Espresso with steamed milk and thick foam.', pt: 'Expresso com leite vaporizado e espuma.', tet: 'Espresso ho susubeen frota.' } },
-  { id: 'b-latte', categoryId: 'barista', image: null, price: 2.25, title: { en: 'Latte / Flat White', pt: 'Meia de Leite / Garoto', tet: 'Meia de Leite' }, description: { en: 'Milky espresso coffee.', pt: 'Café expresso com bastante leite.', tet: 'Kafé ho susubeen barak.' } },
-  { id: 'b-carioca', categoryId: 'barista', image: null, price: 1.50, title: { en: 'Café Carioca', pt: 'Carioca', tet: 'Karioka' }, description: { en: 'Diluted, weaker espresso shot.', pt: 'Expresso fraco e diluído.', tet: 'Espresso fraku.' } },
-  { id: 'b-americano', categoryId: 'barista', image: null, price: 1.50, title: { en: 'Americano / Long Black', pt: 'Café Americano', tet: 'Americano' }, description: { en: 'Espresso poured over hot water.', pt: 'Expresso sobre água quente.', tet: 'Espresso ho bee manas.' } },
-  { id: 'b-milk', categoryId: 'barista', image: null, price: 1.00, title: { en: 'Glass of Milk', pt: 'Copo de Leite', tet: 'Kopu Susubeen' }, description: { en: 'Hot or cold glass of milk.', pt: 'Copo de leite quente ou frio.', tet: 'Kopu susubeen malirin ka manas.' } },
-  { id: 'b-chocmilk', categoryId: 'barista', image: null, price: 1.70, title: { en: 'Chocolate Milk', pt: 'Copo de Leite c/ Chocolate', tet: 'Susubeen Xokolate' }, description: { en: 'Sweet chocolate milk.', pt: 'Leite com chocolate doce.', tet: 'Susubeen xokolate midar.' } },
-  { id: 'b-tea', categoryId: 'barista', image: null, price: 2.00, title: { en: 'Tea', pt: 'Chá', tet: 'Chá' }, description: { en: 'Hot infused tea.', pt: 'Infusão de chá quente.', tet: 'Xá manas.' } },
-  { id: 'b-teamilk', categoryId: 'barista', image: null, price: 2.25, title: { en: 'Tea with Milk', pt: 'Chá com Leite', tet: 'Chá com Leite' }, description: { en: 'Hot tea served with milk.', pt: 'Chá quente servido com leite.', tet: 'Xá manas ho susubeen.' } },
+  { id: 'b-esp', categoryId: 'barista', image: '/dishes/espresso.jpg', price: 1.50, title: { en: 'Espresso', pt: 'Expresso', tet: 'Espresso' }, description: { en: 'Classic short black coffee.', pt: 'Café preto curto clássico.', tet: 'Kafé metan.' } },
+  { id: 'b-desp', categoryId: 'barista', image: '/dishes/espresso-double.jpg', price: 2.00, title: { en: 'Double Espresso', pt: 'Expresso Duplo', tet: 'Espresso Duplu' }, description: { en: 'Double shot of espresso.', pt: 'Dupla dose de expresso.', tet: 'Espresso dala rua.' } },
+  { id: 'b-decesp', categoryId: 'barista', image: '/dishes/espresso.jpg', price: 1.75, title: { en: 'Decaf Espresso', pt: 'Descafeinado', tet: 'Kafé Deskafeinadu' }, description: { en: 'Caffeine-free espresso.', pt: 'Expresso sem cafeína.', tet: 'Kafé la iha kafeina.' } },
+  { id: 'b-capesp', categoryId: 'barista', image: '/dishes/espresso.jpg', price: 1.00, title: { en: 'Capsule Espresso', pt: 'Cápsula Expresso', tet: 'Kápsula Espresso' }, description: { en: 'Single origin capsule espresso.', pt: 'Expresso de cápsula.', tet: 'Kápsula espresso.' } },
+  { id: 'b-mac', categoryId: 'barista', image: '/dishes/espresso-macchiato.jpg', price: 1.75, title: { en: 'Espresso Macchiato', pt: 'Pingado', tet: 'Pingadu' }, description: { en: 'Espresso marked with a drop of milk.', pt: 'Expresso com uma gota de leite.', tet: 'Espresso ho susubeen oituan.' } },
+  { id: 'b-cap', categoryId: 'barista', image: '/dishes/cappuccino.jpg', price: 2.50, title: { en: 'Cappuccino', pt: 'Cappuccino', tet: 'Cappuccino' }, description: { en: 'Espresso with steamed milk and thick foam.', pt: 'Expresso com leite vaporizado e espuma.', tet: 'Espresso ho susubeen frota.' } },
+  { id: 'b-latte', categoryId: 'barista', image: '/dishes/latte.jpg', price: 2.25, title: { en: 'Latte / Flat White', pt: 'Meia de Leite / Garoto', tet: 'Meia de Leite' }, description: { en: 'Milky espresso coffee.', pt: 'Café expresso com bastante leite.', tet: 'Kafé ho susubeen barak.' } },
+  { id: 'b-carioca', categoryId: 'barista', image: '/dishes/carioca.jpg', price: 1.50, title: { en: 'Café Carioca', pt: 'Carioca', tet: 'Karioka' }, description: { en: 'Diluted, weaker espresso shot.', pt: 'Expresso fraco e diluído.', tet: 'Espresso fraku.' } },
+  { id: 'b-americano', categoryId: 'barista', image: '/dishes/americano.jpg', price: 1.50, title: { en: 'Americano / Long Black', pt: 'Café Americano', tet: 'Americano' }, description: { en: 'Espresso poured over hot water.', pt: 'Expresso sobre água quente.', tet: 'Espresso ho bee manas.' } },
+  { id: 'b-milk', categoryId: 'barista', image: '/dishes/milk.jpg', price: 1.00, title: { en: 'Glass of Milk', pt: 'Copo de Leite', tet: 'Kopu Susubeen' }, description: { en: 'Hot or cold glass of milk.', pt: 'Copo de leite quente ou frio.', tet: 'Kopu susubeen malirin ka manas.' } },
+  { id: 'b-chocmilk', categoryId: 'barista', image: '/dishes/choc-milk.jpg', price: 1.70, title: { en: 'Chocolate Milk', pt: 'Copo de Leite c/ Chocolate', tet: 'Susubeen Xokolate' }, description: { en: 'Sweet chocolate milk.', pt: 'Leite com chocolate doce.', tet: 'Susubeen xokolate midar.' } },
+  { id: 'b-tea', categoryId: 'barista', image: '/dishes/tea.jpg', price: 2.00, title: { en: 'Tea', pt: 'Chá', tet: 'Chá' }, description: { en: 'Hot infused tea.', pt: 'Infusão de chá quente.', tet: 'Xá manas.' } },
+  { id: 'b-teamilk', categoryId: 'barista', image: '/dishes/tea-milk.jpg', price: 2.25, title: { en: 'Tea with Milk', pt: 'Chá com Leite', tet: 'Chá com Leite' }, description: { en: 'Hot tea served with milk.', pt: 'Chá quente servido com leite.', tet: 'Xá manas ho susubeen.' } },
 
   // --- CROISSANTS ---
   {
@@ -237,12 +237,12 @@ export const menuItems = [
   { id: 'bd-glazeddonut', categoryId: 'bolos-doces', image: '/dishes/donut-glazed.jpg', price: 1.50, title: { en: 'Dot\'s Classic Glace', pt: 'Dot\'s Classic Glace', tet: 'Dot\'s Classic Glace' }, description: { en: 'Sweet glazed donut ring.', pt: 'Donut clássico com cobertura doce.', tet: 'Donut midar glaseadu.' } },
 
   // --- BEBIDAS E COCKTAILS ---
-  { id: 'bc-wine', categoryId: 'bebidas-cocktails', image: null, price: 2.50, title: { en: 'House Glass of Wine', pt: 'Copo de Vinho da Casa', tet: 'Copo de Vinho da Casa' }, description: { en: 'A glass of our selected house wine.', pt: 'Um copo do nosso vinho da casa.', tet: 'Tua-uvas husi uma.' } },
-  { id: 'bc-ginjinha', categoryId: 'bebidas-cocktails', image: null, price: 2.00, title: { en: 'Ginjinha', pt: 'Ginjinha', tet: 'Ginjinha' }, description: { en: 'Traditional Portuguese cherry liqueur.', pt: 'Licor tradicional português de ginja.', tet: 'Likór tradisional husi ginja.' } },
-  { id: 'bc-favaito', categoryId: 'bebidas-cocktails', image: null, price: 1.75, title: { en: 'Moscatel Favaito', pt: 'Moscatel Favaito', tet: 'Moscatel Favaito' }, description: { en: 'Sweet fortified muscat wine.', pt: 'Vinho doce moscatel.', tet: 'Tua-uvas midar moscatel.' } },
-  { id: 'bc-aperol', categoryId: 'bebidas-cocktails', image: null, price: 6.00, title: { en: 'Aperol Spritz', pt: 'Aperol Spritz', tet: 'Aperol Spritz' }, description: { en: 'Refreshing Italian cocktail with prosecco.', pt: 'Cocktail italiano refrescante.', tet: 'Koktail fresku Italianu nian.' } },
-  { id: 'bc-gin', categoryId: 'bebidas-cocktails', image: null, price: 9.00, title: { en: 'Premium Gin & Tonic', pt: 'Gin Tónico Premium', tet: 'Gin Tónico Premium' }, description: { en: 'Premium gin mixed with tonic water and botanicals.', pt: 'Gin premium com água tónica e botânicos.', tet: 'Gin di\'ak ho bee tóniku.' } },
-  { id: 'bc-port', categoryId: 'bebidas-cocktails', image: null, price: 7.00, title: { en: 'Porto Tónico', pt: 'Porto Tónico', tet: 'Porto Tónico' }, description: { en: 'White port wine mixed with tonic water.', pt: 'Vinho do porto branco com água tónica.', tet: 'Tua-uvas Porto mutin ho bee tóniku.' } },
-  { id: 'bc-whisky', categoryId: 'bebidas-cocktails', image: null, price: 4.00, title: { en: 'Whisky', pt: 'Whisky', tet: 'Whisky' }, description: { en: 'A shot of classic aged whisky.', pt: 'Uma dose de whisky envelhecido clássico.', tet: 'Whisky tuan klasiku.' } },
-  { id: 'bc-cachaca', categoryId: 'bebidas-cocktails', image: null, price: 4.50, title: { en: 'Cachaça 51', pt: 'Cachaça 51', tet: 'Cachaça 51' }, description: { en: 'Popular Brazilian sugarcane spirit.', pt: 'Aguardente de cana brasileira popular.', tet: 'Bebida maka\'as husi tohu Brazil nian.' } }
+  { id: 'bc-wine', categoryId: 'bebidas-cocktails', image: '/dishes/wine.jpg', price: 2.50, title: { en: 'House Glass of Wine', pt: 'Copo de Vinho da Casa', tet: 'Copo de Vinho da Casa' }, description: { en: 'A glass of our selected house wine.', pt: 'Um copo do nosso vinho da casa.', tet: 'Tua-uvas husi uma.' } },
+  { id: 'bc-ginjinha', categoryId: 'bebidas-cocktails', image: '/dishes/ginjinha.jpg', price: 2.00, title: { en: 'Ginjinha', pt: 'Ginjinha', tet: 'Ginjinha' }, description: { en: 'Traditional Portuguese cherry liqueur.', pt: 'Licor tradicional português de ginja.', tet: 'Likór tradisional husi ginja.' } },
+  { id: 'bc-favaito', categoryId: 'bebidas-cocktails', image: '/dishes/favaito.jpg', price: 1.75, title: { en: 'Moscatel Favaito', pt: 'Moscatel Favaito', tet: 'Moscatel Favaito' }, description: { en: 'Sweet fortified muscat wine.', pt: 'Vinho doce moscatel.', tet: 'Tua-uvas midar moscatel.' } },
+  { id: 'bc-aperol', categoryId: 'bebidas-cocktails', image: '/dishes/aperol.jpg', price: 6.00, title: { en: 'Aperol Spritz', pt: 'Aperol Spritz', tet: 'Aperol Spritz' }, description: { en: 'Refreshing Italian cocktail with prosecco.', pt: 'Cocktail italiano refrescante.', tet: 'Koktail fresku Italianu nian.' } },
+  { id: 'bc-gin', categoryId: 'bebidas-cocktails', image: '/dishes/gin-tonic.jpg', price: 9.00, title: { en: 'Premium Gin & Tonic', pt: 'Gin Tónico Premium', tet: 'Gin Tónico Premium' }, description: { en: 'Premium gin mixed with tonic water and botanicals.', pt: 'Gin premium com água tónica e botânicos.', tet: 'Gin di\'ak ho bee tóniku.' } },
+  { id: 'bc-port', categoryId: 'bebidas-cocktails', image: '/dishes/porto-tonico.jpg', price: 7.00, title: { en: 'Porto Tónico', pt: 'Porto Tónico', tet: 'Porto Tónico' }, description: { en: 'White port wine mixed with tonic water.', pt: 'Vinho do porto branco com água tónica.', tet: 'Tua-uvas Porto mutin ho bee tóniku.' } },
+  { id: 'bc-whisky', categoryId: 'bebidas-cocktails', image: '/dishes/whisky.jpg', price: 4.00, title: { en: 'Whisky', pt: 'Whisky', tet: 'Whisky' }, description: { en: 'A shot of classic aged whisky.', pt: 'Uma dose de whisky envelhecido clássico.', tet: 'Whisky tuan klasiku.' } },
+  { id: 'bc-cachaca', categoryId: 'bebidas-cocktails', image: '/dishes/cachaca.jpg', price: 4.50, title: { en: 'Cachaça 51', pt: 'Cachaça 51', tet: 'Cachaça 51' }, description: { en: 'Popular Brazilian sugarcane spirit.', pt: 'Aguardente de cana brasileira popular.', tet: 'Bebida maka\'as husi tohu Brazil nian.' } }
 ];
