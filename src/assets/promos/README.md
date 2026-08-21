@@ -11,10 +11,11 @@ automatically. No code changes needed.
 - Supported formats: png, jpg, jpeg, webp, gif (any mix).
 - Square (1:1) images look best; anything else gets center-cropped to square.
 
-## Facebook link
+## Social links
 
-The "Follow us on Facebook" link under the carousel is configured once in
-`src/data/promotions.js` (`FACEBOOK_PAGE_URL`). Empty = hidden.
+The Facebook link under the carousel and the footer's social buttons
+(Facebook / Instagram / TikTok / website) are configured once in
+`src/data/socials.js`. Empty = hidden (tiktok shows a greyed placeholder).
 
 ## Weekly update via GitHub (no tools needed)
 

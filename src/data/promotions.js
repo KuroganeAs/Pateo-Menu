@@ -1,8 +1,5 @@
 import placeholderImg from '../assets/food-placeholder.svg';
 
-// Shown as a link under the promo carousel — paste the page URL once
-// (e.g. 'https://www.facebook.com/pateo...'). Leave empty to hide the link.
-export const FACEBOOK_PAGE_URL = 'https://www.facebook.com/pateo.timor';
 
 // Weekly promos = the image files in src/assets/promos/ (see the README
 // there for the upload workflow). Vite scans the folder at build time, so
