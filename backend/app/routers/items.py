@@ -9,7 +9,7 @@ from ..models import Category, MenuItem, ModifierGroup, ModifierOption
 from ..schemas import (
     AvailabilityPatch, MenuItemIn, MenuItemOut, MenuItemPatch, ModifierGroupIn,
 )
-from ..uploads import delete_upload_if_local, save_image_upload
+from ..uploads import delete_uploaded_image, save_image_upload
 
 router = APIRouter(prefix="/api/items", tags=["items"], dependencies=[Depends(get_current_admin)])
 
@@ -110,7 +110,7 @@ def set_availability(item_id: int, body: AvailabilityPatch, db: Session = Depend
 @router.delete("/{item_id}", status_code=204)
 def delete_item(item_id: int, db: Session = Depends(get_db)):
     item = _get_or_404(db, item_id)
-    delete_upload_if_local(item.image_url)
+    delete_uploaded_image(item.image_url)
     db.delete(item)  # order lines keep their snapshots; FK goes SET NULL
     db.commit()
 
@@ -119,7 +119,7 @@ def delete_item(item_id: int, db: Session = Depends(get_db)):
 async def upload_item_image(item_id: int, file: UploadFile, db: Session = Depends(get_db)):
     item = _get_or_404(db, item_id)
     url = await save_image_upload(file, subfolder="items")
-    delete_upload_if_local(item.image_url)  # replace: clean up the old file
+    delete_uploaded_image(item.image_url)  # replace: clean up the old file
     item.image_url = url
     db.commit()
     return _get_or_404(db, item_id)

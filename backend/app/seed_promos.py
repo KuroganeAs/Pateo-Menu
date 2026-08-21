@@ -12,15 +12,13 @@ files) first.
 """
 import json
 import re
-import secrets
-import shutil
 import sys
 from pathlib import Path
 
-from .config import BACKEND_DIR, settings
+from .config import BACKEND_DIR
 from .database import Base, SessionLocal, engine
 from .models import Promo
-from .uploads import delete_upload_if_local
+from .uploads import delete_uploaded_image, store_image_bytes
 
 SITE_PROMOS_DIR = BACKEND_DIR.parent / "src" / "assets" / "promos"
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
@@ -42,7 +40,7 @@ def main() -> None:
             return
         if existing and force:
             for promo in db.query(Promo).all():
-                delete_upload_if_local(promo.image_url)
+                delete_uploaded_image(promo.image_url)
                 db.delete(promo)
             db.commit()
             print(f"Deleted {existing} existing promos.")
@@ -60,15 +58,11 @@ def main() -> None:
         if captions_file.exists():
             captions = json.loads(captions_file.read_text(encoding="utf-8"))
 
-        promo_dir = Path(settings.upload_dir) / "promo"
-        promo_dir.mkdir(parents=True, exist_ok=True)
-
         for idx, src in enumerate(images):
-            dest_name = f"{secrets.token_hex(16)}{src.suffix.lower()}"
-            shutil.copyfile(src, promo_dir / dest_name)
+            url = store_image_bytes(src.read_bytes(), "promo", src.suffix.lower())
             db.add(
                 Promo(
-                    image_url=f"/uploads/promo/{dest_name}",
+                    image_url=url,
                     caption=captions.get(src.stem) or None,
                     display_order=idx,
                     is_active=True,

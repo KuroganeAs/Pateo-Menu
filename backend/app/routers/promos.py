@@ -7,7 +7,7 @@ from ..auth import get_current_admin
 from ..database import get_db
 from ..models import Promo
 from ..schemas import PromoOut, PromoPatch
-from ..uploads import delete_upload_if_local, save_image_upload
+from ..uploads import delete_uploaded_image, save_image_upload
 
 router = APIRouter(prefix="/api/promos", tags=["promos"])
 
@@ -71,6 +71,6 @@ def update_promo(promo_id: int, body: PromoPatch, db: Session = Depends(get_db))
 @router.delete("/{promo_id}", status_code=204, dependencies=[Depends(get_current_admin)])
 def delete_promo(promo_id: int, db: Session = Depends(get_db)):
     promo = _get_or_404(db, promo_id)
-    delete_upload_if_local(promo.image_url)
+    delete_uploaded_image(promo.image_url)
     db.delete(promo)
     db.commit()

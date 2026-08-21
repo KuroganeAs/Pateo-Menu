@@ -31,6 +31,16 @@ class Settings(BaseSettings):
     upload_dir: Path = BACKEND_DIR / "uploads"
     max_upload_mb: int = 5
 
+    # --- Cloudinary (image storage for hosts with ephemeral disks) ---
+    # Leave empty for local development: images then go to upload_dir on disk.
+    cloudinary_cloud_name: str = ""
+    cloudinary_api_key: str = ""
+    cloudinary_api_secret: str = ""
+
+    @property
+    def cloudinary_enabled(self) -> bool:
+        return bool(self.cloudinary_cloud_name and self.cloudinary_api_key and self.cloudinary_api_secret)
+
     # --- CORS: comma-separated origins, or * for local development ---
     cors_origins: str = "*"
 
