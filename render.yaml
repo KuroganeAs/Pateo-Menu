@@ -1,26 +1,29 @@
-# Render Blueprint: deploys the FastAPI backend with a persistent disk that
-# holds both the SQLite database and uploaded images. Connect the repo in
-# Render via New -> Blueprint and it configures itself from this file.
+# Render Blueprint — free-tier stack, no card required:
+#   Render free web service (this file) + Neon free Postgres (database)
+#   + Cloudinary free (image storage).
+# The free instance sleeps after ~15 min idle and wakes in ~30-60s; the
+# customer site's built-in fallback keeps guests unaffected.
+# Values marked sync:false are entered once in the Render dashboard.
 services:
   - type: web
     name: pateo-backend
     runtime: python
     rootDir: backend
-    plan: starter # persistent disks require a paid instance; free tier loses uploads on every restart
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/health
-    disk:
-      name: pateo-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.7
       - key: DATABASE_URL
-        value: sqlite:////var/data/app.db
-      - key: UPLOAD_DIR
-        value: /var/data/uploads
+        sync: false # Neon connection string, with the scheme changed to postgresql+psycopg://
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
       - key: JWT_SECRET
         generateValue: true
       - key: ADMIN_USERNAME

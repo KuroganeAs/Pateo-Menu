@@ -7,3 +7,4 @@ pydantic-settings>=2.3
 python-multipart>=0.0.9
 PyJWT>=2.8
 bcrypt>=4.1
+cloudinary>=1.40

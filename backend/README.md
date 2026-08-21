@@ -35,12 +35,21 @@ copy .env.example .env
   `python -m app.seed_menu` (`--force` wipes and re-seeds).
 - API docs at http://localhost:8000/docs.
 
-## Deploying
+## Deploying (free stack: Render + Neon + Cloudinary, no card)
 
-Set real values for `DATABASE_URL`, `JWT_SECRET`, `ADMIN_PASSWORD`, and
-`CORS_ORIGINS` (comma-separated: the customer site and admin panel origins).
-Uploads are written to local disk (`UPLOAD_DIR`, default `backend/uploads`) —
-the host needs a persistent volume mounted there or images vanish on redeploy.
+`render.yaml` in the repo root deploys this as a free Render web service.
+Because the free instance has no persistent disk, storage is external:
+
+- **Database** — a free Neon Postgres. Paste its connection string as
+  `DATABASE_URL`, changing the scheme to `postgresql+psycopg://`.
+- **Images** — a free Cloudinary account. Set `CLOUDINARY_CLOUD_NAME`,
+  `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` and uploads go there
+  (leave them empty locally and uploads use `backend/uploads` on disk).
+
+Also set `ADMIN_PASSWORD` and, once the frontends are live, `CORS_ORIGINS`
+(comma-separated Vercel origins). The free instance sleeps after ~15 min idle
+(~40s wake); a free cron pinger hitting `/api/health` during opening hours
+hides that, and the customer site's bundled fallback covers the rest.
 
 ## Not production-hardened (inherited honest list)
 
