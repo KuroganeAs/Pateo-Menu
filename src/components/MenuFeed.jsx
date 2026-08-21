@@ -122,7 +122,7 @@ export default function MenuFeed({ onActiveCategoryChange, onItemSelect, searchQ
     <section className="relative h-full overflow-hidden flex flex-col flex-1">
       <div
         id="menu-scroll-container"
-        className="flex-1 overflow-y-auto px-4 pb-32 pt-2 hide-scrollbar"
+        className="flex-1 overflow-y-auto px-4 pb-32 pt-2 hide-scrollbar overscroll-contain"
       >
         {!hasResults && (
           <div className="flex flex-col items-center justify-center text-center py-24 text-muted gap-3">
