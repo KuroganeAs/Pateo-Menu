@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { promos, FACEBOOK_PAGE_URL } from '../data/promotions';
+import { FACEBOOK_PAGE_URL } from '../data/promotions';
+import { usePromos } from '../hooks/usePromos';
 import { useLanguage } from '../context/LanguageContext';
 import { ui } from '../data/strings';
 import FadeText from './FadeText';
@@ -39,6 +40,7 @@ const slotFor = (i, idx, count) => {
 
 export default function PromoCarousel() {
   const { t } = useLanguage();
+  const promos = usePromos();
   const [idx, setIdx] = useState(0);
   // Bumped on every manual swipe so the auto-advance interval restarts,
   // instead of snatching the slide away right after the user picked it.
@@ -46,6 +48,11 @@ export default function PromoCarousel() {
 
   const count = promos.length;
   const hasSlides = count > 1;
+
+  // The live fetch can swap in a different number of slides — restart cleanly
+  useEffect(() => {
+    setIdx(0);
+  }, [promos]);
 
   useEffect(() => {
     if (!hasSlides) return;

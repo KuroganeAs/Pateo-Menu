@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { categories, menuItems } from '../data/menu';
+import { useMenuData } from '../context/MenuDataContext';
 import { useFeedScroll } from '../hooks/useFeedScroll';
 import FadeText from './FadeText';
 import { cn } from '../lib/cn';
 
 export default function CategoryNav({ activeCategoryId, onCategorySelect, isVertical = false }) {
   const { t } = useLanguage();
+  const { categories, menuItems } = useMenuData();
   const navRef = useRef(null);
   const [sectionProgress, setSectionProgress] = useState(0);
 
@@ -17,7 +18,7 @@ export default function CategoryNav({ activeCategoryId, onCategorySelect, isVert
       map[item.categoryId] = (map[item.categoryId] || 0) + 1;
     });
     return map;
-  }, []);
+  }, [menuItems]);
 
   // Auto-scroll the sticky nav pill into view when active category changes
   useEffect(() => {

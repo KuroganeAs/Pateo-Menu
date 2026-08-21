@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* Same family as the customer site: warm paper, ink text, deep blue accent. */
+@theme {
+  --color-primary: #1864B0;
+  --color-primary-dark: #0C48AB;
+  --color-background: #FAF7F2;
+  --color-background-alt: #F3EEE6;
+  --color-surface: #FFFDF9;
+  --color-ink: #2E2A26;
+  --color-muted: #7A716A;
+
+  --shadow-card: 0 4px 16px -4px rgba(46, 42, 38, 0.08);
+  --shadow-card-hover: 0 12px 28px -8px rgba(46, 42, 38, 0.16);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-ink;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

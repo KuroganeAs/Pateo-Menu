@@ -5,12 +5,13 @@ import placeholderImg from '../assets/food-placeholder.svg';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { useViewport } from '../hooks/useViewport';
 import { ui } from '../data/strings';
-import { categories } from '../data/menu';
+import { useMenuData } from '../context/MenuDataContext';
 import { cn } from '../lib/cn';
 import FadeText from './FadeText';
 
 export default function DishDetailModal({ item, onClose }) {
   const { t, language } = useLanguage();
+  const { categories } = useMenuData();
   const { isDesktop } = useViewport();
   const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
   const dragControls = useDragControls();

@@ -1,0 +1,31 @@
+# Render Blueprint: deploys the FastAPI backend with a persistent disk that
+# holds both the SQLite database and uploaded images. Connect the repo in
+# Render via New -> Blueprint and it configures itself from this file.
+services:
+  - type: web
+    name: pateo-backend
+    runtime: python
+    rootDir: backend
+    plan: starter # persistent disks require a paid instance; free tier loses uploads on every restart
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    disk:
+      name: pateo-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DATABASE_URL
+        value: sqlite:////var/data/app.db
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: menucafetaria
+      - key: ADMIN_PASSWORD
+        sync: false # set in the Render dashboard, never committed to the repo
+      - key: CORS_ORIGINS
+        value: "*" # tighten to your Vercel URLs once they exist, e.g. https://site.vercel.app,https://admin.vercel.app

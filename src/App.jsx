@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LanguageProvider } from './context/LanguageContext';
+import { MenuDataProvider } from './context/MenuDataContext';
 import LandingPage from './components/LandingPage';
 import MenuPanel from './components/MenuPanel';
 import SplashScreen from './components/SplashScreen';
@@ -15,6 +16,7 @@ export default function App() {
 
   return (
     <LanguageProvider>
+      <MenuDataProvider>
       <SplashScreen />
       <AnimatePresence initial={false}>
         {view === 'landing' ? (
@@ -38,6 +40,7 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      </MenuDataProvider>
     </LanguageProvider>
   );
 }
