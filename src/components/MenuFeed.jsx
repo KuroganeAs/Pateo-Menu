@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { categories, menuItems } from '../data/menu';
+import { useMenuData } from '../context/MenuDataContext';
 import { ui } from '../data/strings';
 import { useViewport } from '../hooks/useViewport';
 import MenuItemCard from './MenuItemCard';
@@ -24,6 +24,7 @@ const categoryIcons = {
 
 export default function MenuFeed({ onActiveCategoryChange, onItemSelect, searchQuery, isModalOpen }) {
   const { t } = useLanguage();
+  const { categories, menuItems } = useMenuData();
   const { isDesktop, isTabletLandscape } = useViewport();
   const sectionRefs = useRef({});
 

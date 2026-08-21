@@ -1,0 +1,906 @@
+{
+  "generated_from": "menu-app/src/data/menu.js",
+  "categories": [
+    {
+      "name": "Sandwiches",
+      "display_order": 0,
+      "items": [
+        {
+          "name": "Bread Roll",
+          "description": "Traditional Portuguese soft bread roll.",
+          "price": 0.8,
+          "image_url": "/dishes/b-bt.jpg",
+          "is_available": true,
+          "display_order": 0,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "Butter",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Cheese",
+                  "price_delta": 0.6
+                },
+                {
+                  "name": "Ham",
+                  "price_delta": 0.6
+                },
+                {
+                  "name": "Cured Ham",
+                  "price_delta": 0.9
+                },
+                {
+                  "name": "Mixed (Ham & Cheese)",
+                  "price_delta": 1
+                },
+                {
+                  "name": "Mixed Cured Ham & Cheese",
+                  "price_delta": 1.15
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Cereal Roll",
+          "description": "Healthy multi-grain cereal bread roll.",
+          "price": 1.7,
+          "image_url": "/dishes/cers-bt.jpg",
+          "is_available": true,
+          "display_order": 1,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "Butter",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Cheese",
+                  "price_delta": 0.65
+                },
+                {
+                  "name": "Ham",
+                  "price_delta": 0.65
+                },
+                {
+                  "name": "Cured Ham",
+                  "price_delta": 0.75
+                },
+                {
+                  "name": "Mixed",
+                  "price_delta": 1
+                },
+                {
+                  "name": "Mixed Cured Ham",
+                  "price_delta": 1.25
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Rustic Bread Roll",
+          "description": "Traditional rustic crusty bread.",
+          "price": 1.6,
+          "image_url": "/dishes/cs-bt.jpg",
+          "is_available": true,
+          "display_order": 2,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "Butter",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Cheese",
+                  "price_delta": 0.65
+                },
+                {
+                  "name": "Ham",
+                  "price_delta": 0.65
+                },
+                {
+                  "name": "Cured Ham",
+                  "price_delta": 0.75
+                },
+                {
+                  "name": "Mixed",
+                  "price_delta": 1.15
+                },
+                {
+                  "name": "Mixed Cured Ham",
+                  "price_delta": 1.35
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Rye Roll",
+          "description": "Dark and hearty rye bread roll.",
+          "price": 1.7,
+          "image_url": "/dishes/bc-bt.jpg",
+          "is_available": true,
+          "display_order": 3,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "Butter",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Cheese",
+                  "price_delta": 0.65
+                },
+                {
+                  "name": "Ham",
+                  "price_delta": 0.65
+                },
+                {
+                  "name": "Cured Ham",
+                  "price_delta": 0.75
+                },
+                {
+                  "name": "Mixed",
+                  "price_delta": 1
+                },
+                {
+                  "name": "Mixed Cured Ham",
+                  "price_delta": 1.25
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Milk Bread",
+          "description": "Soft, sweet milk bread.",
+          "price": 1.5,
+          "image_url": "/dishes/pdl.jpg",
+          "is_available": true,
+          "display_order": 4,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "Plain",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Butter",
+                  "price_delta": 0.35
+                },
+                {
+                  "name": "Cheese",
+                  "price_delta": 0.85
+                },
+                {
+                  "name": "Ham",
+                  "price_delta": 0.85
+                },
+                {
+                  "name": "Mixed",
+                  "price_delta": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Coconut Sweet Bread",
+          "description": "Sweet bread topped with toasted coconut.",
+          "price": 1.8,
+          "image_url": "/dishes/ccn.jpg",
+          "is_available": true,
+          "display_order": 5,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "Plain",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Butter",
+                  "price_delta": 0.6
+                },
+                {
+                  "name": "Cheese",
+                  "price_delta": 0.9
+                },
+                {
+                  "name": "Ham",
+                  "price_delta": 0.9
+                },
+                {
+                  "name": "Mixed",
+                  "price_delta": 1.15
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Special Sandwiches & Toasts",
+      "display_order": 1,
+      "items": [
+        {
+          "name": "Toast",
+          "description": "Thick slices of toasted bread with toppings.",
+          "price": 1,
+          "image_url": "/dishes/toast-bt.jpg",
+          "is_available": true,
+          "display_order": 0,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "1/2 Butter",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Full Butter",
+                  "price_delta": 0.9
+                },
+                {
+                  "name": "1/2 Cheese",
+                  "price_delta": 0.5
+                },
+                {
+                  "name": "Full Cheese",
+                  "price_delta": 1.75
+                },
+                {
+                  "name": "1/2 Ham",
+                  "price_delta": 0.5
+                },
+                {
+                  "name": "Full Ham",
+                  "price_delta": 1.75
+                },
+                {
+                  "name": "1/2 Mixed",
+                  "price_delta": 0.65
+                },
+                {
+                  "name": "Full Mixed",
+                  "price_delta": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Omelette Sandwich",
+          "description": "Freshly made omelette in bread.",
+          "price": 1.95,
+          "image_url": "/dishes/om.jpg",
+          "is_available": true,
+          "display_order": 1,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "1/2 Sandwich",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Full Sandwich",
+                  "price_delta": 1.55
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Tuna Sandwich",
+          "description": "Tuna paste with fresh greens.",
+          "price": 1.95,
+          "image_url": "/dishes/tuna.jpg",
+          "is_available": true,
+          "display_order": 2,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "1/2 Sandwich",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Full Sandwich",
+                  "price_delta": 1.55
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Breaded Meat Cutlet Sandwich",
+          "description": "Crispy breaded meat cutlet in a roll.",
+          "price": 4.5,
+          "image_url": "/dishes/panado-carne.jpg",
+          "is_available": true,
+          "display_order": 3,
+          "modifier_groups": []
+        },
+        {
+          "name": "Breaded Fish Cutlet Sandwich",
+          "description": "Crispy breaded fish fillet in a roll.",
+          "price": 4.5,
+          "image_url": "/dishes/panado-peixe.jpg",
+          "is_available": true,
+          "display_order": 4,
+          "modifier_groups": []
+        },
+        {
+          "name": "Bifana",
+          "description": "Traditional Portuguese marinated pork sandwich.",
+          "price": 4,
+          "image_url": "/dishes/bifana.jpg",
+          "is_available": true,
+          "display_order": 5,
+          "modifier_groups": []
+        }
+      ]
+    },
+    {
+      "name": "Barista",
+      "display_order": 2,
+      "items": [
+        {
+          "name": "Espresso",
+          "description": "Classic short black coffee.",
+          "price": 1.5,
+          "image_url": "/dishes/espresso.jpg",
+          "is_available": true,
+          "display_order": 0,
+          "modifier_groups": []
+        },
+        {
+          "name": "Double Espresso",
+          "description": "Double shot of espresso.",
+          "price": 2,
+          "image_url": "/dishes/espresso-double.jpg",
+          "is_available": true,
+          "display_order": 1,
+          "modifier_groups": []
+        },
+        {
+          "name": "Decaf Espresso",
+          "description": "Caffeine-free espresso.",
+          "price": 1.75,
+          "image_url": "/dishes/espresso.jpg",
+          "is_available": true,
+          "display_order": 2,
+          "modifier_groups": []
+        },
+        {
+          "name": "Capsule Espresso",
+          "description": "Single origin capsule espresso.",
+          "price": 1,
+          "image_url": "/dishes/espresso.jpg",
+          "is_available": true,
+          "display_order": 3,
+          "modifier_groups": []
+        },
+        {
+          "name": "Espresso Macchiato",
+          "description": "Espresso marked with a drop of milk.",
+          "price": 1.75,
+          "image_url": "/dishes/espresso-macchiato.jpg",
+          "is_available": true,
+          "display_order": 4,
+          "modifier_groups": []
+        },
+        {
+          "name": "Cappuccino",
+          "description": "Espresso with steamed milk and thick foam.",
+          "price": 2.5,
+          "image_url": "/dishes/cappuccino.jpg",
+          "is_available": true,
+          "display_order": 5,
+          "modifier_groups": []
+        },
+        {
+          "name": "Latte / Flat White",
+          "description": "Milky espresso coffee.",
+          "price": 2.25,
+          "image_url": "/dishes/latte.jpg",
+          "is_available": true,
+          "display_order": 6,
+          "modifier_groups": []
+        },
+        {
+          "name": "Café Carioca",
+          "description": "Diluted, weaker espresso shot.",
+          "price": 1.5,
+          "image_url": "/dishes/carioca.jpg",
+          "is_available": true,
+          "display_order": 7,
+          "modifier_groups": []
+        },
+        {
+          "name": "Americano / Long Black",
+          "description": "Espresso poured over hot water.",
+          "price": 1.5,
+          "image_url": "/dishes/americano.jpg",
+          "is_available": true,
+          "display_order": 8,
+          "modifier_groups": []
+        },
+        {
+          "name": "Glass of Milk",
+          "description": "Hot or cold glass of milk.",
+          "price": 1,
+          "image_url": "/dishes/milk.jpg",
+          "is_available": true,
+          "display_order": 9,
+          "modifier_groups": []
+        },
+        {
+          "name": "Chocolate Milk",
+          "description": "Sweet chocolate milk.",
+          "price": 1.7,
+          "image_url": "/dishes/choc-milk.jpg",
+          "is_available": true,
+          "display_order": 10,
+          "modifier_groups": []
+        },
+        {
+          "name": "Tea",
+          "description": "Hot infused tea.",
+          "price": 2,
+          "image_url": "/dishes/tea.jpg",
+          "is_available": true,
+          "display_order": 11,
+          "modifier_groups": []
+        },
+        {
+          "name": "Tea with Milk",
+          "description": "Hot tea served with milk.",
+          "price": 2.25,
+          "image_url": "/dishes/tea-milk.jpg",
+          "is_available": true,
+          "display_order": 12,
+          "modifier_groups": []
+        }
+      ]
+    },
+    {
+      "name": "Croissants",
+      "display_order": 3,
+      "items": [
+        {
+          "name": "Croissant",
+          "description": "Flaky and buttery baked croissant.",
+          "price": 1.5,
+          "image_url": "/dishes/croissant.jpg",
+          "is_available": true,
+          "display_order": 0,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "Plain",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Butter",
+                  "price_delta": 0.35
+                },
+                {
+                  "name": "Cheese",
+                  "price_delta": 0.85
+                },
+                {
+                  "name": "Ham",
+                  "price_delta": 0.85
+                },
+                {
+                  "name": "Mixed",
+                  "price_delta": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "XL Croissant",
+          "description": "Extra large flaky croissant.",
+          "price": 2.3,
+          "image_url": "/dishes/croissant-xl.jpg",
+          "is_available": true,
+          "display_order": 1,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "Plain",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Butter",
+                  "price_delta": 0.1
+                },
+                {
+                  "name": "Cheese",
+                  "price_delta": 0.4
+                },
+                {
+                  "name": "Ham",
+                  "price_delta": 0.4
+                },
+                {
+                  "name": "Mixed",
+                  "price_delta": 0.95
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Brioche Croissant with Custard",
+          "description": "Soft brioche dough filled with custard.",
+          "price": 2,
+          "image_url": "/dishes/croissant-brioche.jpg",
+          "is_available": true,
+          "display_order": 2,
+          "modifier_groups": []
+        },
+        {
+          "name": "Chocolate Croissant",
+          "description": "Filled with rich chocolate.",
+          "price": 2,
+          "image_url": "/dishes/croissant-choc.jpg",
+          "is_available": true,
+          "display_order": 3,
+          "modifier_groups": []
+        },
+        {
+          "name": "Puff Pastry Croissant with Custard",
+          "description": "Flaky pastry filled with egg custard.",
+          "price": 2,
+          "image_url": "/dishes/croissant-folhado.jpg",
+          "is_available": true,
+          "display_order": 4,
+          "modifier_groups": []
+        }
+      ]
+    },
+    {
+      "name": "Pastries & Savory",
+      "display_order": 4,
+      "items": [
+        {
+          "name": "Vegetarian Samosa",
+          "description": "Crispy fried pastry filled with spiced veggies.",
+          "price": 1.3,
+          "image_url": "/dishes/samosa-veg.jpg",
+          "is_available": true,
+          "display_order": 0,
+          "modifier_groups": []
+        },
+        {
+          "name": "Chicken Samosa",
+          "description": "Crispy fried pastry filled with chicken.",
+          "price": 1.75,
+          "image_url": "/dishes/samosa-chicken.jpg",
+          "is_available": true,
+          "display_order": 1,
+          "modifier_groups": []
+        },
+        {
+          "name": "Tuna Puff Pastry",
+          "description": "Puff pastry pocket with savory tuna filling.",
+          "price": 2,
+          "image_url": "/dishes/folhado-atum.jpg",
+          "is_available": true,
+          "display_order": 2,
+          "modifier_groups": []
+        },
+        {
+          "name": "Meat Puff Pastry",
+          "description": "Puff pastry pocket with savory minced meat.",
+          "price": 2,
+          "image_url": "/dishes/folhado-carne.jpg",
+          "is_available": true,
+          "display_order": 3,
+          "modifier_groups": []
+        },
+        {
+          "name": "Spinach Puff Pastry",
+          "description": "Puff pastry pocket with creamy spinach.",
+          "price": 2,
+          "image_url": "/dishes/folhado-espinafres.jpg",
+          "is_available": true,
+          "display_order": 4,
+          "modifier_groups": []
+        },
+        {
+          "name": "Chicken Puff Pastry",
+          "description": "Puff pastry pocket with chicken filling.",
+          "price": 2,
+          "image_url": "/dishes/folhado-frango.jpg",
+          "is_available": true,
+          "display_order": 5,
+          "modifier_groups": []
+        },
+        {
+          "name": "Pizza Puff Pastry",
+          "description": "Cheese and oregano pizza pocket.",
+          "price": 2,
+          "image_url": "/dishes/folhado-pizza.jpg",
+          "is_available": true,
+          "display_order": 6,
+          "modifier_groups": []
+        },
+        {
+          "name": "Sausage & Cheese Puff Pastry",
+          "description": "Sausage and melted cheese wrapped in pastry.",
+          "price": 2,
+          "image_url": "/dishes/folhado-salsicha.jpg",
+          "is_available": true,
+          "display_order": 7,
+          "modifier_groups": []
+        },
+        {
+          "name": "Stuffed Bread",
+          "description": "Soft bread baked with ham and cheese inside.",
+          "price": 2,
+          "image_url": "/dishes/lanches.jpg",
+          "is_available": true,
+          "display_order": 8,
+          "modifier_groups": []
+        },
+        {
+          "name": "Mixed Cereal Panike",
+          "description": "Cereal dough pocket with ham and cheese.",
+          "price": 2,
+          "image_url": "/dishes/panike-cereal.jpg",
+          "is_available": true,
+          "display_order": 9,
+          "modifier_groups": []
+        },
+        {
+          "name": "Mixed Panike",
+          "description": "Puff pastry with ham and cheese.",
+          "price": 2,
+          "image_url": "/dishes/panike-misto.jpg",
+          "is_available": true,
+          "display_order": 10,
+          "modifier_groups": []
+        },
+        {
+          "name": "Rissol",
+          "description": "Traditional Portuguese breaded and fried savory patty.",
+          "price": 1.5,
+          "image_url": "/dishes/rissol-meat.jpg",
+          "is_available": true,
+          "display_order": 11,
+          "modifier_groups": [
+            {
+              "name": "Choice",
+              "selection_type": "single",
+              "required": true,
+              "options": [
+                {
+                  "name": "Meat",
+                  "price_delta": 0
+                },
+                {
+                  "name": "Fish",
+                  "price_delta": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cakes & Sweets",
+      "display_order": 5,
+      "items": [
+        {
+          "name": "Pastel de Nata",
+          "description": "Portuguese egg custard tart in flaky pastry.",
+          "price": 1.5,
+          "image_url": "/dishes/pastel-nata.jpg",
+          "is_available": true,
+          "display_order": 0,
+          "modifier_groups": []
+        },
+        {
+          "name": "Pastel de Nata Chocolate",
+          "description": "Custard tart infused with rich chocolate.",
+          "price": 1.8,
+          "image_url": "/dishes/pastel-nata-choc.jpg",
+          "is_available": true,
+          "display_order": 1,
+          "modifier_groups": []
+        },
+        {
+          "name": "Bolo de Arroz",
+          "description": "Sweet and buttery traditional rice flour cake.",
+          "price": 2.5,
+          "image_url": "/dishes/bolo-arroz.jpg",
+          "is_available": true,
+          "display_order": 2,
+          "modifier_groups": []
+        },
+        {
+          "name": "Almond Bretzel",
+          "description": "Sweet pastry shaped like a pretzel with almonds.",
+          "price": 2.5,
+          "image_url": "/dishes/bretzel-amendoa.jpg",
+          "is_available": true,
+          "display_order": 3,
+          "modifier_groups": []
+        },
+        {
+          "name": "Alcobaça Apple Bretzel",
+          "description": "Sweet pastry pretzel filled with regional apple.",
+          "price": 2.5,
+          "image_url": "/dishes/bretzel-maca.jpg",
+          "is_available": true,
+          "display_order": 4,
+          "modifier_groups": []
+        },
+        {
+          "name": "Maple Pecan",
+          "description": "Braided pastry with maple syrup and pecans.",
+          "price": 2.5,
+          "image_url": "/dishes/maple-pecan.jpg",
+          "is_available": true,
+          "display_order": 5,
+          "modifier_groups": []
+        },
+        {
+          "name": "Dot's Sugar Donut",
+          "description": "Classic donut dusted with sugar.",
+          "price": 1.5,
+          "image_url": "/dishes/donut-sugar.jpg",
+          "is_available": true,
+          "display_order": 6,
+          "modifier_groups": []
+        },
+        {
+          "name": "Dot's Dark Chocolate Donut",
+          "description": "Donut covered in rich dark chocolate.",
+          "price": 1.5,
+          "image_url": "/dishes/donut-choc.jpg",
+          "is_available": true,
+          "display_order": 7,
+          "modifier_groups": []
+        },
+        {
+          "name": "Dot's Classic Glace",
+          "description": "Sweet glazed donut ring.",
+          "price": 1.5,
+          "image_url": "/dishes/donut-glazed.jpg",
+          "is_available": true,
+          "display_order": 8,
+          "modifier_groups": []
+        }
+      ]
+    },
+    {
+      "name": "Drinks & Cocktails",
+      "display_order": 6,
+      "items": [
+        {
+          "name": "House Glass of Wine",
+          "description": "A glass of our selected house wine.",
+          "price": 2.5,
+          "image_url": "/dishes/wine.jpg",
+          "is_available": true,
+          "display_order": 0,
+          "modifier_groups": []
+        },
+        {
+          "name": "Ginjinha",
+          "description": "Traditional Portuguese cherry liqueur.",
+          "price": 2,
+          "image_url": "/dishes/ginjinha.jpg",
+          "is_available": true,
+          "display_order": 1,
+          "modifier_groups": []
+        },
+        {
+          "name": "Moscatel Favaito",
+          "description": "Sweet fortified muscat wine.",
+          "price": 1.75,
+          "image_url": "/dishes/favaito.jpg",
+          "is_available": true,
+          "display_order": 2,
+          "modifier_groups": []
+        },
+        {
+          "name": "Aperol Spritz",
+          "description": "Refreshing Italian cocktail with prosecco.",
+          "price": 6,
+          "image_url": "/dishes/aperol.jpg",
+          "is_available": true,
+          "display_order": 3,
+          "modifier_groups": []
+        },
+        {
+          "name": "Premium Gin & Tonic",
+          "description": "Premium gin mixed with tonic water and botanicals.",
+          "price": 9,
+          "image_url": "/dishes/gin-tonic.jpg",
+          "is_available": true,
+          "display_order": 4,
+          "modifier_groups": []
+        },
+        {
+          "name": "Porto Tónico",
+          "description": "White port wine mixed with tonic water.",
+          "price": 7,
+          "image_url": "/dishes/porto-tonico.jpg",
+          "is_available": true,
+          "display_order": 5,
+          "modifier_groups": []
+        },
+        {
+          "name": "Whisky",
+          "description": "A shot of classic aged whisky.",
+          "price": 4,
+          "image_url": "/dishes/whisky.jpg",
+          "is_available": true,
+          "display_order": 6,
+          "modifier_groups": []
+        },
+        {
+          "name": "Cachaça 51",
+          "description": "Popular Brazilian sugarcane spirit.",
+          "price": 4.5,
+          "image_url": "/dishes/cachaca.jpg",
+          "is_available": true,
+          "display_order": 7,
+          "modifier_groups": []
+        }
+      ]
+    }
+  ]
+}
