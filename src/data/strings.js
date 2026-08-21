@@ -24,6 +24,10 @@ export const ui = {
       tet: "Eskolla foun husi ami-nia ekipa, atualiza kada semana."
     },
     viewMenu: { en: 'View Menu', pt: 'Ver Menu', tet: 'Haree Menu' },
-    followFacebook: { en: 'Follow us on Facebook', pt: 'Siga-nos no Facebook', tet: 'Tuir ami iha Facebook' }
+    followFacebook: {
+      en: 'For more information, visit our Facebook',
+      pt: 'Para mais informações, visite o nosso Facebook',
+      tet: 'Ba informasaun tan, vizita ami-nia Facebook'
+    }
   }
 };
