@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { ui } from '../data/strings';
 import LanguageSwitch from './LanguageSwitch';
 import PromoCarousel from './PromoCarousel';
+import SocialFooter from './SocialFooter';
 import FadeText from './FadeText';
 import logo from '../assets/logo.png';
 
@@ -45,6 +46,8 @@ export default function LandingPage({ onEnterMenu }) {
           </button>
         </div>
       </section>
+
+      <SocialFooter />
     </div>
   );
 }

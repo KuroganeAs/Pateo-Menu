@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FACEBOOK_PAGE_URL } from '../data/promotions';
+import { SOCIALS } from '../data/socials';
 import { usePromos } from '../hooks/usePromos';
 import { useLanguage } from '../context/LanguageContext';
 import { ui } from '../data/strings';
@@ -147,10 +147,10 @@ export default function PromoCarousel() {
         </div>
       )}
 
-      {FACEBOOK_PAGE_URL && (
+      {SOCIALS.facebook && (
         <div className="flex justify-center mt-4">
           <a
-            href={FACEBOOK_PAGE_URL}
+            href={SOCIALS.facebook}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
