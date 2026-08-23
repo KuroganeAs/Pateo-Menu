@@ -110,7 +110,7 @@ export default function DishDetailModal({ item, onClose }) {
   // selection re-renders don't remount the DOM and reset scroll position.
   const modalContent = item && (
     <div
-      className="flex flex-col h-full bg-white relative"
+      className="flex flex-col h-full bg-surface relative"
       onPointerDown={onContentPointerDown}
       onPointerMove={onContentPointerMove}
       onPointerUp={onContentPointerEnd}
@@ -118,14 +118,14 @@ export default function DishDetailModal({ item, onClose }) {
     >
       {/* Drag Handle (Mobile) & Close Button */}
       <div
-        className="sticky top-0 w-full z-10 flex justify-between items-center px-4 pt-4 pb-2 bg-gradient-to-b from-white via-white to-transparent touch-none"
+        className="sticky top-0 w-full z-10 flex justify-between items-center px-4 pt-4 pb-2 bg-gradient-to-b from-surface via-surface to-transparent touch-none"
         onPointerDown={(e) => { if (!isDesktop) { swipeState.current = null; dragControls.start(e); } }}
       >
-        {!isDesktop && <div className="w-12 h-1.5 bg-stone-200 rounded-full mx-auto absolute left-1/2 -translate-x-1/2" />}
+        {!isDesktop && <div className="w-12 h-1.5 bg-stone-200 dark:bg-stone-600 rounded-full mx-auto absolute left-1/2 -translate-x-1/2" />}
         <button
           onClick={onClose}
           aria-label="Close"
-          className="ml-auto bg-stone-100 p-2 rounded-full text-muted hover:bg-stone-200 transition-colors"
+          className="ml-auto bg-background-alt p-2 rounded-full text-muted hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors"
         >
           <X size={20} />
         </button>
@@ -134,7 +134,7 @@ export default function DishDetailModal({ item, onClose }) {
       <div ref={scrollRef} className="overflow-y-auto pb-10 hide-scrollbar flex-1 overscroll-contain">
         {/* Hero Image Placeholder with Carousel */}
         <div className="px-4 pb-6">
-          <div ref={heroRef} className="relative w-full aspect-square bg-stone-100 rounded-2xl overflow-hidden group">
+          <div ref={heroRef} className="relative w-full aspect-square bg-background-alt rounded-2xl overflow-hidden group">
             <img
               src={heroImage}
               alt=""
@@ -246,7 +246,7 @@ export default function DishDetailModal({ item, onClose }) {
                       "whitespace-nowrap px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all duration-300 snap-center shrink-0",
                       idx === safeVariantIdx
                         ? "border-primary bg-primary/5 text-primary"
-                        : "border-stone-200 bg-white text-muted hover:border-stone-300"
+                        : "border-stone-200 dark:border-stone-700 bg-surface text-muted hover:border-stone-300 dark:hover:border-stone-600"
                     )}
                   >
                     <FadeText>{t(variant.name)}</FadeText>

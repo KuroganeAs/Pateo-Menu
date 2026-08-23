@@ -3,6 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { ui } from '../data/strings';
 import LanguageSwitch from './LanguageSwitch';
+import ThemeToggle from './ThemeToggle';
 import PromoCarousel from './PromoCarousel';
 import SocialFooter from './SocialFooter';
 import FadeText from './FadeText';
@@ -23,7 +24,10 @@ export default function LandingPage({ onEnterMenu }) {
             <FadeText>{t(ui.landing.welcome)}</FadeText>
           </span>
         </div>
-        <LanguageSwitch />
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <LanguageSwitch />
+        </div>
       </header>
 
       <section className="px-5 pt-4 pb-10">

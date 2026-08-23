@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LanguageProvider } from './context/LanguageContext';
 import { MenuDataProvider } from './context/MenuDataContext';
+import { ThemeProvider } from './context/ThemeContext';
 import LandingPage from './components/LandingPage';
 import MenuPanel from './components/MenuPanel';
 import SplashScreen from './components/SplashScreen';
@@ -15,6 +16,7 @@ export default function App() {
   const [view, setView] = useState('landing');
 
   return (
+    <ThemeProvider>
     <LanguageProvider>
       <MenuDataProvider>
       <SplashScreen />
@@ -42,5 +44,6 @@ export default function App() {
       </AnimatePresence>
       </MenuDataProvider>
     </LanguageProvider>
+    </ThemeProvider>
   );
 }

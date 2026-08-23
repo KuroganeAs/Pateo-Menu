@@ -87,7 +87,7 @@ export default function PromoCarousel() {
                 if (slot === 'right') go(1);
                 else if (slot === 'left') go(-1);
               }}
-              className={`absolute aspect-square rounded-3xl overflow-hidden shadow-card-hover bg-stone-100 ${isFront ? '' : 'cursor-pointer'}`}
+              className={`absolute aspect-square rounded-3xl overflow-hidden shadow-card-hover bg-background-alt ${isFront ? '' : 'cursor-pointer'}`}
               style={{ width: CARD_SIZE, pointerEvents: slot === 'hidden' ? 'none' : 'auto' }}
             >
               <img
@@ -141,7 +141,7 @@ export default function PromoCarousel() {
           {promos.map((_, i) => (
             <div
               key={i}
-              className={`h-2 rounded-full transition-all duration-300 ${i === idx ? 'w-4 bg-primary' : 'w-2 bg-stone-300'}`}
+              className={`h-2 rounded-full transition-all duration-300 ${i === idx ? 'w-4 bg-primary' : 'w-2 bg-stone-300 dark:bg-stone-600'}`}
             />
           ))}
         </div>

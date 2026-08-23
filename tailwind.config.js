@@ -7,22 +7,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand accent — deep blue on warm paper
+        // All theme colors resolve through CSS variables (:root vs .dark in
+        // index.css), so the whole site re-skins for dark mode without
+        // touching component classes.
         primary: {
-          DEFAULT: '#1864B0',
-          dark: '#0C48AB'
+          DEFAULT: 'var(--color-primary)',
+          dark: 'var(--color-primary-dark)'
         },
-        // Warm cream paper instead of cold admin grey
         background: {
-          DEFAULT: '#FAF7F2',
-          alt: '#F3EEE6'
+          DEFAULT: 'var(--color-background)',
+          alt: 'var(--color-background-alt)'
         },
-        // Elevated surfaces (sidebar, sticky bars)
-        surface: '#FFFDF9',
-        // Warm near-black for headings/titles
-        ink: '#2E2A26',
-        // Warm taupe for secondary text
-        muted: '#7A716A'
+        surface: 'var(--color-surface)',
+        ink: 'var(--color-ink)',
+        muted: 'var(--color-muted)'
       },
       fontFamily: {
         display: ['Fraunces', 'Georgia', 'serif']

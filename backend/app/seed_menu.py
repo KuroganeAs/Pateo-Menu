@@ -43,11 +43,20 @@ def seed_menu(db, force: bool = False) -> str:
 
     n_items = 0
     for cat_data in data["categories"]:
-        category = Category(name=cat_data["name"], display_order=cat_data["display_order"])
+        category = Category(
+            name=cat_data["name"],
+            name_pt=cat_data.get("name_pt"),
+            name_tet=cat_data.get("name_tet"),
+            display_order=cat_data["display_order"],
+        )
         for item_data in cat_data["items"]:
             item = MenuItem(
                 name=item_data["name"],
+                name_pt=item_data.get("name_pt"),
+                name_tet=item_data.get("name_tet"),
                 description=item_data.get("description"),
+                description_pt=item_data.get("description_pt"),
+                description_tet=item_data.get("description_tet"),
                 price=Decimal(str(item_data["price"])),
                 image_url=item_data.get("image_url"),
                 is_available=item_data.get("is_available", True),
@@ -59,7 +68,10 @@ def seed_menu(db, force: bool = False) -> str:
                         required=g["required"],
                         options=[
                             ModifierOption(
-                                name=o["name"], price_delta=Decimal(str(o["price_delta"]))
+                                name=o["name"],
+                                name_pt=o.get("name_pt"),
+                                name_tet=o.get("name_tet"),
+                                price_delta=Decimal(str(o["price_delta"])),
                             )
                             for o in g["options"]
                         ],

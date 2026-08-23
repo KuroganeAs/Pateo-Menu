@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Plus, Pencil, Trash2, ImageOff } from 'lucide-react';
+import { Plus, Pencil, Trash2, ImageOff, Globe } from 'lucide-react';
 import { api, resolveImageUrl } from '../lib/api';
 import { money } from '../lib/format';
 import ItemEditor from '../components/ItemEditor';
@@ -66,7 +66,17 @@ export default function Menu() {
         <CategorySection
           key={cat.id}
           category={cat}
-          onRename={(name) => run(() => api.put(`/api/categories/${cat.id}`, { name, display_order: cat.display_order }))}
+          onSave={(fields) =>
+            run(() =>
+              api.put(`/api/categories/${cat.id}`, {
+                name: cat.name,
+                name_pt: cat.name_pt ?? null,
+                name_tet: cat.name_tet ?? null,
+                display_order: cat.display_order,
+                ...fields,
+              })
+            )
+          }
           onDelete={() => {
             if (window.confirm(`Delete category "${cat.name}" AND its ${cat.items.length} item(s)? Past orders keep their snapshots.`)) {
               run(() => api.delete(`/api/categories/${cat.id}`));
@@ -102,9 +112,17 @@ export default function Menu() {
   );
 }
 
-function CategorySection({ category, onRename, onDelete, onAddItem, onEditItem, onDeleteItem, onToggleAvailability }) {
+function CategorySection({ category, onSave, onDelete, onAddItem, onEditItem, onDeleteItem, onToggleAvailability }) {
   const [name, setName] = useState(category.name);
+  const [namePt, setNamePt] = useState(category.name_pt ?? '');
+  const [nameTet, setNameTet] = useState(category.name_tet ?? '');
+  const [showLangs, setShowLangs] = useState(false);
   useEffect(() => setName(category.name), [category.name]);
+  useEffect(() => setNamePt(category.name_pt ?? ''), [category.name_pt]);
+  useEffect(() => setNameTet(category.name_tet ?? ''), [category.name_tet]);
+
+  const langInput =
+    'rounded-lg border border-stone-300 bg-white px-2.5 py-1.5 text-sm outline-none focus:ring-2 focus:ring-primary/40 min-w-40';
 
   return (
     <section className="bg-surface rounded-2xl shadow-card p-4 space-y-3">
@@ -112,11 +130,18 @@ function CategorySection({ category, onRename, onDelete, onAddItem, onEditItem, 
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          onBlur={() => name.trim() && name !== category.name && onRename(name.trim())}
+          onBlur={() => name.trim() && name !== category.name && onSave({ name: name.trim() })}
           onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
           className="font-bold text-lg bg-transparent border-b border-transparent hover:border-stone-300 focus:border-primary outline-none min-w-40"
         />
         <span className="text-xs text-muted">{category.items.length} items</span>
+        <button
+          onClick={() => setShowLangs((v) => !v)}
+          title="Translations (PT / Tetun)"
+          className={`p-1.5 rounded-lg hover:bg-background-alt ${showLangs ? 'text-primary' : 'text-muted'}`}
+        >
+          <Globe size={15} />
+        </button>
         <div className="ml-auto flex items-center gap-1">
           <button
             onClick={onAddItem}
@@ -129,6 +154,34 @@ function CategorySection({ category, onRename, onDelete, onAddItem, onEditItem, 
           </button>
         </div>
       </header>
+
+      {showLangs && (
+        <div className="flex gap-3 flex-wrap items-end bg-background/60 border border-stone-200 rounded-xl p-3">
+          <label className="block">
+            <span className="text-xs font-semibold text-muted">Português</span>
+            <input
+              className={langInput}
+              value={namePt}
+              placeholder={category.name}
+              onChange={(e) => setNamePt(e.target.value)}
+              onBlur={() => (namePt.trim() || null) !== (category.name_pt ?? null) && onSave({ name_pt: namePt.trim() || null })}
+              onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+            />
+          </label>
+          <label className="block">
+            <span className="text-xs font-semibold text-muted">Tetun</span>
+            <input
+              className={langInput}
+              value={nameTet}
+              placeholder={category.name}
+              onChange={(e) => setNameTet(e.target.value)}
+              onBlur={() => (nameTet.trim() || null) !== (category.name_tet ?? null) && onSave({ name_tet: nameTet.trim() || null })}
+              onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+            />
+          </label>
+          <p className="text-xs text-muted pb-2">Empty = customers see the English name.</p>
+        </div>
+      )}
 
       <div className="divide-y divide-stone-200/60">
         {category.items.map((item) => (

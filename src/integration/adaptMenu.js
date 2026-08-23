@@ -1,12 +1,11 @@
-// Converts the backend's menu shape (GET /api/menu — flat English strings,
-// integer ids, modifier groups with price deltas) into the site's shape
-// (trilingual {en,pt,tet} text, string ids, variants with absolute prices).
+// Converts the backend's menu shape (GET /api/menu — English canonical plus
+// optional *_pt / *_tet translations, integer ids, modifier groups with price
+// deltas) into the site's shape (trilingual {en,pt,tet} text, string ids,
+// variants with absolute prices).
 //
-// Translation reuse: the backend is English-only by design, but for anything
-// whose English text still matches the bundled menu.js entry we reuse its
-// PT/Tetun translations and per-variant photos. Items added or renamed in the
-// admin panel fall back to English in all three languages until (if ever)
-// they're translated in code.
+// Text priority per language: admin-entered translation > bundled menu.js
+// translation (matched by English text) > English. Bundled data also supplies
+// per-variant photos, which the backend doesn't store.
 import { API_BASE } from './apiClient';
 import { categories as localCategories, menuItems as localItems } from '../data/menu';
 
@@ -16,7 +15,11 @@ const norm = (s) => (s || '').trim().toLowerCase();
 const localCategoryByName = new Map(localCategories.map((c) => [norm(c.title.en), c]));
 const localItemByName = new Map(localItems.map((i) => [norm(i.title.en), i]));
 
-const tri = (text) => ({ en: text || '', pt: text || '', tet: text || '' });
+const tri = (en, pt, tet, localTri) => ({
+  en: en || '',
+  pt: pt || localTri?.pt || en || '',
+  tet: tet || localTri?.tet || en || ''
+});
 
 const resolveImage = (url) => {
   if (!url) return null;
@@ -38,7 +41,7 @@ function adaptVariants(apiItem, localItem) {
   return group.options.map((opt) => {
     const localVariant = localItem?.variants?.find((v) => norm(v.name.en) === norm(opt.name));
     return {
-      name: localVariant ? localVariant.name : tri(opt.name),
+      name: tri(opt.name, opt.name_pt, opt.name_tet, localVariant?.name),
       price: Math.round((base + (Number(opt.price_delta) || 0)) * 100) / 100,
       image: localVariant?.image ?? null,
     };
@@ -58,22 +61,25 @@ export function adaptMenu(apiMenu) {
 
     categories.push({
       id: catId,
-      title: localCat ? localCat.title : tri(apiCat.name),
+      title: tri(apiCat.name, apiCat.name_pt, apiCat.name_tet, localCat?.title),
       ...(localCat?.note ? { note: localCat.note } : {}),
     });
 
     for (const apiItem of visibleItems) {
       const localItem = localItemByName.get(norm(apiItem.name));
-      const descriptionMatches =
-        localItem && norm(localItem.description?.en) === norm(apiItem.description);
       const variants = adaptVariants(apiItem, localItem);
 
       menuItems.push({
         id: localItem?.id ?? `item-${apiItem.id}`,
         categoryId: catId,
         image: resolveImage(apiItem.image_url) ?? localItem?.image ?? null,
-        title: localItem ? localItem.title : tri(apiItem.name),
-        description: descriptionMatches ? localItem.description : tri(apiItem.description),
+        title: tri(apiItem.name, apiItem.name_pt, apiItem.name_tet, localItem?.title),
+        description: tri(
+          apiItem.description,
+          apiItem.description_pt,
+          apiItem.description_tet,
+          localItem?.description
+        ),
         price: Number(apiItem.price) || 0,
         ...(variants ? { variants } : {}),
       });

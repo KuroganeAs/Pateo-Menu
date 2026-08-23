@@ -82,7 +82,7 @@ export default function CategoryNav({ activeCategoryId, onCategorySelect, isVert
   }
 
   return (
-    <div className="bg-transparent border-b border-stone-200/70 py-3 relative">
+    <div className="bg-transparent border-b border-stone-200/70 dark:border-stone-800 py-3 relative">
       <div
         ref={navRef}
         className="flex overflow-x-auto px-4 gap-3 hide-scrollbar snap-x"
@@ -98,7 +98,7 @@ export default function CategoryNav({ activeCategoryId, onCategorySelect, isVert
                   "whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 min-h-[44px]",
                   isActive
                     ? "bg-primary text-white shadow-glow"
-                    : "bg-surface text-muted border border-stone-200 hover:border-primary/40 hover:text-ink"
+                    : "bg-surface text-muted border border-stone-200 dark:border-stone-700 hover:border-primary/40 hover:text-ink"
                 )}
               >
                 <FadeText>{t(cat.title)}</FadeText>

@@ -81,10 +81,10 @@ export default function MenuItemCard({ item, onClick, searchQuery }) {
       tabIndex={0}
       data-menu-card
       aria-label={title}
-      className={`bg-white rounded-2xl p-2 shadow-card cursor-pointer transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${isDesktop ? 'hover:-translate-y-1 hover:shadow-card-hover' : 'active:scale-95'}`}
+      className={`bg-surface rounded-2xl p-2 shadow-card cursor-pointer transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${isDesktop ? 'hover:-translate-y-1 hover:shadow-card-hover' : 'active:scale-95'}`}
     >
       {/* Dish image (branded Páteo paper until real photos arrive) */}
-      <div className="relative w-full aspect-square bg-stone-100 rounded-xl overflow-hidden">
+      <div className="relative w-full aspect-square bg-background-alt rounded-xl overflow-hidden">
         {hasSlides ? (
           slides.map((variant, i) => (
             <img
@@ -108,14 +108,15 @@ export default function MenuItemCard({ item, onClick, searchQuery }) {
           />
         )}
         {!isLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-100 via-stone-200 to-stone-100 bg-[length:200%_100%] animate-[shimmer_1.5s_infinite]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-100 via-stone-200 to-stone-100 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.5s_infinite]" />
         )}
 
         {/* Subtle dark inner edge — separates white-background photos from the card */}
         <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-ink/10 shadow-[inset_0_1px_8px_rgba(46,42,38,0.07)] pointer-events-none z-10" aria-hidden="true" />
 
-        {/* Floating Price Badge — follows the visible slide */}
-        <div className="absolute top-2 left-2 bg-ink/75 backdrop-blur-md px-2 py-1 rounded-lg z-20 flex items-center">
+        {/* Floating Price Badge — follows the visible slide. Fixed colors:
+            it overlays the photo, not the themed page, so it must not flip. */}
+        <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-md px-2 py-1 rounded-lg z-20 flex items-center">
           <span className="text-white text-xs font-bold tabular-nums leading-none">
             ${shownPrice.toFixed(2)}{item.variants && !hasSlides ? '+' : ''}
           </span>
@@ -136,7 +137,7 @@ export default function MenuItemCard({ item, onClick, searchQuery }) {
         {/* Variant count hint */}
         {item.variants?.length > 0 && (
           <div className="absolute bottom-2 right-2 bg-white/85 backdrop-blur-sm px-2 py-1 rounded-full z-20 flex items-center justify-center">
-            <span className="text-[10px] font-semibold text-ink tabular-nums leading-none">
+            <span className="text-[10px] font-semibold text-stone-800 tabular-nums leading-none">
               <FadeText>{item.variants.length} {t(ui.optionsLabel)}</FadeText>
             </span>
           </div>
