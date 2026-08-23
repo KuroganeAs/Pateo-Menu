@@ -38,7 +38,12 @@ def _build_groups(groups_in: list[ModifierGroupIn]) -> list[ModifierGroup]:
             selection_type=g.selection_type,
             required=g.required,
             options=[
-                ModifierOption(name=o.name, price_delta=Decimal(str(o.price_delta)))
+                ModifierOption(
+                    name=o.name,
+                    name_pt=o.name_pt,
+                    name_tet=o.name_tet,
+                    price_delta=Decimal(str(o.price_delta)),
+                )
                 for o in g.options
             ],
         )
@@ -53,7 +58,11 @@ def create_item(body: MenuItemIn, db: Session = Depends(get_db)):
     item = MenuItem(
         category_id=body.category_id,
         name=body.name,
+        name_pt=body.name_pt,
+        name_tet=body.name_tet,
         description=body.description,
+        description_pt=body.description_pt,
+        description_tet=body.description_tet,
         price=Decimal(str(body.price)),
         image_url=body.image_url,
         is_available=body.is_available,
@@ -73,7 +82,11 @@ def replace_item(item_id: int, body: MenuItemIn, db: Session = Depends(get_db)):
     _require_category(db, body.category_id)
     item.category_id = body.category_id
     item.name = body.name
+    item.name_pt = body.name_pt
+    item.name_tet = body.name_tet
     item.description = body.description
+    item.description_pt = body.description_pt
+    item.description_tet = body.description_tet
     item.price = Decimal(str(body.price))
     item.image_url = body.image_url
     item.is_available = body.is_available

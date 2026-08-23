@@ -38,7 +38,9 @@ class Category(Base):
     __tablename__ = "categories"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(120))
+    name: Mapped[str] = mapped_column(String(120))  # English (canonical)
+    name_pt: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    name_tet: Mapped[str | None] = mapped_column(String(120), nullable=True)
     display_order: Mapped[int] = mapped_column(Integer, default=0)
 
     items: Mapped[list["MenuItem"]] = relationship(
@@ -53,8 +55,12 @@ class MenuItem(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     category_id: Mapped[int] = mapped_column(ForeignKey("categories.id", ondelete="CASCADE"))
-    name: Mapped[str] = mapped_column(String(200))
+    name: Mapped[str] = mapped_column(String(200))  # English (canonical)
+    name_pt: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    name_tet: Mapped[str | None] = mapped_column(String(200), nullable=True)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    description_pt: Mapped[str | None] = mapped_column(Text, nullable=True)
+    description_tet: Mapped[str | None] = mapped_column(Text, nullable=True)
     price: Mapped[Decimal] = mapped_column(Numeric(10, 2))
     image_url: Mapped[str | None] = mapped_column(String(500), nullable=True)
     is_available: Mapped[bool] = mapped_column(Boolean, default=True)
@@ -90,7 +96,9 @@ class ModifierOption(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     group_id: Mapped[int] = mapped_column(ForeignKey("modifier_groups.id", ondelete="CASCADE"))
-    name: Mapped[str] = mapped_column(String(120))  # e.g. "Large"
+    name: Mapped[str] = mapped_column(String(120))  # e.g. "Large" — English (canonical)
+    name_pt: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    name_tet: Mapped[str | None] = mapped_column(String(120), nullable=True)
     price_delta: Mapped[Decimal] = mapped_column(Numeric(10, 2), default=Decimal("0"))
 
     group: Mapped["ModifierGroup"] = relationship(back_populates="options")

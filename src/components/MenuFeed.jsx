@@ -127,7 +127,7 @@ export default function MenuFeed({ onActiveCategoryChange, onItemSelect, searchQ
       >
         {!hasResults && (
           <div className="flex flex-col items-center justify-center text-center py-24 text-muted gap-3">
-            <SearchX size={40} className="text-stone-300" />
+            <SearchX size={40} className="text-stone-300 dark:text-stone-600" />
             <p className="text-sm font-medium"><FadeText>{t(ui.emptyState)}</FadeText></p>
           </div>
         )}
@@ -153,7 +153,7 @@ export default function MenuFeed({ onActiveCategoryChange, onItemSelect, searchQ
                   </span>
                 )}
                 <h2 className="font-display text-2xl font-bold text-ink leading-none"><FadeText>{t(cat.title)}</FadeText></h2>
-                <div className="flex-1 border-b-2 border-dotted border-stone-300/80 translate-y-1.5" aria-hidden="true" />
+                <div className="flex-1 border-b-2 border-dotted border-stone-300/80 dark:border-stone-600/80 translate-y-1.5" aria-hidden="true" />
                 <span className="text-xs font-semibold text-muted tabular-nums shrink-0">{catItems.length}</span>
               </div>
 

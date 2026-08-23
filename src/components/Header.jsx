@@ -6,6 +6,7 @@ import { ui } from '../data/strings';
 import { Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LanguageSwitch from './LanguageSwitch';
+import ThemeToggle from './ThemeToggle';
 import logo from '../assets/logo.png';
 
 const getTimeOfDay = () => {
@@ -64,6 +65,8 @@ export default function Header({ shrinkOnScroll = false }) {
       </div>
 
       <div className="flex items-center gap-4">
+        <ThemeToggle />
+
         {/* Language Selector */}
         <LanguageSwitch />
 

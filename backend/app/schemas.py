@@ -33,6 +33,8 @@ class AdminOut(BaseModel):
 # ---------------------------------------------------------------- menu
 class ModifierOptionIn(BaseModel):
     name: str = Field(min_length=1, max_length=120)
+    name_pt: str | None = Field(default=None, max_length=120)
+    name_tet: str | None = Field(default=None, max_length=120)
     price_delta: float = 0.0
 
 
@@ -59,7 +61,11 @@ class ModifierGroupOut(BaseModel):
 
 class MenuItemBase(BaseModel):
     name: str = Field(min_length=1, max_length=200)
+    name_pt: str | None = Field(default=None, max_length=200)
+    name_tet: str | None = Field(default=None, max_length=200)
     description: str | None = None
+    description_pt: str | None = None
+    description_tet: str | None = None
     price: float = Field(ge=0)
     image_url: str | None = None
     is_available: bool = True
@@ -75,7 +81,11 @@ class MenuItemPatch(BaseModel):
     """Partial update — only provided fields change. Modifier groups are managed
     through PUT (full replace), not PATCH."""
     name: str | None = Field(default=None, min_length=1, max_length=200)
+    name_pt: str | None = None
+    name_tet: str | None = None
     description: str | None = None
+    description_pt: str | None = None
+    description_tet: str | None = None
     price: float | None = Field(default=None, ge=0)
     image_url: str | None = None
     is_available: bool | None = None
@@ -98,6 +108,8 @@ class MenuItemOut(MenuItemBase):
 
 class CategoryIn(BaseModel):
     name: str = Field(min_length=1, max_length=120)
+    name_pt: str | None = Field(default=None, max_length=120)
+    name_tet: str | None = Field(default=None, max_length=120)
     display_order: int = 0
 
 

@@ -25,14 +25,14 @@ const TikTokLogo = (
 );
 
 const buttonBase =
-  'w-11 h-11 rounded-full bg-white shadow-card flex items-center justify-center transition-colors';
+  'w-11 h-11 rounded-full bg-surface shadow-card flex items-center justify-center transition-colors';
 
 function SocialButton({ href, label, children }) {
   if (!href) {
     // Placeholder: visible but inert until the account exists
     return (
       <span
-        className={`${buttonBase} text-stone-300 cursor-default`}
+        className={`${buttonBase} text-stone-300 dark:text-stone-600 cursor-default`}
         title={`${label} — coming soon`}
         aria-disabled="true"
       >

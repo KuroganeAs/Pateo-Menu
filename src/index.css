@@ -1,6 +1,32 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
+/* Class-based dark mode: ThemeContext toggles .dark on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Warm cream paper (light — the brand default) */
+  --color-primary: #1864B0;
+  --color-primary-dark: #0C48AB;
+  --color-background: #FAF7F2;
+  --color-background-alt: #F3EEE6;
+  --color-surface: #FFFDF9;
+  --color-ink: #2E2A26;
+  --color-muted: #7A716A;
+}
+
+.dark {
+  /* Warm charcoal night mode — same brand, dimmed lights */
+  --color-primary: #4E95DC;
+  --color-primary-dark: #74ACE4;
+  --color-background: #171412;
+  --color-background-alt: #221E1A;
+  --color-surface: #1E1A17;
+  --color-ink: #EDE7DF;
+  --color-muted: #A69C92;
+  color-scheme: dark;
+}
+
 @layer base {
   body {
     @apply bg-background text-ink font-sans;
@@ -17,6 +43,10 @@
    no image assets). Applied to the app root alongside bg-background. */
 .paper {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+/* Dark mode: light grain on the charcoal instead of dark grain */
+.dark .paper {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' fill='%23fff' opacity='0.05'/%3E%3C/svg%3E");
 }
 
 /* Custom scrollbar hiding for the horizontal category nav */

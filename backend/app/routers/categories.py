@@ -23,7 +23,9 @@ def list_categories(db: Session = Depends(get_db)):
 
 @router.post("", response_model=CategoryOut, status_code=201, dependencies=[Depends(get_current_admin)])
 def create_category(body: CategoryIn, db: Session = Depends(get_db)):
-    cat = Category(name=body.name, display_order=body.display_order)
+    cat = Category(
+        name=body.name, name_pt=body.name_pt, name_tet=body.name_tet, display_order=body.display_order
+    )
     db.add(cat)
     db.commit()
     db.refresh(cat)
@@ -34,6 +36,8 @@ def create_category(body: CategoryIn, db: Session = Depends(get_db)):
 def update_category(category_id: int, body: CategoryIn, db: Session = Depends(get_db)):
     cat = _get_or_404(db, category_id)
     cat.name = body.name
+    cat.name_pt = body.name_pt
+    cat.name_tet = body.name_tet
     cat.display_order = body.display_order
     db.commit()
     db.refresh(cat)

@@ -24,15 +24,15 @@ export default function SearchBar({ searchQuery, setSearchQuery }) {
 
   return (
     <div className="px-4 pb-4">
-      <div className="relative flex items-center w-full h-12 rounded-full bg-white shadow-card border border-stone-200/80 overflow-hidden px-4 group focus-within:border-primary/50 transition-colors">
-        <Search className="text-stone-400 group-focus-within:text-primary transition-colors" size={20} />
+      <div className="relative flex items-center w-full h-12 rounded-full bg-surface shadow-card border border-stone-200/80 dark:border-stone-700/80 overflow-hidden px-4 group focus-within:border-primary/50 transition-colors">
+        <Search className="text-muted group-focus-within:text-primary transition-colors" size={20} />
         <input
           ref={inputRef}
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={`${t(ui.searchPlaceholder)} ${isDesktop ? '[/]' : ''}`}
-          className="w-full h-full bg-transparent border-none outline-none ml-3 text-sm text-ink placeholder:text-stone-400"
+          className="w-full h-full bg-transparent border-none outline-none ml-3 text-sm text-ink placeholder:text-muted"
         />
       </div>
     </div>

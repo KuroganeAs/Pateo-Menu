@@ -1,13 +1,19 @@
 {
-  "generated_from": "menu-app/src/data/menu.js",
+  "generated_from": "src/data/menu.js",
   "categories": [
     {
       "name": "Sandwiches",
+      "name_pt": "Sandes",
+      "name_tet": "Sandes",
       "display_order": 0,
       "items": [
         {
           "name": "Bread Roll",
+          "name_pt": "Bola",
+          "name_tet": "Bola",
           "description": "Traditional Portuguese soft bread roll.",
+          "description_pt": "Bola de pão tradicional portuguesa.",
+          "description_tet": "Paun bola tradisional Portugés.",
           "price": 0.8,
           "image_url": "/dishes/b-bt.jpg",
           "is_available": true,
@@ -20,26 +26,38 @@
               "options": [
                 {
                   "name": "Butter",
+                  "name_pt": "Manteiga",
+                  "name_tet": "Manteiga",
                   "price_delta": 0
                 },
                 {
                   "name": "Cheese",
+                  "name_pt": "Queijo",
+                  "name_tet": "Keiju",
                   "price_delta": 0.6
                 },
                 {
                   "name": "Ham",
+                  "name_pt": "Fiambre",
+                  "name_tet": "Fiambre",
                   "price_delta": 0.6
                 },
                 {
                   "name": "Cured Ham",
+                  "name_pt": "Presunto",
+                  "name_tet": "Presunto",
                   "price_delta": 0.9
                 },
                 {
                   "name": "Mixed (Ham & Cheese)",
+                  "name_pt": "Mista",
+                  "name_tet": "Mista",
                   "price_delta": 1
                 },
                 {
                   "name": "Mixed Cured Ham & Cheese",
+                  "name_pt": "Mista c/ Presunto",
+                  "name_tet": "Mista ho Presunto",
                   "price_delta": 1.15
                 }
               ]
@@ -48,7 +66,11 @@
         },
         {
           "name": "Cereal Roll",
+          "name_pt": "Bola Cereais",
+          "name_tet": "Paun Sereal",
           "description": "Healthy multi-grain cereal bread roll.",
+          "description_pt": "Bola de cereais multigrãos.",
+          "description_tet": "Paun sereal ho fini oin-oin.",
           "price": 1.7,
           "image_url": "/dishes/cers-bt.jpg",
           "is_available": true,
@@ -61,26 +83,38 @@
               "options": [
                 {
                   "name": "Butter",
+                  "name_pt": "Manteiga",
+                  "name_tet": "Manteiga",
                   "price_delta": 0
                 },
                 {
                   "name": "Cheese",
+                  "name_pt": "Queijo",
+                  "name_tet": "Keiju",
                   "price_delta": 0.65
                 },
                 {
                   "name": "Ham",
+                  "name_pt": "Fiambre",
+                  "name_tet": "Fiambre",
                   "price_delta": 0.65
                 },
                 {
                   "name": "Cured Ham",
+                  "name_pt": "Presunto",
+                  "name_tet": "Presunto",
                   "price_delta": 0.75
                 },
                 {
                   "name": "Mixed",
+                  "name_pt": "Mista",
+                  "name_tet": "Mista",
                   "price_delta": 1
                 },
                 {
                   "name": "Mixed Cured Ham",
+                  "name_pt": "Mista c/ Presunto",
+                  "name_tet": "Mista ho Presunto",
                   "price_delta": 1.25
                 }
               ]
@@ -89,7 +123,11 @@
         },
         {
           "name": "Rustic Bread Roll",
+          "name_pt": "Carcaça Saloia",
+          "name_tet": "Carcaça Saloia",
           "description": "Traditional rustic crusty bread.",
+          "description_pt": "Pão rústico tradicional com côdea estaladiça.",
+          "description_tet": "Paun rustiku tradisional.",
           "price": 1.6,
           "image_url": "/dishes/cs-bt.jpg",
           "is_available": true,
@@ -102,26 +140,38 @@
               "options": [
                 {
                   "name": "Butter",
+                  "name_pt": "Manteiga",
+                  "name_tet": "Manteiga",
                   "price_delta": 0
                 },
                 {
                   "name": "Cheese",
+                  "name_pt": "Queijo",
+                  "name_tet": "Keiju",
                   "price_delta": 0.65
                 },
                 {
                   "name": "Ham",
+                  "name_pt": "Fiambre",
+                  "name_tet": "Fiambre",
                   "price_delta": 0.65
                 },
                 {
                   "name": "Cured Ham",
+                  "name_pt": "Presunto",
+                  "name_tet": "Presunto",
                   "price_delta": 0.75
                 },
                 {
                   "name": "Mixed",
+                  "name_pt": "Mista",
+                  "name_tet": "Mista",
                   "price_delta": 1.15
                 },
                 {
                   "name": "Mixed Cured Ham",
+                  "name_pt": "Mista c/ Presunto",
+                  "name_tet": "Mista ho Presunto",
                   "price_delta": 1.35
                 }
               ]
@@ -130,7 +180,11 @@
         },
         {
           "name": "Rye Roll",
+          "name_pt": "Bola Centeio",
+          "name_tet": "Paun Senteiu",
           "description": "Dark and hearty rye bread roll.",
+          "description_pt": "Bola de pão de centeio escuro.",
+          "description_tet": "Paun senteiu metan.",
           "price": 1.7,
           "image_url": "/dishes/bc-bt.jpg",
           "is_available": true,
@@ -143,26 +197,38 @@
               "options": [
                 {
                   "name": "Butter",
+                  "name_pt": "Manteiga",
+                  "name_tet": "Manteiga",
                   "price_delta": 0
                 },
                 {
                   "name": "Cheese",
+                  "name_pt": "Queijo",
+                  "name_tet": "Keiju",
                   "price_delta": 0.65
                 },
                 {
                   "name": "Ham",
+                  "name_pt": "Fiambre",
+                  "name_tet": "Fiambre",
                   "price_delta": 0.65
                 },
                 {
                   "name": "Cured Ham",
+                  "name_pt": "Presunto",
+                  "name_tet": "Presunto",
                   "price_delta": 0.75
                 },
                 {
                   "name": "Mixed",
+                  "name_pt": "Mista",
+                  "name_tet": "Mista",
                   "price_delta": 1
                 },
                 {
                   "name": "Mixed Cured Ham",
+                  "name_pt": "Mista c/ Presunto",
+                  "name_tet": "Mista ho Presunto",
                   "price_delta": 1.25
                 }
               ]
@@ -171,7 +237,11 @@
         },
         {
           "name": "Milk Bread",
+          "name_pt": "Pão de Leite",
+          "name_tet": "Pão de Leite",
           "description": "Soft, sweet milk bread.",
+          "description_pt": "Pão de leite macio e adocicado.",
+          "description_tet": "Paun susubeen mamar no midar.",
           "price": 1.5,
           "image_url": "/dishes/pdl.jpg",
           "is_available": true,
@@ -184,22 +254,32 @@
               "options": [
                 {
                   "name": "Plain",
+                  "name_pt": "Simples",
+                  "name_tet": "Simples",
                   "price_delta": 0
                 },
                 {
                   "name": "Butter",
+                  "name_pt": "Manteiga",
+                  "name_tet": "Manteiga",
                   "price_delta": 0.35
                 },
                 {
                   "name": "Cheese",
+                  "name_pt": "Queijo",
+                  "name_tet": "Keiju",
                   "price_delta": 0.85
                 },
                 {
                   "name": "Ham",
+                  "name_pt": "Fiambre",
+                  "name_tet": "Fiambre",
                   "price_delta": 0.85
                 },
                 {
                   "name": "Mixed",
+                  "name_pt": "Misto",
+                  "name_tet": "Misto",
                   "price_delta": 1
                 }
               ]
@@ -208,7 +288,11 @@
         },
         {
           "name": "Coconut Sweet Bread",
+          "name_pt": "Pão de Deus",
+          "name_tet": "Pão de Deus",
           "description": "Sweet bread topped with toasted coconut.",
+          "description_pt": "Pão doce coberto com coco tostado.",
+          "description_tet": "Paun midar ho nuu tunu.",
           "price": 1.8,
           "image_url": "/dishes/ccn.jpg",
           "is_available": true,
@@ -221,22 +305,32 @@
               "options": [
                 {
                   "name": "Plain",
+                  "name_pt": "Simples",
+                  "name_tet": "Simples",
                   "price_delta": 0
                 },
                 {
                   "name": "Butter",
+                  "name_pt": "Manteiga",
+                  "name_tet": "Manteiga",
                   "price_delta": 0.6
                 },
                 {
                   "name": "Cheese",
+                  "name_pt": "Queijo",
+                  "name_tet": "Keiju",
                   "price_delta": 0.9
                 },
                 {
                   "name": "Ham",
+                  "name_pt": "Fiambre",
+                  "name_tet": "Fiambre",
                   "price_delta": 0.9
                 },
                 {
                   "name": "Mixed",
+                  "name_pt": "Misto",
+                  "name_tet": "Misto",
                   "price_delta": 1.15
                 }
               ]
@@ -247,11 +341,17 @@
     },
     {
       "name": "Special Sandwiches & Toasts",
+      "name_pt": "Sandes Especiais",
+      "name_tet": "Sandes Espesiál",
       "display_order": 1,
       "items": [
         {
           "name": "Toast",
+          "name_pt": "Torrada",
+          "name_tet": "Torrada",
           "description": "Thick slices of toasted bread with toppings.",
+          "description_pt": "Fatias grossas de pão torrado com cobertura.",
+          "description_tet": "Paun torrada.",
           "price": 1,
           "image_url": "/dishes/toast-bt.jpg",
           "is_available": true,
@@ -264,34 +364,50 @@
               "options": [
                 {
                   "name": "1/2 Butter",
+                  "name_pt": "½ Torrada Manteiga",
+                  "name_tet": "½ Torrada Manteiga",
                   "price_delta": 0
                 },
                 {
                   "name": "Full Butter",
+                  "name_pt": "Torrada Manteiga",
+                  "name_tet": "Torrada Manteiga",
                   "price_delta": 0.9
                 },
                 {
                   "name": "1/2 Cheese",
+                  "name_pt": "½ Tosta de Queijo",
+                  "name_tet": "½ Tosta Keiju",
                   "price_delta": 0.5
                 },
                 {
                   "name": "Full Cheese",
+                  "name_pt": "Tosta de Queijo",
+                  "name_tet": "Tosta Keiju",
                   "price_delta": 1.75
                 },
                 {
                   "name": "1/2 Ham",
+                  "name_pt": "½ Tosta de Fiambre",
+                  "name_tet": "½ Tosta Fiambre",
                   "price_delta": 0.5
                 },
                 {
                   "name": "Full Ham",
+                  "name_pt": "Tosta de Fiambre",
+                  "name_tet": "Tosta Fiambre",
                   "price_delta": 1.75
                 },
                 {
                   "name": "1/2 Mixed",
+                  "name_pt": "½ Tosta Mista",
+                  "name_tet": "½ Tosta Mista",
                   "price_delta": 0.65
                 },
                 {
                   "name": "Full Mixed",
+                  "name_pt": "Tosta Mista",
+                  "name_tet": "Tosta Mista",
                   "price_delta": 2
                 }
               ]
@@ -300,7 +416,11 @@
         },
         {
           "name": "Omelette Sandwich",
+          "name_pt": "Sandes Omelette",
+          "name_tet": "Sandes Omelette",
           "description": "Freshly made omelette in bread.",
+          "description_pt": "Omelete feita na hora no pão.",
+          "description_tet": "Omelete fresku iha paun.",
           "price": 1.95,
           "image_url": "/dishes/om.jpg",
           "is_available": true,
@@ -313,10 +433,14 @@
               "options": [
                 {
                   "name": "1/2 Sandwich",
+                  "name_pt": "Meia Sandes",
+                  "name_tet": "Meia Sandes",
                   "price_delta": 0
                 },
                 {
                   "name": "Full Sandwich",
+                  "name_pt": "Sandes Inteira",
+                  "name_tet": "Sandes Tomak",
                   "price_delta": 1.55
                 }
               ]
@@ -325,7 +449,11 @@
         },
         {
           "name": "Tuna Sandwich",
+          "name_pt": "Sandes de Atum",
+          "name_tet": "Sandes Atum",
           "description": "Tuna paste with fresh greens.",
+          "description_pt": "Pasta de atum com folhas frescas.",
+          "description_tet": "Pasta atum nian.",
           "price": 1.95,
           "image_url": "/dishes/tuna.jpg",
           "is_available": true,
@@ -338,10 +466,14 @@
               "options": [
                 {
                   "name": "1/2 Sandwich",
+                  "name_pt": "Meia Sandes",
+                  "name_tet": "Meia Sandes",
                   "price_delta": 0
                 },
                 {
                   "name": "Full Sandwich",
+                  "name_pt": "Sandes Inteira",
+                  "name_tet": "Sandes Tomak",
                   "price_delta": 1.55
                 }
               ]
@@ -350,7 +482,11 @@
         },
         {
           "name": "Breaded Meat Cutlet Sandwich",
+          "name_pt": "Sandes de Panado de Carne",
+          "name_tet": "Sandes de Panado de Carne",
           "description": "Crispy breaded meat cutlet in a roll.",
+          "description_pt": "Panado de carne crocante no pão.",
+          "description_tet": "Naan panadu krispi iha paun.",
           "price": 4.5,
           "image_url": "/dishes/panado-carne.jpg",
           "is_available": true,
@@ -359,7 +495,11 @@
         },
         {
           "name": "Breaded Fish Cutlet Sandwich",
+          "name_pt": "Sandes de Panado de Peixe",
+          "name_tet": "Sandes de Panado de Peixe",
           "description": "Crispy breaded fish fillet in a roll.",
+          "description_pt": "Filete de peixe panado no pão.",
+          "description_tet": "Ikan panadu iha paun.",
           "price": 4.5,
           "image_url": "/dishes/panado-peixe.jpg",
           "is_available": true,
@@ -368,7 +508,11 @@
         },
         {
           "name": "Bifana",
+          "name_pt": "Bifana",
+          "name_tet": "Bifana",
           "description": "Traditional Portuguese marinated pork sandwich.",
+          "description_pt": "Sandes tradicional de carne de porco marinada.",
+          "description_tet": "Sandes naan fahi Portugés nian.",
           "price": 4,
           "image_url": "/dishes/bifana.jpg",
           "is_available": true,
@@ -379,11 +523,17 @@
     },
     {
       "name": "Barista",
+      "name_pt": "Barista",
+      "name_tet": "Barista",
       "display_order": 2,
       "items": [
         {
           "name": "Espresso",
+          "name_pt": "Expresso",
+          "name_tet": "Espresso",
           "description": "Classic short black coffee.",
+          "description_pt": "Café preto curto clássico.",
+          "description_tet": "Kafé metan.",
           "price": 1.5,
           "image_url": "/dishes/espresso.jpg",
           "is_available": true,
@@ -392,7 +542,11 @@
         },
         {
           "name": "Double Espresso",
+          "name_pt": "Expresso Duplo",
+          "name_tet": "Espresso Duplu",
           "description": "Double shot of espresso.",
+          "description_pt": "Dupla dose de expresso.",
+          "description_tet": "Espresso dala rua.",
           "price": 2,
           "image_url": "/dishes/espresso-double.jpg",
           "is_available": true,
@@ -401,7 +555,11 @@
         },
         {
           "name": "Decaf Espresso",
+          "name_pt": "Descafeinado",
+          "name_tet": "Kafé Deskafeinadu",
           "description": "Caffeine-free espresso.",
+          "description_pt": "Expresso sem cafeína.",
+          "description_tet": "Kafé la iha kafeina.",
           "price": 1.75,
           "image_url": "/dishes/espresso.jpg",
           "is_available": true,
@@ -410,7 +568,11 @@
         },
         {
           "name": "Capsule Espresso",
+          "name_pt": "Cápsula Expresso",
+          "name_tet": "Kápsula Espresso",
           "description": "Single origin capsule espresso.",
+          "description_pt": "Expresso de cápsula.",
+          "description_tet": "Kápsula espresso.",
           "price": 1,
           "image_url": "/dishes/espresso.jpg",
           "is_available": true,
@@ -419,7 +581,11 @@
         },
         {
           "name": "Espresso Macchiato",
+          "name_pt": "Pingado",
+          "name_tet": "Pingadu",
           "description": "Espresso marked with a drop of milk.",
+          "description_pt": "Expresso com uma gota de leite.",
+          "description_tet": "Espresso ho susubeen oituan.",
           "price": 1.75,
           "image_url": "/dishes/espresso-macchiato.jpg",
           "is_available": true,
@@ -428,7 +594,11 @@
         },
         {
           "name": "Cappuccino",
+          "name_pt": "Cappuccino",
+          "name_tet": "Cappuccino",
           "description": "Espresso with steamed milk and thick foam.",
+          "description_pt": "Expresso com leite vaporizado e espuma.",
+          "description_tet": "Espresso ho susubeen frota.",
           "price": 2.5,
           "image_url": "/dishes/cappuccino.jpg",
           "is_available": true,
@@ -437,7 +607,11 @@
         },
         {
           "name": "Latte / Flat White",
+          "name_pt": "Meia de Leite / Garoto",
+          "name_tet": "Meia de Leite",
           "description": "Milky espresso coffee.",
+          "description_pt": "Café expresso com bastante leite.",
+          "description_tet": "Kafé ho susubeen barak.",
           "price": 2.25,
           "image_url": "/dishes/latte.jpg",
           "is_available": true,
@@ -446,7 +620,11 @@
         },
         {
           "name": "Café Carioca",
+          "name_pt": "Carioca",
+          "name_tet": "Karioka",
           "description": "Diluted, weaker espresso shot.",
+          "description_pt": "Expresso fraco e diluído.",
+          "description_tet": "Espresso fraku.",
           "price": 1.5,
           "image_url": "/dishes/carioca.jpg",
           "is_available": true,
@@ -455,7 +633,11 @@
         },
         {
           "name": "Americano / Long Black",
+          "name_pt": "Café Americano",
+          "name_tet": "Americano",
           "description": "Espresso poured over hot water.",
+          "description_pt": "Expresso sobre água quente.",
+          "description_tet": "Espresso ho bee manas.",
           "price": 1.5,
           "image_url": "/dishes/americano.jpg",
           "is_available": true,
@@ -464,7 +646,11 @@
         },
         {
           "name": "Glass of Milk",
+          "name_pt": "Copo de Leite",
+          "name_tet": "Kopu Susubeen",
           "description": "Hot or cold glass of milk.",
+          "description_pt": "Copo de leite quente ou frio.",
+          "description_tet": "Kopu susubeen malirin ka manas.",
           "price": 1,
           "image_url": "/dishes/milk.jpg",
           "is_available": true,
@@ -473,7 +659,11 @@
         },
         {
           "name": "Chocolate Milk",
+          "name_pt": "Copo de Leite c/ Chocolate",
+          "name_tet": "Susubeen Xokolate",
           "description": "Sweet chocolate milk.",
+          "description_pt": "Leite com chocolate doce.",
+          "description_tet": "Susubeen xokolate midar.",
           "price": 1.7,
           "image_url": "/dishes/choc-milk.jpg",
           "is_available": true,
@@ -482,7 +672,11 @@
         },
         {
           "name": "Tea",
+          "name_pt": "Chá",
+          "name_tet": "Chá",
           "description": "Hot infused tea.",
+          "description_pt": "Infusão de chá quente.",
+          "description_tet": "Xá manas.",
           "price": 2,
           "image_url": "/dishes/tea.jpg",
           "is_available": true,
@@ -491,7 +685,11 @@
         },
         {
           "name": "Tea with Milk",
+          "name_pt": "Chá com Leite",
+          "name_tet": "Chá com Leite",
           "description": "Hot tea served with milk.",
+          "description_pt": "Chá quente servido com leite.",
+          "description_tet": "Xá manas ho susubeen.",
           "price": 2.25,
           "image_url": "/dishes/tea-milk.jpg",
           "is_available": true,
@@ -502,11 +700,17 @@
     },
     {
       "name": "Croissants",
+      "name_pt": "Croissants",
+      "name_tet": "Croissants",
       "display_order": 3,
       "items": [
         {
           "name": "Croissant",
+          "name_pt": "Croissant",
+          "name_tet": "Croissant",
           "description": "Flaky and buttery baked croissant.",
+          "description_pt": "Croissant folhado e amanteigado.",
+          "description_tet": "Kroisan amanteigadu.",
           "price": 1.5,
           "image_url": "/dishes/croissant.jpg",
           "is_available": true,
@@ -519,22 +723,32 @@
               "options": [
                 {
                   "name": "Plain",
+                  "name_pt": "Simples",
+                  "name_tet": "Simples",
                   "price_delta": 0
                 },
                 {
                   "name": "Butter",
+                  "name_pt": "Manteiga",
+                  "name_tet": "Manteiga",
                   "price_delta": 0.35
                 },
                 {
                   "name": "Cheese",
+                  "name_pt": "Queijo",
+                  "name_tet": "Keiju",
                   "price_delta": 0.85
                 },
                 {
                   "name": "Ham",
+                  "name_pt": "Fiambre",
+                  "name_tet": "Fiambre",
                   "price_delta": 0.85
                 },
                 {
                   "name": "Mixed",
+                  "name_pt": "Misto",
+                  "name_tet": "Misto",
                   "price_delta": 1
                 }
               ]
@@ -543,7 +757,11 @@
         },
         {
           "name": "XL Croissant",
+          "name_pt": "Croissant XL",
+          "name_tet": "Croissant XL",
           "description": "Extra large flaky croissant.",
+          "description_pt": "Croissant folhado extra grande.",
+          "description_tet": "Kroisan boot tebes.",
           "price": 2.3,
           "image_url": "/dishes/croissant-xl.jpg",
           "is_available": true,
@@ -556,22 +774,32 @@
               "options": [
                 {
                   "name": "Plain",
+                  "name_pt": "Simples",
+                  "name_tet": "Simples",
                   "price_delta": 0
                 },
                 {
                   "name": "Butter",
+                  "name_pt": "Manteiga",
+                  "name_tet": "Manteiga",
                   "price_delta": 0.1
                 },
                 {
                   "name": "Cheese",
+                  "name_pt": "Queijo",
+                  "name_tet": "Keiju",
                   "price_delta": 0.4
                 },
                 {
                   "name": "Ham",
+                  "name_pt": "Fiambre",
+                  "name_tet": "Fiambre",
                   "price_delta": 0.4
                 },
                 {
                   "name": "Mixed",
+                  "name_pt": "Misto",
+                  "name_tet": "Misto",
                   "price_delta": 0.95
                 }
               ]
@@ -580,7 +808,11 @@
         },
         {
           "name": "Brioche Croissant with Custard",
+          "name_pt": "Croissant Brioche c/ Creme",
+          "name_tet": "Croissant Brioche ho Kreme",
           "description": "Soft brioche dough filled with custard.",
+          "description_pt": "Massa de brioche recheada com creme.",
+          "description_tet": "Kroisan brioxe mamar ho kreme.",
           "price": 2,
           "image_url": "/dishes/croissant-brioche.jpg",
           "is_available": true,
@@ -589,7 +821,11 @@
         },
         {
           "name": "Chocolate Croissant",
+          "name_pt": "Croissant de Chocolate",
+          "name_tet": "Croissant Xokolate",
           "description": "Filled with rich chocolate.",
+          "description_pt": "Recheado com chocolate rico.",
+          "description_tet": "Kroisan ho xokolate.",
           "price": 2,
           "image_url": "/dishes/croissant-choc.jpg",
           "is_available": true,
@@ -598,7 +834,11 @@
         },
         {
           "name": "Puff Pastry Croissant with Custard",
+          "name_pt": "Croissant Folhado c/ Creme",
+          "name_tet": "Croissant Folhadu ho Kreme",
           "description": "Flaky pastry filled with egg custard.",
+          "description_pt": "Massa folhada recheada com creme de ovo.",
+          "description_tet": "Kroisan krispi ho kreme.",
           "price": 2,
           "image_url": "/dishes/croissant-folhado.jpg",
           "is_available": true,
@@ -609,11 +849,17 @@
     },
     {
       "name": "Pastries & Savory",
+      "name_pt": "Pastéis e Salgados",
+      "name_tet": "Salgadu sira",
       "display_order": 4,
       "items": [
         {
           "name": "Vegetarian Samosa",
+          "name_pt": "Chamuça Vegetariana",
+          "name_tet": "Samosa Vejetariana",
           "description": "Crispy fried pastry filled with spiced veggies.",
+          "description_pt": "Pastel frito recheado com vegetais.",
+          "description_tet": "Samosa ho vejetais.",
           "price": 1.3,
           "image_url": "/dishes/samosa-veg.jpg",
           "is_available": true,
@@ -622,7 +868,11 @@
         },
         {
           "name": "Chicken Samosa",
+          "name_pt": "Chamuça de Frango",
+          "name_tet": "Samosa Naan Manu",
           "description": "Crispy fried pastry filled with chicken.",
+          "description_pt": "Pastel frito recheado com frango.",
+          "description_tet": "Samosa ho naan manu.",
           "price": 1.75,
           "image_url": "/dishes/samosa-chicken.jpg",
           "is_available": true,
@@ -631,7 +881,11 @@
         },
         {
           "name": "Tuna Puff Pastry",
+          "name_pt": "Folhado de Atum",
+          "name_tet": "Folhadu Atum",
           "description": "Puff pastry pocket with savory tuna filling.",
+          "description_pt": "Folhado com recheio salgado de atum.",
+          "description_tet": "Folhadu ho atum.",
           "price": 2,
           "image_url": "/dishes/folhado-atum.jpg",
           "is_available": true,
@@ -640,7 +894,11 @@
         },
         {
           "name": "Meat Puff Pastry",
+          "name_pt": "Folhado de Carne",
+          "name_tet": "Folhadu Naan",
           "description": "Puff pastry pocket with savory minced meat.",
+          "description_pt": "Folhado com carne picada.",
+          "description_tet": "Folhadu ho naan.",
           "price": 2,
           "image_url": "/dishes/folhado-carne.jpg",
           "is_available": true,
@@ -649,7 +907,11 @@
         },
         {
           "name": "Spinach Puff Pastry",
+          "name_pt": "Folhado de Espinafres",
+          "name_tet": "Folhadu Espinafre",
           "description": "Puff pastry pocket with creamy spinach.",
+          "description_pt": "Folhado com espinafres cremosos.",
+          "description_tet": "Folhadu ho espinafre.",
           "price": 2,
           "image_url": "/dishes/folhado-espinafres.jpg",
           "is_available": true,
@@ -658,7 +920,11 @@
         },
         {
           "name": "Chicken Puff Pastry",
+          "name_pt": "Folhado de Frango",
+          "name_tet": "Folhadu Naan Manu",
           "description": "Puff pastry pocket with chicken filling.",
+          "description_pt": "Folhado com recheio de frango.",
+          "description_tet": "Folhadu ho naan manu.",
           "price": 2,
           "image_url": "/dishes/folhado-frango.jpg",
           "is_available": true,
@@ -667,7 +933,11 @@
         },
         {
           "name": "Pizza Puff Pastry",
+          "name_pt": "Folhado de Pizza",
+          "name_tet": "Folhadu Piza",
           "description": "Cheese and oregano pizza pocket.",
+          "description_pt": "Folhado de queijo e orégãos.",
+          "description_tet": "Folhadu ho keiju no orégaun.",
           "price": 2,
           "image_url": "/dishes/folhado-pizza.jpg",
           "is_available": true,
@@ -676,7 +946,11 @@
         },
         {
           "name": "Sausage & Cheese Puff Pastry",
+          "name_pt": "Folhado Salsicha e Queijo",
+          "name_tet": "Folhadu Salsixa no Keiju",
           "description": "Sausage and melted cheese wrapped in pastry.",
+          "description_pt": "Salsicha e queijo derretido em massa.",
+          "description_tet": "Folhadu ho salsixa no keiju.",
           "price": 2,
           "image_url": "/dishes/folhado-salsicha.jpg",
           "is_available": true,
@@ -685,7 +959,11 @@
         },
         {
           "name": "Stuffed Bread",
+          "name_pt": "Lanche",
+          "name_tet": "Lanche",
           "description": "Soft bread baked with ham and cheese inside.",
+          "description_pt": "Pão macio com fiambre e queijo.",
+          "description_tet": "Paun mamar ho fiambre no keiju.",
           "price": 2,
           "image_url": "/dishes/lanches.jpg",
           "is_available": true,
@@ -694,7 +972,11 @@
         },
         {
           "name": "Mixed Cereal Panike",
+          "name_pt": "Panike Cereal Misto",
+          "name_tet": "Panike Sereal Misto",
           "description": "Cereal dough pocket with ham and cheese.",
+          "description_pt": "Massa de cereais com fiambre e queijo.",
+          "description_tet": "Panike sereal ho fiambre no keiju.",
           "price": 2,
           "image_url": "/dishes/panike-cereal.jpg",
           "is_available": true,
@@ -703,7 +985,11 @@
         },
         {
           "name": "Mixed Panike",
+          "name_pt": "Panike Misto",
+          "name_tet": "Panike Misto",
           "description": "Puff pastry with ham and cheese.",
+          "description_pt": "Massa folhada com fiambre e queijo.",
+          "description_tet": "Panike folhadu ho fiambre no keiju.",
           "price": 2,
           "image_url": "/dishes/panike-misto.jpg",
           "is_available": true,
@@ -712,7 +998,11 @@
         },
         {
           "name": "Rissol",
+          "name_pt": "Rissol",
+          "name_tet": "Rissol",
           "description": "Traditional Portuguese breaded and fried savory patty.",
+          "description_pt": "Pastel panado e frito tradicional.",
+          "description_tet": "Rissol panadu no fritu.",
           "price": 1.5,
           "image_url": "/dishes/rissol-meat.jpg",
           "is_available": true,
@@ -725,10 +1015,14 @@
               "options": [
                 {
                   "name": "Meat",
+                  "name_pt": "Carne",
+                  "name_tet": "Naan",
                   "price_delta": 0
                 },
                 {
                   "name": "Fish",
+                  "name_pt": "Peixe",
+                  "name_tet": "Ikan",
                   "price_delta": 0
                 }
               ]
@@ -739,11 +1033,17 @@
     },
     {
       "name": "Cakes & Sweets",
+      "name_pt": "Bolos e Doces",
+      "name_tet": "Dose sira",
       "display_order": 5,
       "items": [
         {
           "name": "Pastel de Nata",
+          "name_pt": "Pastel de Nata",
+          "name_tet": "Pastel de Nata",
           "description": "Portuguese egg custard tart in flaky pastry.",
+          "description_pt": "Pastel de nata tradicional português.",
+          "description_tet": "Tarte manu-tolun Portugés.",
           "price": 1.5,
           "image_url": "/dishes/pastel-nata.jpg",
           "is_available": true,
@@ -752,7 +1052,11 @@
         },
         {
           "name": "Pastel de Nata Chocolate",
+          "name_pt": "Pastel de Nata Chocolate",
+          "name_tet": "Pastel de Nata Xokolate",
           "description": "Custard tart infused with rich chocolate.",
+          "description_pt": "Pastel de nata com chocolate.",
+          "description_tet": "Pastel nata ho xokolate.",
           "price": 1.8,
           "image_url": "/dishes/pastel-nata-choc.jpg",
           "is_available": true,
@@ -761,7 +1065,11 @@
         },
         {
           "name": "Bolo de Arroz",
+          "name_pt": "Bolo de Arroz",
+          "name_tet": "Bolo de Arroz",
           "description": "Sweet and buttery traditional rice flour cake.",
+          "description_pt": "Bolo tradicional feito com farinha de arroz.",
+          "description_tet": "Bolu tradisional husi farinha foos.",
           "price": 2.5,
           "image_url": "/dishes/bolo-arroz.jpg",
           "is_available": true,
@@ -770,7 +1078,11 @@
         },
         {
           "name": "Almond Bretzel",
+          "name_pt": "Bretzel Amêndoa",
+          "name_tet": "Bretzel Améndoa",
           "description": "Sweet pastry shaped like a pretzel with almonds.",
+          "description_pt": "Massa doce em forma de laço com amêndoas.",
+          "description_tet": "Lasu midar ho améndoa.",
           "price": 2.5,
           "image_url": "/dishes/bretzel-amendoa.jpg",
           "is_available": true,
@@ -779,7 +1091,11 @@
         },
         {
           "name": "Alcobaça Apple Bretzel",
+          "name_pt": "Bretzel Maçã Alcobaça",
+          "name_tet": "Bretzel Masán",
           "description": "Sweet pastry pretzel filled with regional apple.",
+          "description_pt": "Laço recheado com maçã de Alcobaça.",
+          "description_tet": "Lasu midar ho masán.",
           "price": 2.5,
           "image_url": "/dishes/bretzel-maca.jpg",
           "is_available": true,
@@ -788,7 +1104,11 @@
         },
         {
           "name": "Maple Pecan",
+          "name_pt": "Maple Pecan",
+          "name_tet": "Maple Pecan",
           "description": "Braided pastry with maple syrup and pecans.",
+          "description_pt": "Trança folhada com xarope de ácer e nozes pecan.",
+          "description_tet": "Transa folhadu ho noz pekan.",
           "price": 2.5,
           "image_url": "/dishes/maple-pecan.jpg",
           "is_available": true,
@@ -797,7 +1117,11 @@
         },
         {
           "name": "Dot's Sugar Donut",
+          "name_pt": "Dot's Açucarado",
+          "name_tet": "Donut Masin Midar",
           "description": "Classic donut dusted with sugar.",
+          "description_pt": "Donut clássico polvilhado com açúcar.",
+          "description_tet": "Donut ho masin midar.",
           "price": 1.5,
           "image_url": "/dishes/donut-sugar.jpg",
           "is_available": true,
@@ -806,7 +1130,11 @@
         },
         {
           "name": "Dot's Dark Chocolate Donut",
+          "name_pt": "Dot's Negrito",
+          "name_tet": "Donut Xokolate",
           "description": "Donut covered in rich dark chocolate.",
+          "description_pt": "Donut coberto com chocolate negro.",
+          "description_tet": "Donut ho xokolate metan.",
           "price": 1.5,
           "image_url": "/dishes/donut-choc.jpg",
           "is_available": true,
@@ -815,7 +1143,11 @@
         },
         {
           "name": "Dot's Classic Glace",
+          "name_pt": "Dot's Classic Glace",
+          "name_tet": "Dot's Classic Glace",
           "description": "Sweet glazed donut ring.",
+          "description_pt": "Donut clássico com cobertura doce.",
+          "description_tet": "Donut midar glaseadu.",
           "price": 1.5,
           "image_url": "/dishes/donut-glazed.jpg",
           "is_available": true,
@@ -826,11 +1158,17 @@
     },
     {
       "name": "Drinks & Cocktails",
+      "name_pt": "Bebidas e Cocktails",
+      "name_tet": "Bebida no Koktail",
       "display_order": 6,
       "items": [
         {
           "name": "House Glass of Wine",
+          "name_pt": "Copo de Vinho da Casa",
+          "name_tet": "Copo de Vinho da Casa",
           "description": "A glass of our selected house wine.",
+          "description_pt": "Um copo do nosso vinho da casa.",
+          "description_tet": "Tua-uvas husi uma.",
           "price": 2.5,
           "image_url": "/dishes/wine.jpg",
           "is_available": true,
@@ -839,7 +1177,11 @@
         },
         {
           "name": "Ginjinha",
+          "name_pt": "Ginjinha",
+          "name_tet": "Ginjinha",
           "description": "Traditional Portuguese cherry liqueur.",
+          "description_pt": "Licor tradicional português de ginja.",
+          "description_tet": "Likór tradisional husi ginja.",
           "price": 2,
           "image_url": "/dishes/ginjinha.jpg",
           "is_available": true,
@@ -848,7 +1190,11 @@
         },
         {
           "name": "Moscatel Favaito",
+          "name_pt": "Moscatel Favaito",
+          "name_tet": "Moscatel Favaito",
           "description": "Sweet fortified muscat wine.",
+          "description_pt": "Vinho doce moscatel.",
+          "description_tet": "Tua-uvas midar moscatel.",
           "price": 1.75,
           "image_url": "/dishes/favaito.jpg",
           "is_available": true,
@@ -857,7 +1203,11 @@
         },
         {
           "name": "Aperol Spritz",
+          "name_pt": "Aperol Spritz",
+          "name_tet": "Aperol Spritz",
           "description": "Refreshing Italian cocktail with prosecco.",
+          "description_pt": "Cocktail italiano refrescante.",
+          "description_tet": "Koktail fresku Italianu nian.",
           "price": 6,
           "image_url": "/dishes/aperol.jpg",
           "is_available": true,
@@ -866,7 +1216,11 @@
         },
         {
           "name": "Premium Gin & Tonic",
+          "name_pt": "Gin Tónico Premium",
+          "name_tet": "Gin Tónico Premium",
           "description": "Premium gin mixed with tonic water and botanicals.",
+          "description_pt": "Gin premium com água tónica e botânicos.",
+          "description_tet": "Gin di'ak ho bee tóniku.",
           "price": 9,
           "image_url": "/dishes/gin-tonic.jpg",
           "is_available": true,
@@ -875,7 +1229,11 @@
         },
         {
           "name": "Porto Tónico",
+          "name_pt": "Porto Tónico",
+          "name_tet": "Porto Tónico",
           "description": "White port wine mixed with tonic water.",
+          "description_pt": "Vinho do porto branco com água tónica.",
+          "description_tet": "Tua-uvas Porto mutin ho bee tóniku.",
           "price": 7,
           "image_url": "/dishes/porto-tonico.jpg",
           "is_available": true,
@@ -884,7 +1242,11 @@
         },
         {
           "name": "Whisky",
+          "name_pt": "Whisky",
+          "name_tet": "Whisky",
           "description": "A shot of classic aged whisky.",
+          "description_pt": "Uma dose de whisky envelhecido clássico.",
+          "description_tet": "Whisky tuan klasiku.",
           "price": 4,
           "image_url": "/dishes/whisky.jpg",
           "is_available": true,
@@ -893,7 +1255,11 @@
         },
         {
           "name": "Cachaça 51",
+          "name_pt": "Cachaça 51",
+          "name_tet": "Cachaça 51",
           "description": "Popular Brazilian sugarcane spirit.",
+          "description_pt": "Aguardente de cana brasileira popular.",
+          "description_tet": "Bebida maka'as husi tohu Brazil nian.",
           "price": 4.5,
           "image_url": "/dishes/cachaca.jpg",
           "is_available": true,

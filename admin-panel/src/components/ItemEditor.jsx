@@ -3,13 +3,26 @@ import { Plus, Trash2, X, Upload } from 'lucide-react';
 import { api, resolveImageUrl } from '../lib/api';
 
 const emptyGroup = () => ({ name: '', selection_type: 'single', required: false, options: [emptyOption()] });
-const emptyOption = () => ({ name: '', price_delta: 0 });
+const emptyOption = () => ({ name: '', name_pt: '', name_tet: '', price_delta: 0 });
+
+// Language tabs: '' edits the canonical English fields; the suffixes edit the
+// optional translations (empty = customers see English for that language).
+const LANGS = [
+  { suffix: '', label: 'English' },
+  { suffix: '_pt', label: 'Português' },
+  { suffix: '_tet', label: 'Tetun' },
+];
 
 export default function ItemEditor({ item, categoryId, categories, onClose, onSaved }) {
   const isNew = !item;
+  const [lang, setLang] = useState('');
   const [form, setForm] = useState(() => ({
     name: item?.name ?? '',
+    name_pt: item?.name_pt ?? '',
+    name_tet: item?.name_tet ?? '',
     description: item?.description ?? '',
+    description_pt: item?.description_pt ?? '',
+    description_tet: item?.description_tet ?? '',
     price: item?.price ?? 0,
     category_id: item?.category_id ?? categoryId,
     display_order: item?.display_order ?? 0,
@@ -19,7 +32,12 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
       name: g.name,
       selection_type: g.selection_type,
       required: g.required,
-      options: g.options.map((o) => ({ name: o.name, price_delta: o.price_delta })),
+      options: g.options.map((o) => ({
+        name: o.name,
+        name_pt: o.name_pt ?? '',
+        name_tet: o.name_tet ?? '',
+        price_delta: o.price_delta,
+      })),
     })),
   }));
   const [busy, setBusy] = useState(false);
@@ -42,6 +60,10 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
     try {
       const payload = {
         ...form,
+        name_pt: form.name_pt.trim() || null,
+        name_tet: form.name_tet.trim() || null,
+        description_pt: form.description_pt.trim() || null,
+        description_tet: form.description_tet.trim() || null,
         price: Number(form.price) || 0,
         display_order: Number(form.display_order) || 0,
         modifier_groups: form.modifier_groups
@@ -50,7 +72,12 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
             ...g,
             options: g.options
               .filter((o) => o.name.trim())
-              .map((o) => ({ name: o.name.trim(), price_delta: Number(o.price_delta) || 0 })),
+              .map((o) => ({
+                name: o.name.trim(),
+                name_pt: (o.name_pt || '').trim() || null,
+                name_tet: (o.name_tet || '').trim() || null,
+                price_delta: Number(o.price_delta) || 0,
+              })),
           })),
       };
       let saved;
@@ -112,13 +139,41 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
 
           {/* Core fields */}
           <div className="flex-1 grid grid-cols-2 gap-3">
+            {/* Language tabs: which language the name/description/option fields edit */}
+            <div className="col-span-2 flex items-center gap-1 bg-background-alt rounded-xl p-1 w-fit">
+              {LANGS.map(({ suffix, label }) => (
+                <button
+                  key={suffix}
+                  onClick={() => setLang(suffix)}
+                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors ${
+                    lang === suffix ? 'bg-white shadow-card text-ink' : 'text-muted hover:text-ink'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+              {lang !== '' && (
+                <span className="text-[10px] text-muted px-2">empty = English shown</span>
+              )}
+            </div>
             <label className="col-span-2 block">
               <span className="text-xs font-semibold text-muted">Name</span>
-              <input className={input} value={form.name} onChange={(e) => set({ name: e.target.value })} />
+              <input
+                className={input}
+                value={form[`name${lang}`] ?? ''}
+                placeholder={lang ? form.name : ''}
+                onChange={(e) => set({ [`name${lang}`]: e.target.value })}
+              />
             </label>
             <label className="col-span-2 block">
               <span className="text-xs font-semibold text-muted">Description</span>
-              <textarea rows={2} className={input} value={form.description ?? ''} onChange={(e) => set({ description: e.target.value })} />
+              <textarea
+                rows={2}
+                className={input}
+                value={form[`description${lang}`] ?? ''}
+                placeholder={lang ? form.description : ''}
+                onChange={(e) => set({ [`description${lang}`]: e.target.value })}
+              />
             </label>
             <label className="block">
               <span className="text-xs font-semibold text-muted">Base price ($)</span>
@@ -186,10 +241,10 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
               {group.options.map((opt, oi) => (
                 <div key={oi} className="flex gap-2 items-center pl-3">
                   <input
-                    placeholder="Option name (e.g. Large)"
+                    placeholder={lang ? opt.name || 'Option name' : 'Option name (e.g. Large)'}
                     className={`${input} flex-1`}
-                    value={opt.name}
-                    onChange={(e) => setOption(gi, oi, { name: e.target.value })}
+                    value={opt[`name${lang}`] ?? ''}
+                    onChange={(e) => setOption(gi, oi, { [`name${lang}`]: e.target.value })}
                   />
                   <label className="flex items-center gap-1 text-xs text-muted">
                     +$

@@ -31,7 +31,7 @@ export default function MenuPanel() {
     <div className="relative w-full h-full flex bg-background paper overflow-hidden">
       {/* Desktop/Tablet-Landscape Sidebar */}
       {showSidebar && (
-        <aside className="w-80 h-full border-r border-stone-200/80 bg-surface shadow-card flex flex-col z-20 shrink-0">
+        <aside className="w-80 h-full border-r border-stone-200/80 dark:border-stone-800 bg-surface shadow-card flex flex-col z-20 shrink-0">
           <Header />
           <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
           <div className="flex-1 overflow-y-auto">
