@@ -23,10 +23,12 @@ change it in `backend/.env`).
 ## Screens
 
 - **Menu** — category create/rename/delete; item create/edit (name, price,
-  description, category, variant groups with price deltas), image upload,
-  one-click In stock / Sold out. Everything the customer site renders live.
-- **Promos** — the landing carousel's posters: upload with optional caption,
-  reorder with arrows, toggle visibility, delete. Square images look best.
+  description, category, variant groups with price deltas), image upload and
+  removal, one-click In stock / Sold out. Everything the customer site renders live.
+- **Promos** — the landing carousel's posters: upload several at once (file
+  picker or drag & drop) with optional caption, reorder with arrows, toggle
+  visibility, delete individually or multi-select and bulk-delete. Square
+  images look best.
 
 ## Implementation notes
 
