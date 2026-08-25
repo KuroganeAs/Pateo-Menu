@@ -136,3 +136,13 @@ async def upload_item_image(item_id: int, file: UploadFile, db: Session = Depend
     item.image_url = url
     db.commit()
     return _get_or_404(db, item_id)
+
+
+@router.delete("/{item_id}/image", response_model=MenuItemOut)
+def delete_item_image(item_id: int, db: Session = Depends(get_db)):
+    """Remove an item's photo: delete the stored file and clear the reference."""
+    item = _get_or_404(db, item_id)
+    delete_uploaded_image(item.image_url)
+    item.image_url = None
+    db.commit()
+    return _get_or_404(db, item_id)

@@ -60,6 +60,9 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
     try {
       const payload = {
         ...form,
+        // When a new file is pending, keep the original URL in the PUT so the
+        // upload endpoint (which runs after) can find and delete the old file.
+        image_url: pendingFile ? (item?.image_url ?? null) : form.image_url,
         name_pt: form.name_pt.trim() || null,
         name_tet: form.name_tet.trim() || null,
         description_pt: form.description_pt.trim() || null,
@@ -84,6 +87,11 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
       if (isNew) {
         saved = await api.post('/api/items', payload);
       } else {
+        if (item.image_url && !form.image_url && !pendingFile) {
+          // Photo removed (not replaced): delete the stored file server-side
+          // before the PUT nulls the reference.
+          await api.delete(`/api/items/${item.id}/image`);
+        }
         saved = await api.put(`/api/items/${item.id}`, payload);
       }
       if (pendingFile) {
@@ -134,6 +142,22 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
             >
               <Upload size={13} /> {pendingFile ? 'Change' : 'Upload'}
             </button>
+            {previewUrl && (
+              <button
+                onClick={() => {
+                  if (pendingFile) {
+                    // Undo the pending file; falls back to the saved photo if any
+                    setPendingFile(null);
+                    if (fileRef.current) fileRef.current.value = '';
+                  } else {
+                    set({ image_url: null }); // applied on Save
+                  }
+                }}
+                className="w-28 inline-flex items-center justify-center gap-1 text-xs font-semibold rounded-lg px-2 py-1.5 text-red-600 hover:bg-red-50"
+              >
+                <Trash2 size={13} /> Remove
+              </button>
+            )}
             {pendingFile && <p className="text-[10px] text-muted w-28 truncate">{pendingFile.name}</p>}
           </div>
 
