@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Plus, Pencil, Trash2, ImageOff, Globe } from 'lucide-react';
+import { Plus, Pencil, Trash2, ImageOff, Globe, ArrowUp, ArrowDown } from 'lucide-react';
 import { api, resolveImageUrl } from '../lib/api';
 import { money } from '../lib/format';
 import ItemEditor from '../components/ItemEditor';
@@ -34,6 +34,26 @@ export default function Menu() {
       setNewCatName('');
     });
 
+  // Swap display_order with the neighbouring category in the given direction.
+  // PUT requires the full body, so the translations are sent back unchanged.
+  const moveCategory = (idx, dir) => {
+    const other = idx + dir;
+    if (other < 0 || other >= menu.length) return;
+    const a = menu[idx];
+    const b = menu[other];
+    const body = (c, display_order) => ({
+      name: c.name,
+      name_pt: c.name_pt ?? null,
+      name_tet: c.name_tet ?? null,
+      display_order,
+    });
+    run(async () => {
+      // Orders may be equal on legacy rows; force distinct values on swap
+      await api.put(`/api/categories/${a.id}`, body(a, b.display_order === a.display_order ? b.display_order + (dir > 0 ? 1 : -1) : b.display_order));
+      await api.put(`/api/categories/${b.id}`, body(b, a.display_order));
+    });
+  };
+
   return (
     <div className="space-y-5 max-w-5xl">
       <header className="flex items-center justify-between flex-wrap gap-3">
@@ -62,10 +82,12 @@ export default function Menu() {
         <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-3 py-2">{error}</p>
       )}
 
-      {menu.map((cat) => (
+      {menu.map((cat, idx) => (
         <CategorySection
           key={cat.id}
           category={cat}
+          onMoveUp={idx === 0 ? null : () => moveCategory(idx, -1)}
+          onMoveDown={idx === menu.length - 1 ? null : () => moveCategory(idx, 1)}
           onSave={(fields) =>
             run(() =>
               api.put(`/api/categories/${cat.id}`, {
@@ -112,7 +134,7 @@ export default function Menu() {
   );
 }
 
-function CategorySection({ category, onSave, onDelete, onAddItem, onEditItem, onDeleteItem, onToggleAvailability }) {
+function CategorySection({ category, onSave, onDelete, onMoveUp, onMoveDown, onAddItem, onEditItem, onDeleteItem, onToggleAvailability }) {
   const [name, setName] = useState(category.name);
   const [namePt, setNamePt] = useState(category.name_pt ?? '');
   const [nameTet, setNameTet] = useState(category.name_tet ?? '');
@@ -143,6 +165,22 @@ function CategorySection({ category, onSave, onDelete, onAddItem, onEditItem, on
           <Globe size={15} />
         </button>
         <div className="ml-auto flex items-center gap-1">
+          <button
+            onClick={onMoveUp ?? undefined}
+            disabled={!onMoveUp}
+            title="Move category up"
+            className="p-1.5 rounded-lg text-muted hover:bg-background-alt disabled:opacity-30"
+          >
+            <ArrowUp size={15} />
+          </button>
+          <button
+            onClick={onMoveDown ?? undefined}
+            disabled={!onMoveDown}
+            title="Move category down"
+            className="p-1.5 rounded-lg text-muted hover:bg-background-alt disabled:opacity-30"
+          >
+            <ArrowDown size={15} />
+          </button>
           <button
             onClick={onAddItem}
             className="inline-flex items-center gap-1 text-xs font-semibold rounded-lg bg-background-alt px-2.5 py-1.5 hover:bg-stone-200"
