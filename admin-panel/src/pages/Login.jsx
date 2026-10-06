@@ -20,7 +20,11 @@ export default function Login() {
       await login(username.trim(), password);
       navigate('/menu', { replace: true });
     } catch (err) {
-      setError(err.status === 401 ? 'Invalid username or password' : `Login failed: ${err.message}`);
+      setError(
+        err.code === 'invalid_credentials' ? 'Invalid username or password'
+          : err.code === 'not_admin' ? 'This account is not an admin.'
+          : `Login failed: ${err.message}`
+      );
     } finally {
       setBusy(false);
     }

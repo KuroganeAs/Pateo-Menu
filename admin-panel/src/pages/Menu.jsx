@@ -1,6 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Plus, Pencil, Trash2, ImageOff, Globe, ArrowUp, ArrowDown } from 'lucide-react';
-import { api, resolveImageUrl } from '../lib/api';
+import {
+  getMenu, createCategory, updateCategory, deleteCategory,
+  deleteItem, setItemAvailability, resolveImageUrl,
+} from '../lib/api';
 import { money } from '../lib/format';
 import ItemEditor from '../components/ItemEditor';
 
@@ -12,7 +15,7 @@ export default function Menu() {
 
   const load = useCallback(async () => {
     try {
-      const data = await api.get('/api/menu');
+      const data = await getMenu();
       setMenu(data.categories);
       setError('');
     } catch (e) {
@@ -23,34 +26,28 @@ export default function Menu() {
   useEffect(() => { load(); }, [load]);
 
   const run = async (fn) => {
-    try { await fn(); await load(); } catch (e) { setError(e.detail || e.message); }
+    try { await fn(); await load(); } catch (e) { setError(e.message); }
   };
 
   const addCategory = () =>
     run(async () => {
       const name = newCatName.trim();
       if (!name) return;
-      await api.post('/api/categories', { name, display_order: menu.length });
+      const lastOrder = Math.max(-1, ...menu.map((c) => c.display_order));
+      await createCategory({ name, display_order: lastOrder + 1 });
       setNewCatName('');
     });
 
   // Swap display_order with the neighbouring category in the given direction.
-  // PUT requires the full body, so the translations are sent back unchanged.
   const moveCategory = (idx, dir) => {
     const other = idx + dir;
     if (other < 0 || other >= menu.length) return;
     const a = menu[idx];
     const b = menu[other];
-    const body = (c, display_order) => ({
-      name: c.name,
-      name_pt: c.name_pt ?? null,
-      name_tet: c.name_tet ?? null,
-      display_order,
-    });
     run(async () => {
       // Orders may be equal on legacy rows; force distinct values on swap
-      await api.put(`/api/categories/${a.id}`, body(a, b.display_order === a.display_order ? b.display_order + (dir > 0 ? 1 : -1) : b.display_order));
-      await api.put(`/api/categories/${b.id}`, body(b, a.display_order));
+      await updateCategory(a.id, { display_order: b.display_order === a.display_order ? b.display_order + (dir > 0 ? 1 : -1) : b.display_order });
+      await updateCategory(b.id, { display_order: a.display_order });
     });
   };
 
@@ -88,37 +85,27 @@ export default function Menu() {
           category={cat}
           onMoveUp={idx === 0 ? null : () => moveCategory(idx, -1)}
           onMoveDown={idx === menu.length - 1 ? null : () => moveCategory(idx, 1)}
-          onSave={(fields) =>
-            run(() =>
-              api.put(`/api/categories/${cat.id}`, {
-                name: cat.name,
-                name_pt: cat.name_pt ?? null,
-                name_tet: cat.name_tet ?? null,
-                display_order: cat.display_order,
-                ...fields,
-              })
-            )
-          }
+          onSave={(fields) => run(() => updateCategory(cat.id, fields))}
           onDelete={() => {
-            if (window.confirm(`Delete category "${cat.name}" AND its ${cat.items.length} item(s)? Past orders keep their snapshots.`)) {
-              run(() => api.delete(`/api/categories/${cat.id}`));
+            if (window.confirm(`Delete category "${cat.name}" AND its ${cat.items.length} item(s)? Their uploaded photos are removed too.`)) {
+              run(() => deleteCategory(cat));
             }
           }}
           onAddItem={() => setEditing({ item: null, categoryId: cat.id })}
           onEditItem={(item) => setEditing({ item, categoryId: cat.id })}
           onDeleteItem={(item) => {
-            if (window.confirm(`Delete "${item.name}"? Past orders keep their snapshots.`)) {
-              run(() => api.delete(`/api/items/${item.id}`));
+            if (window.confirm(`Delete "${item.name}"? Its uploaded photo is removed too.`)) {
+              run(() => deleteItem(item));
             }
           }}
           onToggleAvailability={(item) =>
-            run(() => api.patch(`/api/items/${item.id}/availability`, { is_available: !item.is_available }))
+            run(() => setItemAvailability(item.id, !item.is_available))
           }
         />
       ))}
 
       {menu.length === 0 && !error && (
-        <p className="text-sm text-muted">No categories yet — create one above, or seed the demo menu (see backend README).</p>
+        <p className="text-sm text-muted">No categories yet — create one above.</p>
       )}
 
       {editing && (

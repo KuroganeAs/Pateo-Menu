@@ -1,12 +1,11 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { apiClient, subscribeBackendStatus } from '../integration/apiClient';
+import { fetchMenu, onReconnect } from '../integration/liveData';
 import { adaptMenu } from '../integration/adaptMenu';
 import { categories as localCategories, menuItems as localItems } from '../data/menu';
 
 // Serves the menu to the whole app: starts from the bundled data (instant,
-// works offline / with the backend down) and swaps in the admin-edited menu
-// from the backend once it responds. Re-fetches whenever the backend comes
-// back online.
+// works offline) and swaps in the admin-edited menu from Supabase once it
+// responds. Re-fetches whenever the browser comes back online.
 const MenuDataContext = createContext({
   categories: localCategories,
   menuItems: localItems,
@@ -25,7 +24,7 @@ export function MenuDataProvider({ children }) {
     aliveRef.current = true;
 
     const refresh = async () => {
-      const res = await apiClient.get('/api/menu');
+      const res = await fetchMenu();
       if (!aliveRef.current) return;
       if (res.ok && res.data?.categories?.length) {
         const adapted = adaptMenu(res.data);
@@ -40,9 +39,7 @@ export function MenuDataProvider({ children }) {
     };
 
     refresh();
-    const unsubscribe = subscribeBackendStatus((online) => {
-      if (online) refresh();
-    });
+    const unsubscribe = onReconnect(refresh);
 
     return () => {
       aliveRef.current = false;
