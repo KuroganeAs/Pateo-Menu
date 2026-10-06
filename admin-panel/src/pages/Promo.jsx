@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Upload, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
-import { api, resolveImageUrl } from '../lib/api';
+import { listPromos, createPromo, updatePromo, deletePromo, resolveImageUrl } from '../lib/api';
 
 // Weekly promo posters shown in the customer site's landing carousel.
 // Upload the week's images (square looks best) — several at once via the
@@ -17,8 +17,7 @@ export default function Promo() {
   const fileRef = useRef(null);
 
   const load = () =>
-    api
-      .get('/api/promos/all')
+    listPromos()
       .then((list) => {
         setPromos(list);
         // Drop selections for posters that no longer exist
@@ -37,7 +36,7 @@ export default function Promo() {
       await fn();
       await load();
     } catch (e) {
-      setError(typeof e.detail === 'string' ? e.detail : e.message);
+      setError(e.message);
     } finally {
       setBusy(false);
       setProgress(null);
@@ -53,9 +52,9 @@ export default function Promo() {
       for (let i = 0; i < files.length; i++) {
         setProgress({ verb: 'Uploading', done: i, total: files.length });
         try {
-          await api.upload('/api/promos', files[i], { caption: newCaption.trim() });
+          await createPromo(files[i], newCaption.trim());
         } catch (e) {
-          failures.push(`${files[i].name}: ${typeof e.detail === 'string' ? e.detail : e.message}`);
+          failures.push(`${files[i].name}: ${e.message}`);
         }
       }
       setNewCaption('');
@@ -77,21 +76,21 @@ export default function Promo() {
     setSelected(allSelected ? new Set() : new Set(promos.map((p) => p.id)));
 
   const deleteSelected = () => {
-    const ids = promos.filter((p) => selected.has(p.id)).map((p) => p.id);
-    if (ids.length === 0) return;
-    if (!window.confirm(`Delete ${ids.length} poster(s)? The image files are removed too.`)) return;
+    const doomed = promos.filter((p) => selected.has(p.id));
+    if (doomed.length === 0) return;
+    if (!window.confirm(`Delete ${doomed.length} poster(s)? The image files are removed too.`)) return;
     run(async () => {
       const failures = [];
-      for (let i = 0; i < ids.length; i++) {
-        setProgress({ verb: 'Deleting', done: i, total: ids.length });
+      for (let i = 0; i < doomed.length; i++) {
+        setProgress({ verb: 'Deleting', done: i, total: doomed.length });
         try {
-          await api.delete(`/api/promos/${ids[i]}`);
+          await deletePromo(doomed[i]);
         } catch (e) {
-          failures.push(typeof e.detail === 'string' ? e.detail : e.message);
+          failures.push(e.message);
         }
       }
       if (failures.length) {
-        setError(`${failures.length} of ${ids.length} delete(s) failed — ${failures.join('; ')}`);
+        setError(`${failures.length} of ${doomed.length} delete(s) failed — ${failures.join('; ')}`);
       }
     });
   };
@@ -99,15 +98,15 @@ export default function Promo() {
   const saveCaption = (promo, caption) => {
     const next = caption.trim() || null;
     if (next === (promo.caption ?? null)) return;
-    run(() => api.patch(`/api/promos/${promo.id}`, { caption: next }));
+    run(() => updatePromo(promo.id, { caption: next }));
   };
 
   const toggleActive = (promo) =>
-    run(() => api.patch(`/api/promos/${promo.id}`, { is_active: !promo.is_active }));
+    run(() => updatePromo(promo.id, { is_active: !promo.is_active }));
 
   const remove = (promo) => {
     if (!window.confirm('Delete this poster? The image file is removed too.')) return;
-    run(() => api.delete(`/api/promos/${promo.id}`));
+    run(() => deletePromo(promo));
   };
 
   // Swap display_order with the neighbour in the given direction
@@ -118,8 +117,8 @@ export default function Promo() {
     const b = promos[other];
     run(async () => {
       // Orders may be equal on legacy rows; force distinct values on swap
-      await api.patch(`/api/promos/${a.id}`, { display_order: b.display_order === a.display_order ? b.display_order + (dir > 0 ? 1 : -1) : b.display_order });
-      await api.patch(`/api/promos/${b.id}`, { display_order: a.display_order });
+      await updatePromo(a.id, { display_order: b.display_order === a.display_order ? b.display_order + (dir > 0 ? 1 : -1) : b.display_order });
+      await updatePromo(b.id, { display_order: a.display_order });
     });
   };
 

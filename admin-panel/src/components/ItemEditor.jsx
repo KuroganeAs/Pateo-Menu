@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Plus, Trash2, X, Upload } from 'lucide-react';
-import { api, resolveImageUrl } from '../lib/api';
+import { saveItem, uploadImage, removeImages, resolveImageUrl } from '../lib/api';
 
 const emptyGroup = () => ({ name: '', selection_type: 'single', required: false, options: [emptyOption()] });
 const emptyOption = () => ({ name: '', name_pt: '', name_tet: '', price_delta: 0 });
@@ -43,7 +43,7 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const fileRef = useRef(null);
-  const [pendingFile, setPendingFile] = useState(null); // upload for NEW items happens after create
+  const [pendingFile, setPendingFile] = useState(null); // uploaded when the item is saved
   const previewUrl = pendingFile ? URL.createObjectURL(pendingFile) : resolveImageUrl(form.image_url);
 
   const set = (patch) => setForm((f) => ({ ...f, ...patch }));
@@ -57,12 +57,12 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
   const save = async () => {
     setBusy(true);
     setError('');
+    let uploadedUrl = null;
     try {
+      if (pendingFile) uploadedUrl = await uploadImage(pendingFile, 'items');
       const payload = {
         ...form,
-        // When a new file is pending, keep the original URL in the PUT so the
-        // upload endpoint (which runs after) can find and delete the old file.
-        image_url: pendingFile ? (item?.image_url ?? null) : form.image_url,
+        image_url: uploadedUrl ?? form.image_url,
         name_pt: form.name_pt.trim() || null,
         name_tet: form.name_tet.trim() || null,
         description_pt: form.description_pt.trim() || null,
@@ -83,23 +83,15 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
               })),
           })),
       };
-      let saved;
-      if (isNew) {
-        saved = await api.post('/api/items', payload);
-      } else {
-        if (item.image_url && !form.image_url && !pendingFile) {
-          // Photo removed (not replaced): delete the stored file server-side
-          // before the PUT nulls the reference.
-          await api.delete(`/api/items/${item.id}/image`);
-        }
-        saved = await api.put(`/api/items/${item.id}`, payload);
-      }
-      if (pendingFile) {
-        await api.upload(`/api/items/${saved.id}/image`, pendingFile);
+      await saveItem(payload, isNew ? null : item.id);
+      // Photo replaced or removed: clean up the old file once the save stuck.
+      if (item?.image_url && item.image_url !== payload.image_url) {
+        await removeImages([item.image_url]);
       }
       onSaved();
     } catch (e) {
-      setError(typeof e.detail === 'string' ? e.detail : e.message);
+      if (uploadedUrl) await removeImages([uploadedUrl]);
+      setError(e.message);
     } finally {
       setBusy(false);
     }

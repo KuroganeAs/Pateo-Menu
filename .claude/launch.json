@@ -2,12 +2,6 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "backend",
-      "runtimeExecutable": "cmd",
-      "runtimeArgs": ["/c", "cd backend && .venv\\Scripts\\python -m uvicorn app.main:app --port 8000"],
-      "port": 8000
-    },
-    {
       "name": "admin",
       "runtimeExecutable": "cmd",
       "runtimeArgs": ["/c", "cd admin-panel && npm run dev"],

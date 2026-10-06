@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { apiClient, API_BASE, subscribeBackendStatus } from '../integration/apiClient';
+import { fetchPromos, onReconnect } from '../integration/liveData';
 import { promos as fallbackPromos } from '../data/promotions';
 
-const resolveImage = (url) =>
-  url && url.startsWith('/uploads/') ? `${API_BASE}${url}` : url;
-
-// Live promos from the admin panel (GET /api/promos), falling back to the
-// bundled images in src/assets/promos/ while loading, when the backend is
-// down, or when no active posters exist.
+// Live promos from the admin panel (Supabase), falling back to the bundled
+// images in src/assets/promos/ while loading, when offline, or when no
+// visible posters exist.
 export function usePromos() {
   const [promos, setPromos] = useState(fallbackPromos);
   const aliveRef = useRef(true);
@@ -16,12 +13,12 @@ export function usePromos() {
     aliveRef.current = true;
 
     const refresh = async () => {
-      const res = await apiClient.get('/api/promos');
+      const res = await fetchPromos();
       if (!aliveRef.current) return;
       if (res.ok && Array.isArray(res.data) && res.data.length > 0) {
         setPromos(
           res.data.map((p) => ({
-            src: resolveImage(p.image_url),
+            src: p.image_url,
             caption: p.caption || '',
           }))
         );
@@ -30,9 +27,7 @@ export function usePromos() {
     };
 
     refresh();
-    const unsubscribe = subscribeBackendStatus((online) => {
-      if (online) refresh();
-    });
+    const unsubscribe = onReconnect(refresh);
 
     return () => {
       aliveRef.current = false;

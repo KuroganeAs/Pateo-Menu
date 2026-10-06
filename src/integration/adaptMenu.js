@@ -1,12 +1,11 @@
-// Converts the backend's menu shape (GET /api/menu — English canonical plus
+// Converts the live menu shape (from Supabase — English canonical plus
 // optional *_pt / *_tet translations, integer ids, modifier groups with price
 // deltas) into the site's shape (trilingual {en,pt,tet} text, string ids,
 // variants with absolute prices).
 //
 // Text priority per language: admin-entered translation > bundled menu.js
 // translation (matched by English text) > English. Bundled data also supplies
-// per-variant photos, which the backend doesn't store.
-import { API_BASE } from './apiClient';
+// per-variant photos, which the database doesn't store.
 import { categories as localCategories, menuItems as localItems } from '../data/menu';
 
 const norm = (s) => (s || '').trim().toLowerCase();
@@ -21,13 +20,9 @@ const tri = (en, pt, tet, localTri) => ({
   tet: tet || localTri?.tet || en || ''
 });
 
-const resolveImage = (url) => {
-  if (!url) return null;
-  if (/^https?:\/\//i.test(url)) return url;
-  // Admin uploads live on the backend; /dishes/* stays a site asset
-  if (url.startsWith('/uploads/')) return `${API_BASE}${url}`;
-  return url;
-};
+// Admin uploads are absolute (Supabase Storage / Cloudinary) URLs and
+// /dishes/* paths are site assets, so both are used as-is.
+const resolveImage = (url) => url || null;
 
 function adaptVariants(apiItem, localItem) {
   // The seed convention collapses site "variants" into one required
