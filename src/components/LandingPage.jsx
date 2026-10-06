@@ -43,7 +43,7 @@ export default function LandingPage({ onEnterMenu }) {
         <div className="flex justify-center mt-8">
           <button
             onClick={onEnterMenu}
-            className="inline-flex items-center gap-2 bg-primary text-white font-display font-semibold px-8 py-4 rounded-full shadow-glow transition-transform duration-300 active:scale-95 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 bg-primary text-white dark:text-background font-display font-semibold px-8 py-4 rounded-full shadow-glow transition-transform duration-300 active:scale-95 hover:-translate-y-0.5"
           >
             <FadeText>{t(ui.landing.viewMenu)}</FadeText>
             <ChevronDown size={18} />

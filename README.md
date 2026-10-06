@@ -39,3 +39,20 @@ elsewhere.
 
 Push to `main` — Vercel rebuilds both projects. Database changes go in a new
 file under `supabase/migrations/` and are applied to the Supabase project.
+Security headers (content security policy, no framing) are set in
+`vercel.json` and `admin-panel/vercel.json`; if the Supabase project ever
+changes, update its address there too.
+
+## Backups
+
+The Supabase free plan has no backups you can download, so take your own:
+
+```bash
+npm run backup
+```
+
+This saves the whole menu, the visible promos and their images to
+`../Pateo Backups/<date and time>/` (outside the repo, which is public). Each
+folder has `restore.sql` and `RESTORE.txt` with the steps to put it back.
+Hidden promos and the admin account aren't included. Set `BACKUP_DIR` to save
+somewhere else, ideally a synced folder such as Google Drive or OneDrive.

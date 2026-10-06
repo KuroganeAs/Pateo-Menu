@@ -46,6 +46,11 @@ edit only if its user id is listed in the `public.admins` table:
 Keep **Authentication → Sign In / Providers → Allow new users to sign up**
 turned off: admin accounts are created only from the dashboard.
 
+**Forgotten password:** the login email isn't a real mailbox, so reset it in
+the dashboard: Authentication → Users → the admin → change password. Use a
+long, unique password: the username is public, so the password is the only
+lock on the panel.
+
 ## Screens
 
 - **Menu** — category create/rename/reorder/delete; item create/edit (name,
@@ -55,7 +60,8 @@ turned off: admin accounts are created only from the dashboard.
 - **Promos** — the landing carousel's posters: upload several at once (file
   picker or drag & drop) with optional caption, reorder with arrows, toggle
   visibility, delete individually or multi-select and bulk-delete. Square
-  images look best.
+  images look best. Photos are shrunk to 1200px WebP in the browser before
+  upload (GIFs are kept as they are).
 
 ## Implementation notes
 

@@ -20,6 +20,12 @@ const BUCKET = 'menu-images';
 const BUCKET_URL_PREFIX = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/`;
 const IMAGE_TYPES = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/gif': 'gif' };
 const MAX_UPLOAD_MB = 5;
+// Photos are shrunk before upload, so larger originals (phone photos) are fine to pick.
+const MAX_PICK_MB = 25;
+// Posters and dish photos never show wider than ~420px, so 1200px stays sharp on
+// 3x phone screens while keeping files around 100-250 KB (they count toward
+// Supabase's monthly data allowance every time a visitor loads them).
+const MAX_SIDE = 1200;
 
 export class ApiError extends Error {
   constructor(message, code) {
@@ -175,19 +181,53 @@ export async function deletePromo(promo) {
 }
 
 // ------------------------------------------------------------------ images
-/** Uploads an image to Storage under folder/ and returns its public URL. */
+/**
+ * Re-saves a photo in the browser before upload: scaled down to MAX_SIDE and
+ * saved as WebP, which also drops camera metadata. GIFs stay as they are so
+ * animations survive. If the browser can't decode or encode it, the original
+ * is used.
+ */
+export async function shrinkImage(file) {
+  if (file.type === 'image/gif') return file;
+  let bitmap;
+  try {
+    bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+    const scale = Math.min(1, MAX_SIDE / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(bitmap.width * scale);
+    canvas.height = Math.round(bitmap.height * scale);
+    canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    const encode = (type, quality) => new Promise((resolve) => canvas.toBlob(resolve, type, quality));
+    let blob = await encode('image/webp', 0.82);
+    if (!blob || blob.type !== 'image/webp') {
+      // Browsers without WebP encoding; PNG keeps transparency.
+      blob = await encode(file.type === 'image/png' ? 'image/png' : 'image/jpeg', 0.85);
+    }
+    if (!blob || !IMAGE_TYPES[blob.type]) return file;
+    return scale === 1 && blob.size >= file.size ? file : blob;
+  } catch {
+    return file;
+  } finally {
+    bitmap?.close();
+  }
+}
+
+/** Shrinks an image, uploads it to Storage under folder/ and returns its public URL. */
 export async function uploadImage(file, folder) {
-  const ext = IMAGE_TYPES[file.type];
-  if (!ext) {
+  if (!IMAGE_TYPES[file.type]) {
     throw new ApiError(`"${file.name}" is not a supported image (jpeg, png, webp or gif).`);
   }
-  if (file.size > MAX_UPLOAD_MB * 1024 * 1024) {
-    throw new ApiError(`"${file.name}" is larger than ${MAX_UPLOAD_MB}MB.`);
+  if (file.size > MAX_PICK_MB * 1024 * 1024) {
+    throw new ApiError(`"${file.name}" is larger than ${MAX_PICK_MB}MB.`);
   }
-  const path = `${folder}/${crypto.randomUUID()}.${ext}`;
+  const image = await shrinkImage(file);
+  if (image.size > MAX_UPLOAD_MB * 1024 * 1024) {
+    throw new ApiError(`"${file.name}" is larger than ${MAX_UPLOAD_MB}MB, even after shrinking.`);
+  }
+  const path = `${folder}/${crypto.randomUUID()}.${IMAGE_TYPES[image.type]}`;
   unwrap(
-    await supabase.storage.from(BUCKET).upload(path, file, {
-      contentType: file.type,
+    await supabase.storage.from(BUCKET).upload(path, image, {
+      contentType: image.type,
       cacheControl: '31536000',
     })
   );

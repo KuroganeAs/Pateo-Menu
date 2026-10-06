@@ -68,7 +68,7 @@ export default function CategoryNav({ activeCategoryId, onCategorySelect, isVert
                 <span
                   className={cn(
                     "text-xs font-semibold rounded-full px-2 py-0.5 min-w-[24px] text-center transition-colors tabular-nums",
-                    isActive ? "bg-primary text-white" : "bg-background-alt text-muted"
+                    isActive ? "bg-primary text-white dark:text-background" : "bg-background-alt text-muted"
                   )}
                 >
                   {counts[cat.id] || 0}
@@ -97,7 +97,7 @@ export default function CategoryNav({ activeCategoryId, onCategorySelect, isVert
                 className={cn(
                   "whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 min-h-[44px]",
                   isActive
-                    ? "bg-primary text-white shadow-glow"
+                    ? "bg-primary text-white dark:text-background shadow-glow"
                     : "bg-surface text-muted border border-stone-200 dark:border-stone-700 hover:border-primary/40 hover:text-ink"
                 )}
               >

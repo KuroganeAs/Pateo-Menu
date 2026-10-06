@@ -31,7 +31,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen grid place-items-center p-6">
+    <main className="min-h-screen grid place-items-center p-6">
       <form onSubmit={submit} className="w-full max-w-sm bg-surface rounded-2xl shadow-card p-8 space-y-4">
         <div>
           <h1 className="text-xl font-bold">Páteo Admin</h1>
@@ -57,7 +57,7 @@ export default function Login() {
             className="mt-1 w-full rounded-xl border border-stone-300 bg-white px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/40"
           />
         </label>
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <p className="text-sm text-red-600" role="alert">{error}</p>}
         <button
           disabled={busy || !username || !password}
           className="w-full rounded-xl bg-primary text-white font-semibold py-2.5 text-sm hover:bg-primary-dark disabled:opacity-50 transition-colors"
@@ -65,6 +65,6 @@ export default function Login() {
           {busy ? 'Signing in…' : 'Sign in'}
         </button>
       </form>
-    </div>
+    </main>
   );
 }

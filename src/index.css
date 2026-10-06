@@ -12,7 +12,8 @@
   --color-background-alt: #F3EEE6;
   --color-surface: #FFFDF9;
   --color-ink: #2E2A26;
-  --color-muted: #7A716A;
+  /* Keeps 4.5:1 on all three backgrounds, including background-alt */
+  --color-muted: #716861;
 }
 
 .dark {
