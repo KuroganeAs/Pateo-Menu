@@ -1,42 +1,27 @@
-# Weekly Promos
+# Fallback promo posters
 
-Drop this week's promo posters in this folder — the site picks them up
-automatically. No code changes needed.
+The weekly posters are managed in the **admin panel** (Promos page) and served
+from Supabase. Images in this folder are only a fallback: the site shows them
+while the live posters load, or if Supabase can't be reached. With the folder
+empty, plain placeholder tiles are shown instead.
 
-## Rules
+## Rules (for fallback images)
 
-- Name files by number: `1.jpg` through `7.jpg` (the usual weekly batch) —
-  that number is the display order in the carousel. Any count works; 7 is
-  just the routine.
+- Name files by number: `1.jpg`, `2.jpg`, … — the number is the display order.
 - Supported formats: png, jpg, jpeg, webp, gif (any mix).
 - Square (1:1) images look best; anything else gets center-cropped to square.
+- Optional `captions.json` here shows short text under a poster, keyed by
+  filename without extension:
+
+  ```json
+  { "1": "Chocolate pastel de nata — this week only!" }
+  ```
+
+Adding or changing files here needs a commit and a rebuild; the admin panel
+does not.
 
 ## Social links
 
 The Facebook link under the carousel and the footer's social buttons
 (Facebook / Instagram / TikTok / website) are configured once in
 `src/data/socials.js`. Empty = hidden (tiktok shows a greyed placeholder).
-
-## Weekly update via GitHub (no tools needed)
-
-1. Open this folder on github.com.
-2. Delete last week's images (open a file → trash icon → commit).
-3. "Add file" → "Upload files" → drag this week's posters in → commit.
-4. The site rebuilds and updates itself in about a minute.
-
-## Optional captions
-
-Add a `captions.json` file here to show a short text under a poster:
-
-```json
-{
-  "1": "Chocolate pastel de nata — this week only!",
-  "2": "Buy 2 XL croissants, get a coffee free"
-}
-```
-
-Keys match the image filenames (without extension). Images without an entry
-simply show no caption. Delete the file to go back to image-only.
-
-The two `.jpg` files currently here are just samples — replace them with real
-posters.

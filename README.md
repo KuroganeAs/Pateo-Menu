@@ -1,16 +1,41 @@
-# React + Vite
+# Páteo Menu
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Digital menu for Páteo Cafetaria, in three parts:
 
-Currently, two official plugins are available:
+| Part | Where | Hosted on |
+|---|---|---|
+| Customer site (menu + weekly promo carousel) | repo root (`src/`) | Vercel project `pateo-menu` |
+| Admin panel (edit menu, photos, promos) | `admin-panel/` | Vercel project `pateo-admin` |
+| Database, image storage, admin login | `supabase/migrations/` | Supabase project `Pateo` |
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+There is no backend server: both apps talk to Supabase directly, and the
+database's row level security decides who may change what (everyone can read
+the menu; only accounts in the `admins` table can edit). See
+[admin-panel/README.md](admin-panel/README.md) for admin accounts and details.
 
-## React Compiler
+## Run locally
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev        # customer site on http://localhost:5173
+```
 
-## Expanding the Oxlint configuration
+The admin panel runs separately (`cd admin-panel && npm install && npm run dev`,
+port 5174). Both use the production Supabase project by default, so data
+shown and edited locally is live; `.env.example` shows how to point them
+elsewhere.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## How the site gets its data
+
+- The menu ships with a bundled copy (`src/data/menu.js`) so it renders
+  instantly and offline, then swaps in the live menu from Supabase
+  (`src/integration/liveData.js` → `adaptMenu.js`).
+- Promo posters come from Supabase; `src/assets/promos/` holds an optional
+  fallback (see the README there).
+- Dish photos live in `public/dishes/`; photos uploaded in the admin panel go
+  to Supabase Storage.
+
+## Deploying
+
+Push to `main` — Vercel rebuilds both projects. Database changes go in a new
+file under `supabase/migrations/` and are applied to the Supabase project.

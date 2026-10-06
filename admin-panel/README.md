@@ -62,8 +62,8 @@ turned off: admin accounts are created only from the dashboard.
 `src/lib/api.js` holds every data call. Images go to the public
 `menu-images` Storage bucket (jpeg/png/webp/gif, 5MB max — enforced by the
 bucket) and are deleted when their item, category or poster is deleted or the
-photo is replaced. Older images hosted on Cloudinary or under `/dishes/` keep
-working but are never deleted from here. Saving an item goes through the
+photo is replaced. Dish photos under `/dishes/` are customer-site assets and
+are never deleted from here. Saving an item goes through the
 `save_menu_item` database function so the item and its variant groups change
 in one transaction.
 

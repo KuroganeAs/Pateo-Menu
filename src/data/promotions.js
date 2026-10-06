@@ -1,10 +1,11 @@
 import placeholderImg from '../assets/food-placeholder.svg';
 
 
-// Weekly promos = the image files in src/assets/promos/ (see the README
-// there for the upload workflow). Vite scans the folder at build time, so
-// updating the week is just adding/deleting files — 1.jpg, 2.png, ... are
-// shown in numeric order. An optional captions.json maps filename -> text.
+// Bundled FALLBACK promos: the live posters are managed in the admin panel
+// and loaded from Supabase (hooks/usePromos.js). These show only while that
+// loads or if it is unreachable. Vite scans src/assets/promos/ at build time;
+// 1.jpg, 2.png, ... are shown in numeric order and an optional captions.json
+// maps filename -> text.
 const imageModules = import.meta.glob(
   '../assets/promos/*.{png,jpg,jpeg,webp,gif,PNG,JPG,JPEG,WEBP,GIF}',
   { eager: true, import: 'default' }
