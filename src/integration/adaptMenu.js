@@ -20,8 +20,8 @@ const tri = (en, pt, tet, localTri) => ({
   tet: tet || localTri?.tet || en || ''
 });
 
-// Admin uploads are absolute (Supabase Storage / Cloudinary) URLs and
-// /dishes/* paths are site assets, so both are used as-is.
+// Admin uploads are absolute Supabase Storage URLs and /dishes/* paths are
+// site assets, so both are used as-is.
 const resolveImage = (url) => url || null;
 
 function adaptVariants(apiItem, localItem) {

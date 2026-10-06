@@ -196,7 +196,7 @@ export async function uploadImage(file, folder) {
 
 /**
  * Best-effort cleanup of images stored in our bucket. URLs that live
- * elsewhere (Cloudinary, /dishes/* site assets) are left alone.
+ * elsewhere (e.g. /dishes/* site assets) are left alone.
  */
 export async function removeImages(urls) {
   const paths = urls
@@ -207,8 +207,8 @@ export async function removeImages(urls) {
   if (error) console.warn('Image cleanup failed', error);
 }
 
-// Menu images may be absolute URLs (Supabase Storage, Cloudinary) or
-// customer-site assets (/dishes/...). Resolve accordingly.
+// Menu images may be absolute URLs (Supabase Storage) or customer-site
+// assets (/dishes/...). Resolve accordingly.
 export function resolveImageUrl(url) {
   if (!url) return null;
   if (/^https?:\/\//i.test(url)) return url;
