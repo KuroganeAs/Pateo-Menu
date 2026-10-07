@@ -12,24 +12,39 @@ export default {
         // touching component classes.
         primary: {
           DEFAULT: 'var(--color-primary)',
-          dark: 'var(--color-primary-dark)'
+          dark: 'var(--color-primary-dark)',
+          soft: 'var(--color-primary-soft)'
         },
+        'on-primary': 'var(--color-on-primary)',
         background: {
           DEFAULT: 'var(--color-background)',
           alt: 'var(--color-background-alt)'
         },
         surface: 'var(--color-surface)',
-        ink: 'var(--color-ink)',
-        muted: 'var(--color-muted)'
+        line: {
+          DEFAULT: 'var(--color-line)',
+          strong: 'var(--color-line-strong)'
+        },
+        ink: {
+          DEFAULT: 'var(--color-ink)',
+          2: 'var(--color-ink-2)'
+        },
+        muted: 'var(--color-muted)',
+        scrim: 'var(--color-scrim)'
       },
       fontFamily: {
+        sans: ['Geist', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
         display: ['Fraunces', 'Georgia', 'serif']
       },
       boxShadow: {
-        // Warm-tinted shadows instead of pure black
-        card: '0 4px 16px -4px rgba(46, 42, 38, 0.08)',
-        'card-hover': '0 12px 28px -8px rgba(46, 42, 38, 0.16)',
-        glow: '0px 10px 25px -5px rgba(24, 100, 176, 0.3)'
+        lift: 'var(--shadow-lift)',
+        poster: 'var(--shadow-poster)',
+        panel: 'var(--shadow-panel)'
+      },
+      transitionTimingFunction: {
+        // Mirrors src/lib/motion.js
+        out: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        in: 'cubic-bezier(0.4, 0, 1, 1)'
       }
     },
   },

@@ -5,26 +5,51 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Warm cream paper (light — the brand default) */
-  --color-primary: #1864B0;
-  --color-primary-dark: #0C48AB;
-  --color-background: #FAF7F2;
-  --color-background-alt: #F3EEE6;
-  --color-surface: #FFFDF9;
-  --color-ink: #2E2A26;
-  /* Keeps 4.5:1 on all three backgrounds, including background-alt */
-  --color-muted: #716861;
+  /* Warm paper (light — the brand default). Text pairs are checked against
+     --color-background: ink 16:1, ink-2 8:1, muted 5.6:1, primary 5.9:1. */
+  --color-primary: #1560A8;
+  --color-primary-dark: #0F4F8E;
+  --color-primary-soft: #E6EFF9;
+  --color-on-primary: #FFFFFF;
+  --color-background: #F8F5F0;
+  --color-background-alt: #F1ECE4;
+  --color-surface: #FFFFFF;
+  --color-line: #E2DACE;
+  --color-line-strong: #D2C8BA;
+  --color-ink: #1C1915;
+  --color-ink-2: #4F4842;
+  --color-muted: #6A6159;
+  --color-scrim: rgba(28, 25, 21, 0.3);
+  --shadow-lift: 0 16px 32px -20px rgba(28, 25, 21, 0.5);
+  --shadow-poster: 0 1px 2px rgba(28, 25, 21, 0.06), 0 18px 40px -18px rgba(28, 25, 21, 0.32);
+  --shadow-panel: -24px 0 60px -30px rgba(28, 25, 21, 0.45);
+  /* Dish photos have white backgrounds; dark mode tones them down */
+  --photo-filter: none;
+  --skeleton-shine: rgba(255, 255, 255, 0.6);
 }
 
 .dark {
-  /* Warm charcoal night mode — same brand, dimmed lights */
-  --color-primary: #4E95DC;
-  --color-primary-dark: #74ACE4;
-  --color-background: #171412;
-  --color-background-alt: #221E1A;
-  --color-surface: #1E1A17;
-  --color-ink: #EDE7DF;
-  --color-muted: #A69C92;
+  /* Warm charcoal rather than black, so the white-backed dish photos and
+     posters don't flash against the page. Checked against the background:
+     ink 14:1, ink-2 10.2:1, muted 6.9:1, primary 7.9:1. */
+  --color-primary: #80BCF6;
+  --color-primary-dark: #9DCBF8;
+  --color-primary-soft: #263E57;
+  --color-on-primary: #0B1824;
+  --color-background: #242220;
+  --color-background-alt: #37332F;
+  --color-surface: #2E2B28;
+  --color-line: #48433E;
+  --color-line-strong: #5A544D;
+  --color-ink: #F4F0EA;
+  --color-ink-2: #D6CEC4;
+  --color-muted: #B3AAA0;
+  --color-scrim: rgba(12, 11, 10, 0.45);
+  --shadow-lift: 0 16px 32px -18px rgba(0, 0, 0, 0.7);
+  --shadow-poster: 0 1px 2px rgba(0, 0, 0, 0.4), 0 22px 44px -18px rgba(0, 0, 0, 0.7);
+  --shadow-panel: -24px 0 60px -30px rgba(0, 0, 0, 0.65);
+  --photo-filter: brightness(0.94);
+  --skeleton-shine: rgba(255, 255, 255, 0.07);
   color-scheme: dark;
 }
 
@@ -40,14 +65,24 @@
   }
 }
 
-/* Barely-there paper grain over the cream background (inline SVG noise,
-   no image assets). Applied to the app root alongside bg-background. */
-.paper {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+.photo {
+  filter: var(--photo-filter);
 }
-/* Dark mode: light grain on the charcoal instead of dark grain */
-.dark .paper {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' fill='%23fff' opacity='0.05'/%3E%3C/svg%3E");
+
+/* Theme switch: the new theme spreads from the toggle as a circle (the
+   clip-path animation is started from ThemeContext). Without the reveal
+   class the browser's default crossfade runs, shortened. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 160ms;
+}
+html.theme-reveal::view-transition-old(root),
+html.theme-reveal::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html.theme-reveal::view-transition-new(root) {
+  z-index: 1;
 }
 
 /* Custom scrollbar hiding for the horizontal category nav */
@@ -59,7 +94,27 @@
   scrollbar-width: none;
 }
 
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+/* Loading placeholders (components/Skeleton.jsx): a soft band of light
+   sweeps across the page's tint colour. Transform only, so it stays smooth.
+   In the components layer so utilities (absolute, rounded-*) win. */
+@layer components {
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-background-alt);
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, var(--skeleton-shine), transparent);
+    animation: skeleton-sweep 1.4s ease-in-out infinite;
+  }
+}
+@keyframes skeleton-sweep {
+  to { transform: translateX(100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after { animation: none; opacity: 0; }
 }

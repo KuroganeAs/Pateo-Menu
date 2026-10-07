@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { ui } from '../data/strings';
-import { useViewport } from '../hooks/useViewport';
+import { DURATION, EASE_OUT } from '../lib/motion';
+import { cn } from '../lib/cn';
 import FadeText from './FadeText';
+import Skeleton from './Skeleton';
 import placeholderImg from '../assets/food-placeholder.svg';
 
 const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -19,7 +22,7 @@ const HighlightText = ({ text, highlight }) => {
     <>
       {parts.map((part, i) =>
         i % 2 === 1 ? (
-          <mark key={i} className="bg-primary/15 text-primary rounded px-0.5">{part}</mark>
+          <mark key={i} className="bg-primary-soft text-primary rounded px-0.5">{part}</mark>
         ) : (
           <span key={i}>{part}</span>
         )
@@ -28,9 +31,8 @@ const HighlightText = ({ text, highlight }) => {
   );
 };
 
-export default function MenuItemCard({ item, onClick, searchQuery }) {
+export default function MenuItemCard({ item, index = 0, onClick, searchQuery, isSelected = false }) {
   const { t } = useLanguage();
-  const { isDesktop } = useViewport();
   const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef(null);
 
@@ -74,17 +76,28 @@ export default function MenuItemCard({ item, onClick, searchQuery }) {
   };
 
   return (
-    <div
+    <motion.div
+      // Cards rise in as they scroll into view, a beat apart along each row
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '0px 0px -24px 0px' }}
+      transition={{ duration: DURATION.card, ease: EASE_OUT, delay: (index % 4) * 0.03 }}
       onClick={() => onClick(item)}
       onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
       data-menu-card
       aria-label={title}
-      className={`bg-surface rounded-2xl p-2 shadow-card cursor-pointer transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${isDesktop ? 'hover:-translate-y-1 hover:shadow-card-hover' : 'active:scale-95'}`}
+      className={cn(
+        'flex flex-col p-1.5 rounded-[14px] md:rounded-2xl bg-surface border cursor-pointer outline-none',
+        'transition-[translate,scale,box-shadow,border-color] duration-200 ease-out',
+        'hover:-translate-y-0.5 hover:border-line-strong hover:shadow-lift active:scale-[0.98]',
+        'focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        isSelected ? 'border-primary ring-1 ring-primary' : 'border-line'
+      )}
     >
-      {/* Dish image (branded Páteo paper until real photos arrive) */}
-      <div className="relative w-full aspect-square bg-background-alt rounded-xl overflow-hidden">
+      {/* Dish photo on a white plate (photos have white backgrounds) */}
+      <div className="relative w-full aspect-square bg-white rounded-[10px] md:rounded-[11px] overflow-hidden">
         {hasSlides ? (
           slides.map((variant, i) => (
             <img
@@ -94,7 +107,8 @@ export default function MenuItemCard({ item, onClick, searchQuery }) {
               alt=""
               loading="lazy"
               onLoad={i === 0 ? () => setIsLoaded(true) : undefined}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isLoaded && i === slideIdx ? 'opacity-100' : 'opacity-0'}`}
+              onError={i === 0 ? () => setIsLoaded(true) : undefined}
+              className={`photo absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isLoaded && i === slideIdx ? 'opacity-100' : 'opacity-0'}`}
             />
           ))
         ) : (
@@ -104,56 +118,52 @@ export default function MenuItemCard({ item, onClick, searchQuery }) {
             alt=""
             loading="lazy"
             onLoad={() => setIsLoaded(true)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            onError={() => setIsLoaded(true)}
+            className={`photo absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           />
         )}
-        {!isLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-100 via-stone-200 to-stone-100 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.5s_infinite]" />
-        )}
+        {/* Skeleton until the photo arrives; it fades in over it */}
+        {!isLoaded && <Skeleton className="absolute inset-0 rounded-none" />}
 
-        {/* Subtle dark inner edge — separates white-background photos from the card */}
-        <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-ink/10 shadow-[inset_0_1px_8px_rgba(46,42,38,0.07)] pointer-events-none z-10" aria-hidden="true" />
-
-        {/* Floating Price Badge — follows the visible slide. Fixed colors:
-            it overlays the photo, not the themed page, so it must not flip. */}
-        <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-md px-2 py-1 rounded-lg z-20 flex items-center">
-          <span className="text-white text-xs font-bold tabular-nums leading-none">
+        {/* Price badge — follows the visible slide. Fixed colours: it sits on
+            the photo, not the themed page, so it must not flip. */}
+        <div className="absolute top-1.5 left-1.5 md:top-2 md:left-2 z-20 px-[7px] md:px-2 py-1 rounded-[7px] bg-[rgba(28,25,21,0.86)]">
+          <span className="block text-white text-xs md:text-[13px] font-semibold tabular-nums leading-none">
             ${shownPrice.toFixed(2)}{item.variants && !hasSlides ? '+' : ''}
           </span>
         </div>
 
-        {/* Slide indicator dots */}
+        {/* Slide indicator */}
         {hasSlides && (
           <div className="absolute bottom-2 left-2 z-20 flex gap-1" aria-hidden="true">
             {slides.map((_, i) => (
               <div
                 key={i}
-                className={`h-1.5 rounded-full transition-all duration-300 ${i === slideIdx ? 'w-3 bg-primary' : 'w-1.5 bg-white/70'}`}
+                className={`h-1 rounded-full transition-[width,background-color] duration-300 ${i === slideIdx ? 'w-3 bg-[#1560A8]' : 'w-1.5 bg-[rgba(28,25,21,0.2)]'}`}
               />
             ))}
           </div>
         )}
 
-        {/* Variant count hint */}
+        {/* Variant count */}
         {item.variants?.length > 0 && (
-          <div className="absolute bottom-2 right-2 bg-white/85 backdrop-blur-sm px-2 py-1 rounded-full z-20 flex items-center justify-center">
-            <span className="text-[10px] font-semibold text-stone-800 tabular-nums leading-none">
+          <div className="absolute bottom-1.5 right-1.5 md:bottom-2 md:right-2 z-20 px-[7px] md:px-2 py-1 rounded-[7px] bg-white/95 shadow-[0_0_0_1px_rgba(28,25,21,0.08)]">
+            <span className="block text-[11px] md:text-xs font-semibold text-[#2A2622] tabular-nums leading-none">
               <FadeText>{item.variants.length} {t(ui.optionsLabel)}</FadeText>
             </span>
           </div>
         )}
       </div>
 
-      {/* Dish Details */}
-      <div className="pt-3 pb-2 px-1 flex flex-col h-[76px] justify-between">
-        <h3 className="font-display text-[15px] font-semibold text-ink leading-tight line-clamp-2">
+      {/* Dish details */}
+      <div className="flex flex-col gap-1 px-1 md:px-1.5 pt-2.5 md:pt-3 pb-1">
+        <h3 className="font-display text-[15px] md:text-[17px] font-semibold leading-tight line-clamp-2">
           <FadeText><HighlightText text={title} highlight={searchQuery} /></FadeText>
         </h3>
-
-        <p className="text-[12px] text-muted line-clamp-1 mt-1">
+        <p className="text-xs md:text-[13px] text-muted truncate">
           <FadeText>{desc}</FadeText>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
