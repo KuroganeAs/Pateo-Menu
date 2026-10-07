@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { useViewport } from '../hooks/useViewport';
-import { useFeedScroll } from '../hooks/useFeedScroll';
-import { ui } from '../data/strings';
+import React, { useEffect, useState } from 'react';
 import { Clock } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import { ui } from '../data/strings';
+import FadeText from './FadeText';
 import LanguageSwitch from './LanguageSwitch';
 import ThemeToggle from './ThemeToggle';
 import logo from '../assets/logo.png';
@@ -16,65 +14,93 @@ const getTimeOfDay = () => {
   return 'evening';
 };
 
-export default function Header({ shrinkOnScroll = false }) {
-  const { language, t } = useLanguage();
-  const { isDesktop } = useViewport();
-  const [timeStr, setTimeStr] = useState('');
-  const [timeOfDay, setTimeOfDay] = useState(getTimeOfDay);
-  const [isCompact, setIsCompact] = useState(false);
+const formatTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+function useClock() {
+  const [timeStr, setTimeStr] = useState(formatTime);
+  const [timeOfDay, setTimeOfDay] = useState(getTimeOfDay);
   useEffect(() => {
-    const updateClock = () => {
-      setTimeStr(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    const tick = () => {
+      setTimeStr(formatTime());
       setTimeOfDay(getTimeOfDay());
     };
-    updateClock();
-    const interval = setInterval(updateClock, 1000);
+    const interval = setInterval(tick, 10000);
     return () => clearInterval(interval);
   }, []);
+  return { timeStr, timeOfDay };
+}
 
-  // Shrink header as the user scrolls the feed (mobile/tablet)
-  const handleScroll = useCallback((container) => {
-    if (shrinkOnScroll) setIsCompact(container.scrollTop > 40);
-  }, [shrinkOnScroll]);
+// The logo tile doubles as the way back to this week's specials.
+function LogoButton({ onBack, size = 'w-10 h-10 md:w-12 md:h-12' }) {
+  const { t } = useLanguage();
+  return (
+    <button
+      onClick={onBack}
+      aria-label={t(ui.landing.promoHeading)}
+      title={t(ui.landing.promoHeading)}
+      className={`${size} shrink-0 rounded-xl bg-white border border-line flex items-center justify-center overflow-hidden transition-transform duration-150 ease-out active:scale-95`}
+    >
+      <img src={logo} alt="" className="w-[85%] h-[85%] object-contain" />
+    </button>
+  );
+}
 
-  useFeedScroll(handleScroll);
+// Top bar for phone and tablet portrait. `search` is placed inline between
+// the brand and the controls on tablet.
+export function MenuHeader({ onBack, search }) {
+  const { t } = useLanguage();
+  const { timeOfDay } = useClock();
 
   return (
-    <header className={`flex justify-between items-center px-4 transition-all duration-300 ${isCompact ? 'py-2' : 'py-4'}`}>
-      <div className="flex flex-col">
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={`${language}-${timeOfDay}`}
-            initial={{ opacity: 0, y: -5 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 5 }}
-            transition={{ duration: 0.2 }}
-            className="font-display text-base font-semibold text-ink"
-          >
-            {t(ui.greetings[timeOfDay])}
-          </motion.p>
-        </AnimatePresence>
-
-        {isDesktop && (
-          <div className="flex items-center gap-1.5 mt-1 text-xs text-muted font-medium">
-            <Clock size={12} />
-            <span className="tabular-nums">{timeStr}</span>
-          </div>
-        )}
-      </div>
-
-      <div className="flex items-center gap-4">
-        <ThemeToggle />
-
-        {/* Language Selector */}
-        <LanguageSwitch />
-
-        {/* Páteo Logo */}
-        <div className={`rounded-full bg-white shadow-card overflow-hidden shrink-0 flex items-center justify-center transition-all duration-300 ${isCompact ? 'w-8 h-8' : 'w-10 h-10'}`}>
-          <img src={logo} alt="Páteo" className="w-full h-full object-contain p-0.5" />
+    <header className="flex items-center gap-3 max-[379px]:gap-2 md:gap-4 px-5 pt-3.5 pb-2.5 md:px-10 md:pt-5 md:pb-0">
+      <div className="flex items-center gap-2.5 md:gap-3 min-w-0 md:shrink-0">
+        <LogoButton onBack={onBack} />
+        <div className="flex flex-col min-w-0">
+          <span className="text-xs md:text-[13px] font-medium text-muted truncate">
+            <FadeText>{t(ui.greetings[timeOfDay])}</FadeText>
+          </span>
+          <span className="font-display text-lg max-[379px]:text-[17px] md:text-[22px] font-semibold leading-tight tracking-[-0.01em] truncate">
+            <FadeText>{t(ui.menuTitle)}</FadeText>
+          </span>
         </div>
       </div>
+      {search && <div className="flex-1 min-w-0">{search}</div>}
+      <div className="ml-auto shrink-0 flex items-center gap-2 max-[379px]:gap-1.5 md:gap-2.5">
+        <ThemeToggle />
+        <LanguageSwitch />
+      </div>
     </header>
+  );
+}
+
+// Brand block at the top of the sidebar (tablet landscape and desktop).
+export function SidebarHeader({ onBack }) {
+  const { t } = useLanguage();
+  const { timeStr, timeOfDay } = useClock();
+  const greeting = t(ui.greetings[timeOfDay]).replace(/,\s*$/, '');
+
+  return (
+    <div className="flex items-center gap-3">
+      <LogoButton onBack={onBack} size="w-11 h-11" />
+      <div className="flex flex-col gap-0.5 min-w-0">
+        <span className="font-display text-[19px] font-semibold leading-tight tracking-[-0.01em] truncate">
+          <FadeText>{greeting}</FadeText>
+        </span>
+        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted tabular-nums">
+          <Clock size={12} strokeWidth={2.2} />
+          {timeStr}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// Theme + language, pinned to the bottom of the sidebar.
+export function SidebarControls() {
+  return (
+    <div className="flex items-center justify-between gap-2 pt-4 border-t border-line">
+      <ThemeToggle />
+      <LanguageSwitch />
+    </div>
   );
 }

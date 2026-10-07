@@ -1,51 +1,139 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SOCIALS } from '../data/socials';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { usePromos } from '../hooks/usePromos';
-import { useLanguage } from '../context/LanguageContext';
-import { ui } from '../data/strings';
-import FadeText from './FadeText';
+import { DURATION, EASE_OUT, prefersReducedMotion } from '../lib/motion';
+import { cn } from '../lib/cn';
+import Skeleton from './Skeleton';
 
 const ADVANCE_MS = 5000;
 
-// Inline Facebook mark (lucide 1.x ships no brand icons; inline SVGs are
-// already the pattern here — see the flags in LanguageSwitch)
-const FacebookIcon = (
-  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
-    <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.79-3.91 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.57v1.88h2.78l-.45 2.9h-2.33V22c4.78-.75 8.44-4.9 8.44-9.94Z" />
-  </svg>
-);
-
-// Square deck carousel: the active poster sits front and center at 1:1,
-// while its neighbours peek out from behind on the left and right, slightly
-// scaled down and out of focus. Sized to fill as much of the screen as the
-// viewport allows while leaving room for the peeks.
-const CARD_SIZE = 'min(84vw, 56vh, 520px)';
-
-// Visual slot for a slide, keyed by its position relative to the active one.
-const SLOTS = {
-  front: { x: '0%', scale: 1, filter: 'blur(0px) brightness(1)', opacity: 1, zIndex: 3 },
-  right: { x: '58%', scale: 0.82, filter: 'blur(3px) brightness(0.92)', opacity: 1, zIndex: 1 },
-  left: { x: '-58%', scale: 0.82, filter: 'blur(3px) brightness(0.92)', opacity: 1, zIndex: 1 },
-  hidden: { x: '0%', scale: 0.7, filter: 'blur(6px) brightness(0.9)', opacity: 0, zIndex: 0 }
+// Two deck styles share one carousel:
+// - 'center' (phone, tablet): the active poster sits front and centre, its
+//   neighbours peek out on both sides, dimmed.
+// - 'stack' (desktop): the next posters fan out behind the active one to the
+//   right; the old poster slides off to the left as the next comes forward.
+const LAYOUTS = {
+  center: {
+    card: 'w-[min(78vw,46vh,340px)] md:w-[min(62vw,46vh,520px)]',
+    stage: 'h-[min(78vw,46vh,340px)] md:h-[min(62vw,46vh,520px)] justify-center overflow-x-clip',
+    slots: {
+      front: { x: '0%', scale: 1, filter: 'brightness(1) saturate(1)', opacity: 1, zIndex: 3 },
+      next: { x: '84%', scale: 0.84, filter: 'brightness(0.86) saturate(0.9)', opacity: 1, zIndex: 1 },
+      prev: { x: '-84%', scale: 0.84, filter: 'brightness(0.86) saturate(0.9)', opacity: 1, zIndex: 1 },
+      hidden: { x: '0%', scale: 0.7, filter: 'brightness(0.86) saturate(0.9)', opacity: 0, zIndex: 0 }
+    }
+  },
+  stack: {
+    card: 'w-[min(38vw,60vh,540px)]',
+    stage: 'h-[min(38vw,60vh,540px)] justify-start',
+    slots: {
+      front: { x: '0%', scale: 1, filter: 'brightness(1) saturate(1)', opacity: 1, zIndex: 3 },
+      next: { x: '22%', scale: 0.85, filter: 'brightness(0.9) saturate(0.95)', opacity: 1, zIndex: 2 },
+      after: { x: '42%', scale: 0.7, filter: 'brightness(0.82) saturate(0.9)', opacity: 1, zIndex: 1 },
+      prev: { x: '-24%', scale: 0.96, filter: 'brightness(1) saturate(1)', opacity: 0, zIndex: 4 },
+      hidden: { x: '56%', scale: 0.55, filter: 'brightness(0.8) saturate(0.9)', opacity: 0, zIndex: 0 }
+    }
+  }
 };
 
-const slotFor = (i, idx, count) => {
+const slotFor = (i, idx, count, variant) => {
   const rel = (((i - idx) % count) + count) % count;
   if (rel === 0) return 'front';
-  if (rel === 1) return 'right';
-  if (rel === count - 1 && count > 2) return 'left';
+  if (rel === 1) return 'next';
+  if (variant === 'stack' && rel === 2 && count > 3) return 'after';
+  if (rel === count - 1 && count > 2) return 'prev';
   return 'hidden';
 };
 
-export default function PromoCarousel() {
-  const { t } = useLanguage();
-  const promos = usePromos();
-  const [idx, setIdx] = useState(0);
-  // Bumped on every manual swipe so the auto-advance interval restarts,
-  // instead of snatching the slide away right after the user picked it.
-  const [interactionCount, setInteractionCount] = useState(0);
+const cardShape = 'absolute aspect-square rounded-[18px] md:rounded-[22px]';
 
+// The deck's shape while the posters load: a front card with its neighbours
+// in the same slots the real posters will take, plus the progress row.
+function DeckSkeleton({ variant }) {
+  const layout = LAYOUTS[variant];
+  const behind = variant === 'center'
+    ? [layout.slots.prev, layout.slots.next]
+    : [layout.slots.after, layout.slots.next];
+
+  return (
+    <div role="status" aria-busy="true">
+      <span className="sr-only">Loading this week's specials…</span>
+      <div className={cn('relative w-full flex items-center', layout.stage)}>
+        {behind.map((slot, i) => (
+          <Skeleton
+            key={i}
+            className={cn(cardShape, layout.card, 'opacity-60')}
+            style={{ transform: `translateX(${slot.x}) scale(${slot.scale})`, zIndex: slot.zIndex }}
+          />
+        ))}
+        <Skeleton className={cn(cardShape, layout.card)} style={{ zIndex: 3 }} />
+      </div>
+      <div className={cn('flex items-center justify-between gap-4 mt-3.5 md:mt-4', layout.card, variant === 'center' && 'mx-auto')} aria-hidden="true">
+        <div className="flex items-center gap-3.5">
+          <Skeleton className="h-1 w-24 rounded-full" />
+          <Skeleton className="h-3 w-8 rounded" />
+        </div>
+        <div className="hidden md:flex gap-2">
+          <Skeleton className="w-11 h-11 rounded-xl" />
+          <Skeleton className="w-11 h-11 rounded-xl" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// A poster that shows a skeleton until its image has arrived, then fades in.
+function PosterImage({ src, alt, eager }) {
+  const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef(null);
+
+  // A cached image can finish before React attaches onLoad
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current.naturalWidth) setLoaded(true);
+  }, []);
+
+  return (
+    <>
+      {!loaded && <Skeleton className="absolute inset-0 rounded-none" />}
+      <img
+        ref={imgRef}
+        src={src}
+        alt={alt}
+        draggable={false}
+        loading={eager ? 'eager' : 'lazy'}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        className={cn(
+          'absolute inset-0 w-full h-full object-cover select-none transition-opacity duration-300 ease-out',
+          loaded ? 'opacity-100' : 'opacity-0'
+        )}
+      />
+    </>
+  );
+}
+
+function ArrowButton({ label, onClick, children }) {
+  return (
+    <button
+      onClick={onClick}
+      aria-label={label}
+      className="w-11 h-11 rounded-xl border border-line bg-surface text-ink flex items-center justify-center transition-[transform,background-color] duration-150 ease-out hover:bg-background-alt active:scale-95"
+    >
+      {children}
+    </button>
+  );
+}
+
+export default function PromoCarousel({ variant = 'center', className }) {
+  const { promos, isLoading } = usePromos();
+  const [idx, setIdx] = useState(0);
+  // Bumped on every manual change so the auto-advance timer (and its progress
+  // bar) restarts instead of snatching the slide away right after a pick.
+  const [interactionCount, setInteractionCount] = useState(0);
+  const [autoplay] = useState(() => !prefersReducedMotion());
+
+  const layout = LAYOUTS[variant];
   const count = promos.length;
   const hasSlides = count > 1;
 
@@ -55,11 +143,10 @@ export default function PromoCarousel() {
   }, [promos]);
 
   useEffect(() => {
-    if (!hasSlides) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!hasSlides || !autoplay || isLoading) return;
     const id = setInterval(() => setIdx((i) => (i + 1) % count), ADVANCE_MS);
     return () => clearInterval(id);
-  }, [hasSlides, count, interactionCount]);
+  }, [hasSlides, autoplay, isLoading, count, interactionCount]);
 
   const go = (dir) => {
     setIdx((i) => (i + dir + count) % count);
@@ -68,48 +155,58 @@ export default function PromoCarousel() {
 
   const activeCaption = promos[idx]?.caption || '';
 
+  if (isLoading) {
+    return (
+      <div className={cn('w-full', className)}>
+        <DeckSkeleton variant={variant} />
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full">
-      <div
-        className="relative w-full overflow-hidden flex items-center justify-center"
-        style={{ height: CARD_SIZE }}
-      >
+    <div className={cn('w-full', className)}>
+      <div className={cn('relative w-full flex items-center', layout.stage)}>
         {promos.map((promo, i) => {
-          const slot = slotFor(i, idx, count);
+          const slot = slotFor(i, idx, count, variant);
           const isFront = slot === 'front';
           return (
             <motion.div
               key={`${promo.src}-${i}`}
-              animate={SLOTS[slot]}
+              animate={layout.slots[slot]}
               initial={false}
-              transition={{ duration: 0.55, ease: [0.65, 0, 0.35, 1] }}
+              transition={{ duration: DURATION.poster, ease: EASE_OUT }}
               onClick={() => {
-                if (slot === 'right') go(1);
-                else if (slot === 'left') go(-1);
+                if (slot === 'next' || slot === 'after') go(1);
+                else if (slot === 'prev') go(-1);
               }}
-              className={`absolute aspect-square rounded-3xl overflow-hidden shadow-card-hover bg-background-alt ${isFront ? '' : 'cursor-pointer'}`}
-              style={{ width: CARD_SIZE, pointerEvents: slot === 'hidden' ? 'none' : 'auto' }}
+              className={cn(
+                'absolute aspect-square rounded-[18px] md:rounded-[22px] overflow-hidden bg-background-alt',
+                isFront ? 'shadow-poster' : 'cursor-pointer',
+                layout.card
+              )}
+              style={{ pointerEvents: slot === 'hidden' || (variant === 'stack' && slot === 'prev') ? 'none' : 'auto' }}
+              aria-hidden={!isFront}
             >
-              <img
+              <PosterImage
+                key={promo.src}
                 src={promo.src}
-                alt={promo.caption}
-                draggable={false}
-                loading={i < 3 ? 'eager' : 'lazy'}
-                className="absolute inset-0 w-full h-full object-cover select-none"
+                alt={isFront ? promo.caption || `Weekly special, poster ${i + 1} of ${count}` : ''}
+                eager={i < 3}
               />
-              <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-ink/10 pointer-events-none" aria-hidden="true" />
+              <div className="absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-line pointer-events-none" aria-hidden="true" />
 
-              {/* Swipe layer only on the front card */}
+              {/* Swipe layer only on the front card: it follows the finger a
+                  little, then the deck takes over */}
               {isFront && hasSlides && (
                 <motion.div
                   className="absolute inset-0 cursor-grab active:cursor-grabbing touch-pan-y"
                   drag="x"
                   dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.15}
+                  dragElastic={0.35}
                   dragMomentum={false}
                   onDragEnd={(e, info) => {
-                    if (info.offset.x < -60 || info.velocity.x < -400) go(1);
-                    else if (info.offset.x > 60 || info.velocity.x > 400) go(-1);
+                    if (info.offset.x < -50 || info.velocity.x < -400) go(1);
+                    else if (info.offset.x > 50 || info.velocity.x > 400) go(-1);
                   }}
                 />
               )}
@@ -118,46 +215,62 @@ export default function PromoCarousel() {
         })}
       </div>
 
-      {/* Caption of the active poster, swapped in step with the deck */}
-      <div className="min-h-[1.5rem] mt-4">
-        <AnimatePresence mode="wait">
-          {activeCaption && (
-            <motion.p
-              key={idx}
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.25 }}
-              className="text-center text-sm text-ink font-medium px-6 max-w-md mx-auto"
-            >
-              {activeCaption}
-            </motion.p>
-          )}
-        </AnimatePresence>
-      </div>
-
       {hasSlides && (
-        <div className="flex justify-center gap-1.5 mt-3" aria-hidden="true">
-          {promos.map((_, i) => (
-            <div
-              key={i}
-              className={`h-2 rounded-full transition-all duration-300 ${i === idx ? 'w-4 bg-primary' : 'w-2 bg-stone-300 dark:bg-stone-600'}`}
-            />
-          ))}
+        <div className={cn('flex items-center justify-between gap-4 mt-3.5 md:mt-4', layout.card, variant === 'center' && 'mx-auto')}>
+          <div className="flex items-center gap-3.5">
+            {/* Progress: the active bar fills until the next poster */}
+            <div className="flex items-center gap-1" aria-hidden="true">
+              {promos.map((_, i) => (
+                <span
+                  key={i}
+                  className={cn(
+                    'relative h-1 rounded-full overflow-hidden bg-line transition-[width] duration-300 ease-out',
+                    i === idx ? 'w-7' : 'w-2.5'
+                  )}
+                >
+                  {i === idx && (
+                    <motion.span
+                      key={`${idx}-${interactionCount}`}
+                      className="absolute inset-0 bg-primary origin-left"
+                      initial={{ scaleX: autoplay ? 0 : 1 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: autoplay ? ADVANCE_MS / 1000 : 0, ease: 'linear' }}
+                    />
+                  )}
+                </span>
+              ))}
+            </div>
+            <span className="text-xs md:text-[13px] font-medium text-muted tabular-nums">
+              {idx + 1} / {count}
+            </span>
+          </div>
+
+          <div className="hidden md:flex gap-2">
+            <ArrowButton label="Previous poster" onClick={() => go(-1)}>
+              <ChevronLeft size={18} strokeWidth={2.2} />
+            </ArrowButton>
+            <ArrowButton label="Next poster" onClick={() => go(1)}>
+              <ChevronRight size={18} strokeWidth={2.2} />
+            </ArrowButton>
+          </div>
         </div>
       )}
 
-      {SOCIALS.facebook && (
-        <div className="flex justify-center mt-4">
-          <a
-            href={SOCIALS.facebook}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
-          >
-            {FacebookIcon}
-            <FadeText>{t(ui.landing.followFacebook)}</FadeText>
-          </a>
+      {/* Caption of the active poster, swapped in step with the deck */}
+      {activeCaption && (
+        <div className={cn('mt-3', layout.card, variant === 'center' && 'mx-auto')}>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.p
+              key={idx}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: DURATION.text }}
+              className={cn('text-sm text-ink-2 font-medium', variant === 'center' && 'text-center')}
+            >
+              {activeCaption}
+            </motion.p>
+          </AnimatePresence>
         </div>
       )}
     </div>

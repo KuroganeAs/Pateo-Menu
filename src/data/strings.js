@@ -15,8 +15,10 @@ export const ui = {
   },
   selectOption: { en: 'Select Option', pt: 'Escolha a Opção', tet: 'Hili Opsaun' },
   optionsLabel: { en: 'options', pt: 'opções', tet: 'opsaun' },
+  menuTitle: { en: 'Páteo menu', pt: 'Menu Páteo', tet: 'Menu Páteo' },
+  categoriesLabel: { en: 'Categories', pt: 'Categorias', tet: 'Kategoria' },
   landing: {
-    welcome: { en: 'Welcome to Páteo', pt: 'Bem-vindo ao Páteo', tet: 'Bem-vindo ao Páteo' },
+    welcomeTo: { en: 'Welcome to', pt: 'Bem-vindo ao', tet: 'Bem-vindo ao' },
     promoHeading: { en: "This Week's Specials", pt: 'Especiais da Semana', tet: "Espesiál Semana Ne'e" },
     promoSubheading: {
       en: 'Fresh picks from our team, updated every week.',
