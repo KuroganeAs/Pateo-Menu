@@ -5,6 +5,7 @@ import { usePromos } from '../hooks/usePromos';
 import { DURATION, EASE_OUT, prefersReducedMotion } from '../lib/motion';
 import { cn } from '../lib/cn';
 import Skeleton from './Skeleton';
+import FadeText from './FadeText';
 
 const ADVANCE_MS = 5000;
 
@@ -241,7 +242,7 @@ export default function PromoCarousel({ variant = 'center', className }) {
               ))}
             </div>
             <span className="text-xs md:text-[13px] font-medium text-muted tabular-nums">
-              {idx + 1} / {count}
+              <FadeText>{idx + 1} / {count}</FadeText>
             </span>
           </div>
 
@@ -268,7 +269,7 @@ export default function PromoCarousel({ variant = 'center', className }) {
               transition={{ duration: DURATION.text }}
               className={cn('text-sm text-ink-2 font-medium', variant === 'center' && 'text-center')}
             >
-              {activeCaption}
+              <FadeText>{activeCaption}</FadeText>
             </motion.p>
           </AnimatePresence>
         </div>

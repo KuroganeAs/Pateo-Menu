@@ -129,7 +129,7 @@ export default function MenuItemCard({ item, index = 0, onClick, searchQuery, is
             the photo, not the themed page, so it must not flip. */}
         <div className="absolute top-1.5 left-1.5 md:top-2 md:left-2 z-20 px-[7px] md:px-2 py-1 rounded-[7px] bg-[rgba(28,25,21,0.86)]">
           <span className="block text-white text-xs md:text-[13px] font-semibold tabular-nums leading-none">
-            ${shownPrice.toFixed(2)}{item.variants && !hasSlides ? '+' : ''}
+            <FadeText>${shownPrice.toFixed(2)}{item.variants && !hasSlides ? '+' : ''}</FadeText>
           </span>
         </div>
 
