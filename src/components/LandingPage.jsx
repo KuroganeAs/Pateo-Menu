@@ -41,7 +41,7 @@ function Brand() {
         <span className="text-xs md:text-[13px] font-medium text-muted truncate">
           <FadeText>{t(ui.landing.welcomeTo)}</FadeText>
         </span>
-        <span className="font-display text-lg md:text-[22px] lg:text-xl font-semibold leading-tight tracking-[-0.01em]">Páteo</span>
+        <span className="font-display text-lg md:text-[22px] lg:text-xl font-semibold leading-tight tracking-[-0.01em]"><FadeText>Páteo</FadeText></span>
       </div>
     </div>
   );
@@ -124,7 +124,7 @@ function DesktopLanding({ onEnterMenu, ready }) {
             <div className="flex flex-col gap-3.5">
               <span className="inline-flex items-center gap-2 text-[13px] font-semibold tracking-[0.06em] uppercase text-primary">
                 <span className="w-[18px] h-0.5 rounded-full bg-primary" aria-hidden="true" />
-                Páteo Supermercado
+                <FadeText>Páteo Supermercado</FadeText>
               </span>
               <Heading titleClass="text-[clamp(48px,4.8vw,68px)] leading-[1.02] tracking-[-0.03em]" />
             </div>
@@ -169,14 +169,14 @@ function StackedLanding({ onEnterMenu, ready }) {
             <div className="flex flex-col items-center gap-2">
               <SocialFooter showName={false} />
               {/* Tablet shows the store name in the bottom bar instead */}
-              <p className="md:hidden text-xs text-muted">Páteo Supermercado</p>
+              <p className="md:hidden text-xs text-muted"><FadeText>Páteo Supermercado</FadeText></p>
             </div>
           </motion.div>
         </motion.div>
       </div>
 
       <div className="shrink-0 border-t border-line bg-background px-5 pt-3.5 pb-[max(1.25rem,env(safe-area-inset-bottom))] md:flex md:items-center md:justify-between md:gap-6 md:px-10 md:pt-5 md:pb-[max(2rem,env(safe-area-inset-bottom))]">
-        <span className="hidden md:block text-sm font-semibold">Páteo Supermercado</span>
+        <span className="hidden md:block text-sm font-semibold"><FadeText>Páteo Supermercado</FadeText></span>
         <ViewMenuButton onClick={onEnterMenu} className="w-full md:w-80" />
       </div>
     </div>

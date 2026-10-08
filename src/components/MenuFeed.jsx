@@ -174,7 +174,7 @@ export default function MenuFeed({ onActiveCategoryChange, onItemSelect, searchQ
                   <FadeText>{t(cat.title)}</FadeText>
                 </h2>
                 <span className="flex-1 h-px bg-line" aria-hidden="true" />
-                <span className="text-[13px] md:text-sm text-muted tabular-nums shrink-0">{catItems.length}</span>
+                <span className="text-[13px] md:text-sm text-muted tabular-nums shrink-0"><FadeText>{catItems.length}</FadeText></span>
               </div>
 
               {/* Category small print (e.g. Barista takeaway surcharge) */}

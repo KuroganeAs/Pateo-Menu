@@ -167,7 +167,7 @@ export default function DishDetailModal({ item, onClose }) {
         <div className="flex items-center gap-2">
           {isDesktop && (
             <kbd className="h-6 px-[7px] inline-flex items-center rounded-md border border-line bg-background text-muted text-[11px] font-semibold font-sans" aria-hidden="true">
-              Esc
+              <FadeText>Esc</FadeText>
             </kbd>
           )}
           <button
@@ -236,7 +236,7 @@ export default function DishDetailModal({ item, onClose }) {
                 />
               ))}
             </div>
-            <span className="text-xs font-medium text-muted tabular-nums">{safeVariantIdx + 1} / {variantCount}</span>
+            <span className="text-xs font-medium text-muted tabular-nums"><FadeText>{safeVariantIdx + 1} / {variantCount}</FadeText></span>
           </div>
         )}
 
@@ -253,7 +253,7 @@ export default function DishDetailModal({ item, onClose }) {
             )}
           </div>
           <div className="flex flex-col items-end gap-0.5 shrink-0 pt-0.5">
-            <span className="text-2xl lg:text-[26px] font-semibold tracking-[-0.01em] tabular-nums">${price.toFixed(2)}</span>
+            <span className="text-2xl lg:text-[26px] font-semibold tracking-[-0.01em] tabular-nums"><FadeText>${price.toFixed(2)}</FadeText></span>
             {selectedVariant && (
               <span className="text-xs text-muted text-right max-w-32"><FadeText>{t(selectedVariant.name)}</FadeText></span>
             )}
@@ -297,7 +297,7 @@ export default function DishDetailModal({ item, onClose }) {
                   >
                     <span className="text-sm font-medium leading-snug text-ink"><FadeText>{t(variant.name)}</FadeText></span>
                     <span className={cn('text-[13px] font-semibold tabular-nums shrink-0', isActive ? 'text-primary' : 'text-muted')}>
-                      ${variant.price.toFixed(2)}
+                      <FadeText>${variant.price.toFixed(2)}</FadeText>
                     </span>
                   </button>
                 );

@@ -88,7 +88,7 @@ export function SidebarHeader({ onBack }) {
         </span>
         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted tabular-nums">
           <Clock size={12} strokeWidth={2.2} />
-          {timeStr}
+          <FadeText>{timeStr}</FadeText>
         </span>
       </div>
     </div>

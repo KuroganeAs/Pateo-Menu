@@ -104,7 +104,7 @@ export default function CategoryNav({ activeCategoryId, onCategorySelect, isVert
               )}
               <span className="relative"><FadeText>{t(cat.title)}</FadeText></span>
               <span className={cn('relative text-xs font-semibold tabular-nums', isActive ? 'text-primary' : 'text-muted')}>
-                {counts[cat.id] || 0}
+                <FadeText>{counts[cat.id] || 0}</FadeText>
               </span>
             </button>
           );
@@ -155,7 +155,7 @@ export default function CategoryNav({ activeCategoryId, onCategorySelect, isVert
                 isActive ? 'min-w-5 px-1.5 py-0.5 rounded-md text-center bg-white/20 dark:bg-black/15' : 'text-muted'
               )}
             >
-              {counts[cat.id] || 0}
+              <FadeText>{counts[cat.id] || 0}</FadeText>
             </span>
           </button>
         );
