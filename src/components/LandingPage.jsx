@@ -103,11 +103,16 @@ function Heading({ className, titleClass }) {
   );
 }
 
-// Desktop: text and the call to action on the left, the poster deck fanned
-// out on the right, socials in a thin strip along the bottom.
+// The poster ring sizes itself from the page width, so the scrollbar's space
+// is always reserved: if it came and went, the ring would resize, which could
+// bring the scrollbar back, over and over.
+const scrollArea = 'overflow-y-auto overflow-x-hidden [scrollbar-gutter:stable]';
+
+// Desktop: text and the call to action on the left, the poster ring on the
+// right, socials in a thin strip along the bottom.
 function DesktopLanding({ onEnterMenu, ready }) {
   return (
-    <div className="w-full h-full overflow-y-auto overflow-x-hidden bg-background">
+    <div className={cn('w-full h-full bg-background', scrollArea)}>
       <div className="min-h-full flex flex-col min-h-[640px]">
         <header className="h-[84px] shrink-0 flex items-center justify-between px-16">
           <Brand />
@@ -131,7 +136,7 @@ function DesktopLanding({ onEnterMenu, ready }) {
             <ViewMenuButton onClick={onEnterMenu} className="self-start px-7" />
           </motion.div>
           <motion.div variants={block}>
-            <PromoCarousel variant="stack" />
+            <PromoCarousel />
           </motion.div>
         </motion.main>
 
@@ -149,7 +154,7 @@ function DesktopLanding({ onEnterMenu, ready }) {
 function StackedLanding({ onEnterMenu, ready }) {
   return (
     <div className="w-full h-full flex flex-col bg-background">
-      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+      <div className={cn('flex-1 min-h-0', scrollArea)}>
         <header className="flex items-center justify-between gap-3 px-5 pt-3.5 md:px-10 md:pt-6">
           <Brand />
           <Controls />
@@ -161,7 +166,7 @@ function StackedLanding({ onEnterMenu, ready }) {
           </motion.div>
 
           <motion.div variants={block} className="mt-5 md:mt-8">
-            <PromoCarousel variant="center" />
+            <PromoCarousel />
           </motion.div>
 
           <motion.div variants={block} className="flex flex-col items-center gap-5 pt-5 md:pt-10 px-5">
