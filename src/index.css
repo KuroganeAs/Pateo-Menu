@@ -118,3 +118,8 @@ html.theme-reveal::view-transition-new(root) {
 @media (prefers-reduced-motion: reduce) {
   .skeleton::after { animation: none; opacity: 0; }
 }
+
+/* Promo carousel: the active dot fills up until the ring turns */
+@keyframes promo-progress {
+  from { transform: scaleX(0); }
+}
