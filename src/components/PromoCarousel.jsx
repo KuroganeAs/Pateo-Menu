@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { usePromos } from '../hooks/usePromos';
 import { useViewport } from '../hooks/useViewport';
+import { useLanguage } from '../context/LanguageContext';
 import { DURATION, prefersReducedMotion } from '../lib/motion';
 import { cn } from '../lib/cn';
 import Skeleton from './Skeleton';
@@ -179,7 +180,8 @@ export default function PromoCarousel({ className }) {
   const mode = isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop';
   const count = promos.length;
   const hasSlides = count > 1;
-  const captioned = promos.some((p) => p.caption);
+  const { t } = useLanguage();
+  const captioned = promos.some((p) => Object.values(p.caption).some(Boolean));
 
   const [reduced] = useState(prefersReducedMotion);
   const [geo, setGeo] = useState(null);
@@ -431,7 +433,7 @@ export default function PromoCarousel({ className }) {
                   transition={{ duration: DURATION.text }}
                   className="text-sm md:text-[15px] leading-snug font-medium text-ink text-center line-clamp-2 break-words"
                 >
-                  <FadeText>{promos[idx]?.caption}</FadeText>
+                  <FadeText>{t(promos[idx]?.caption)}</FadeText>
                 </motion.p>
               </AnimatePresence>
             </div>

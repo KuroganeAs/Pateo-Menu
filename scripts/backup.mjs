@@ -33,7 +33,7 @@ const TABLES = {
   ],
   modifier_groups: ['id', 'menu_item_id', 'name', 'selection_type', 'required'],
   modifier_options: ['id', 'group_id', 'name', 'name_pt', 'name_tet', 'price_delta'],
-  promos: ['id', 'image_url', 'caption', 'display_order', 'is_active', 'created_at'],
+  promos: ['id', 'image_url', 'caption', 'caption_pt', 'caption_tet', 'display_order', 'is_active', 'created_at'],
 };
 
 async function readTable(table, columns) {

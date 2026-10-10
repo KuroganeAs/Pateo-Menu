@@ -27,11 +27,11 @@ const detected = Object.keys(imageModules)
   .sort((a, b) => orderOf(a) - orderOf(b) || a.localeCompare(b))
   .map((path) => ({
     src: imageModules[path],
-    caption: captions[baseName(path)] || ''
+    caption: { en: captions[baseName(path)] || '' }
   }));
 
 // Empty folder still renders a presentable carousel, matching the usual
 // weekly batch of 7 posters
 export const promos = detected.length
   ? detected
-  : Array.from({ length: 7 }, () => ({ src: placeholderImg, caption: '' }));
+  : Array.from({ length: 7 }, () => ({ src: placeholderImg, caption: { en: '' } }));

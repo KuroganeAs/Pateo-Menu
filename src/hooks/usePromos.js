@@ -26,7 +26,8 @@ export function usePromos() {
         setState({
           promos: res.data.map((p) => ({
             src: p.image_url,
-            caption: p.caption || '',
+            // t() shows English for a language left empty
+            caption: { en: p.caption || '', pt: p.caption_pt || '', tet: p.caption_tet || '' },
           })),
           isLoading: false,
         });

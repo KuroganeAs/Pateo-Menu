@@ -140,8 +140,11 @@ export async function listPromos() {
   );
 }
 
-/** Uploads the poster and adds it to the end of the carousel. */
-export async function createPromo(file, caption) {
+/**
+ * Uploads the poster and adds it to the end of the carousel. `captions` holds
+ * any of caption / caption_pt / caption_tet.
+ */
+export async function createPromo(file, captions = {}) {
   const imageUrl = await uploadImage(file, 'promos');
   try {
     const last = unwrap(
@@ -157,7 +160,7 @@ export async function createPromo(file, caption) {
         .from('promos')
         .insert({
           image_url: imageUrl,
-          caption: caption || null,
+          ...captions,
           display_order: last ? last.display_order + 1 : 0,
           is_active: true,
         })

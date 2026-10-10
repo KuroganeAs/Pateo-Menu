@@ -1,17 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Plus, Trash2, X, Upload } from 'lucide-react';
 import { saveItem, uploadImage, removeImages, resolveImageUrl } from '../lib/api';
+import LanguageTabs from './LanguageTabs';
 
 const emptyGroup = () => ({ name: '', selection_type: 'single', required: false, options: [emptyOption()] });
 const emptyOption = () => ({ name: '', name_pt: '', name_tet: '', price_delta: 0 });
-
-// Language tabs: '' edits the canonical English fields; the suffixes edit the
-// optional translations (empty = customers see English for that language).
-const LANGS = [
-  { suffix: '', label: 'English' },
-  { suffix: '_pt', label: 'Português' },
-  { suffix: '_tet', label: 'Tetun' },
-];
 
 export default function ItemEditor({ item, categoryId, categories, onClose, onSaved }) {
   const isNew = !item;
@@ -156,22 +149,7 @@ export default function ItemEditor({ item, categoryId, categories, onClose, onSa
           {/* Core fields */}
           <div className="flex-1 grid grid-cols-2 gap-3">
             {/* Language tabs: which language the name/description/option fields edit */}
-            <div className="col-span-2 flex items-center gap-1 bg-background-alt rounded-xl p-1 w-fit">
-              {LANGS.map(({ suffix, label }) => (
-                <button
-                  key={suffix}
-                  onClick={() => setLang(suffix)}
-                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors ${
-                    lang === suffix ? 'bg-white shadow-card text-ink' : 'text-muted hover:text-ink'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-              {lang !== '' && (
-                <span className="text-[10px] text-muted px-2">empty = English shown</span>
-              )}
-            </div>
+            <LanguageTabs value={lang} onChange={setLang} className="col-span-2" />
             <label className="col-span-2 block">
               <span className="text-xs font-semibold text-muted">Name</span>
               <input

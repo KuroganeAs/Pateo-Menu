@@ -1,15 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Upload, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
 import { listPromos, createPromo, updatePromo, deletePromo, resolveImageUrl } from '../lib/api';
+import LanguageTabs from '../components/LanguageTabs';
 
 // Weekly promo posters shown in the customer site's landing carousel.
 // Upload the week's images (square looks best) — several at once via the
 // picker or drag & drop — optionally caption them, order them, and
 // toggle/delete old ones. Posters can be multi-selected for bulk deletion.
+// Captions work like the menu: pick a language, then write the caption in it.
 export default function Promo() {
   const [promos, setPromos] = useState(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [lang, setLang] = useState(''); // '' = English, '_pt', '_tet': which caption the boxes edit
   const [newCaption, setNewCaption] = useState('');
   const [progress, setProgress] = useState(null); // { verb, done, total } during bulk work
   const [selected, setSelected] = useState(() => new Set()); // promo ids marked for bulk delete
@@ -52,7 +55,7 @@ export default function Promo() {
       for (let i = 0; i < files.length; i++) {
         setProgress({ verb: 'Uploading', done: i, total: files.length });
         try {
-          await createPromo(files[i], newCaption.trim());
+          await createPromo(files[i], { [`caption${lang}`]: newCaption.trim() || null });
         } catch (e) {
           failures.push(`${files[i].name}: ${e.message}`);
         }
@@ -96,9 +99,10 @@ export default function Promo() {
   };
 
   const saveCaption = (promo, caption) => {
+    const field = `caption${lang}`;
     const next = caption.trim() || null;
-    if (next === (promo.caption ?? null)) return;
-    run(() => updatePromo(promo.id, { caption: next }));
+    if (next === (promo[field] ?? null)) return;
+    run(() => updatePromo(promo.id, { [field]: next }));
   };
 
   const toggleActive = (promo) =>
@@ -134,8 +138,13 @@ export default function Promo() {
         <h2 className="text-2xl font-bold">Weekly promos</h2>
         <p className="text-sm text-muted">
           The posters shown in the customer site's carousel, in this order. Square (1:1)
-          images look best. Captions are optional.
+          images look best. Captions are optional: pick a language, then write the
+          captions in it.
         </p>
+        <div className="flex items-center gap-2 mt-3">
+          <span className="text-xs font-semibold text-muted">Caption language</span>
+          <LanguageTabs value={lang} onChange={setLang} />
+        </div>
       </header>
 
       {/* Upload — accepts multiple files, picked or dropped */}
@@ -150,7 +159,7 @@ export default function Promo() {
         <p className="font-semibold text-sm">Add this week's posters</p>
         <input
           className="w-full rounded-xl border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/40"
-          placeholder="Caption (optional, applied to every uploaded image) — e.g. 30% off Aperol Spritz, 5–7pm"
+          placeholder="Caption in the language picked above (optional, applied to every uploaded image) — e.g. 30% off Aperol Spritz, 5–7pm"
           value={newCaption}
           onChange={(e) => setNewCaption(e.target.value)}
         />
@@ -234,9 +243,10 @@ export default function Promo() {
               />
               <div className="flex-1 min-w-0 space-y-2">
                 <textarea
+                  key={lang}
                   rows={2}
-                  defaultValue={promo.caption ?? ''}
-                  placeholder="No caption"
+                  defaultValue={promo[`caption${lang}`] ?? ''}
+                  placeholder={(lang && promo.caption) || 'No caption'}
                   onBlur={(e) => saveCaption(promo, e.target.value)}
                   className="w-full rounded-xl border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/40"
                 />
