@@ -67,12 +67,12 @@ export async function fetchMenu() {
   return { ok: true, data: { categories }, error: null };
 }
 
-/** Resolves to { ok, data: [{ image_url, caption }] } — only posters marked visible. */
+/** Resolves to { ok, data: [{ image_url, caption, caption_pt, caption_tet }] } — only posters marked visible. */
 export function fetchPromos() {
   return run(() =>
     supabase
       .from('promos')
-      .select('id, image_url, caption')
+      .select('id, image_url, caption, caption_pt, caption_tet')
       .eq('is_active', true)
       .order('display_order')
       .order('id')

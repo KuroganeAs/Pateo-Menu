@@ -58,7 +58,8 @@ lock on the panel.
   upload and removal, one-click In stock / Sold out. Everything the customer
   site renders live.
 - **Promos** — the landing carousel's posters: upload several at once (file
-  picker or drag & drop) with optional caption, reorder with arrows, toggle
+  picker or drag & drop) with an optional caption in English, Português and
+  Tetun (pick the language, then write; empty = English shown), reorder with arrows, toggle
   visibility, delete individually or multi-select and bulk-delete. Square
   images look best. Photos are shrunk to 1200px WebP in the browser before
   upload (GIFs are kept as they are).
