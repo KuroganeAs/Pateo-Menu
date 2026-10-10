@@ -10,35 +10,50 @@ import Skeleton from './Skeleton';
 import FadeText from './FadeText';
 
 // ---------------------------------------------------------------------------
-// Tuning. The posters stand on a ring that turns around the vertical axis.
-//
+// Tuning. The posters turn around the vertical axis in one of two shapes:
+//   'polygon'  the posters are the sides of one open prism that turns as a
+//              whole: 7 posters make a heptagon, 6 a hexagon, 8 an octagon...
+//              It tips towards you, so you look down into it and see the
+//              back sides (blurred) over the front ones.
+//   'ring'     the posters stand apart on a circle and each one eases at its
+//              own speed (cable car); the back ones show blurred behind.
+const SHAPE = 'polygon';
+
 // Per screen size:
 //   sharp     posters kept sharp at the front (odd number, centred)
 //   card      share of the carousel's width one poster takes...
 //   maxCard   ...capped at this many px...
-//   maxCardVh ...and at this share of the screen height (text box included)
-//   radius    ring radius in poster widths (tuned for 7 posters; other
-//             counts keep the same spacing between neighbours)
+//   maxCardVh ...and at this share of the screen height
+//   radius    ring only: radius in poster widths (tuned for 7 posters; other
+//             counts keep the same spacing between neighbours). The polygon's
+//             size follows from the poster width and count.
 const RING = {
   mobile: { sharp: 1, card: 0.74, maxCard: 340, maxCardVh: 0.46, radius: 1.05 },
   tablet: { sharp: 3, card: 0.36, maxCard: 420, maxCardVh: 0.42, radius: 1.1 },
   desktop: { sharp: 3, card: 0.36, maxCard: 540, maxCardVh: 0.6, radius: 1.2 },
 };
 
-// Cable-car motion: every poster's speed depends on where it is on the ring,
+// Cable-car motion (ring): every poster's speed depends on where it is,
 //   speed = MIN_SPEED + (1 - MIN_SPEED) * (|angle| / maxAngle)^2
 // slowest at the centre, full speed from FULL_SPEED_AT positions out.
+// A solid polygon can't let its sides move at different speeds, so it eases
+// as a whole instead: slow into each stop, fast in between.
 const STEP_MS = 500; // one position; longer jumps take a little longer
 const MIN_SPEED = 0.35;
 const FULL_SPEED_AT = 1.5;
 
-// Posters behind the sharp ones, per position further back
+// Posters beyond the sharp ones, per position further out
 const BLUR_PER_STEP = 3; // px
 const BLUR_MAX = 8; // px
 const FADE_PER_STEP = 0.28;
 const MIN_OPACITY = 0.35;
-const SHRINK_PER_STEP = 0.07;
+const SHRINK_PER_STEP = 0.07; // ring only
 
+// Polygon only
+const TILT = 12; // deg the polygon tips towards you
+const SIDE_BLUR = 1; // px on the posters either side of the centre one
+
+// Ring only (they would bend a solid polygon out of shape)
 const RAISE = 0.06; // the centre poster is this much larger
 const TURN = 26; // deg a poster turns at the side of the ring; posters always face forward, never show their backs
 const LIFT = 0.38; // poster widths the back of the ring rises, as if seen from slightly above
@@ -84,17 +99,35 @@ function pose(angle, g) {
   const cos = Math.cos(rad);
   const sin = Math.sin(rad);
   const behind = Math.max(0, (a - g.sharpEdge) / g.step); // positions past the sharp ones
-  const raise = 1 + RAISE * Math.max(0, 1 - a / g.step);
+  const side = g.polygon ? SIDE_BLUR * Math.min(a / g.step, 1) : 0;
   // Half-pixel steps: smooth to the eye, but far fewer re-rasterised frames
-  const blur = Math.round(Math.min(behind * BLUR_PER_STEP, BLUR_MAX) * 2) / 2;
-  return {
-    transform:
-      `translate3d(${g.radius * sin}px, ${-LIFT * g.card * (1 - cos)}px, ${g.radius * (cos - 1)}px) ` +
-      `rotateY(${TURN * sin}deg) scale(${raise * Math.max(1 - behind * SHRINK_PER_STEP, 0.6)})`,
+  const blur = Math.round(Math.min(side + behind * BLUR_PER_STEP, BLUR_MAX) * 2) / 2;
+  const look = {
     opacity: Math.max(1 - behind * FADE_PER_STEP, MIN_OPACITY),
     filter: blur ? `blur(${blur}px)` : 'none',
     zIndex: Math.round(100 * (cos + 1)), // nearer posters paint on top
-    hidden: behind > 0.01,
+    hidden: behind > 0.01 || (g.polygon && cos < 0),
+  };
+  // Polygon: a side of the prism, turned the full angle so the sides meet
+  // edge to edge, then the whole prism tipped towards you. A side you see
+  // from the inside (the back ones, over the front) is mirrored so its poster
+  // still reads the right way round; that happens exactly when it is edge-on
+  // to the camera: cos(angle) cos(tilt) (perspective + r) = r.
+  if (g.polygon) {
+    const inside = cos * Math.cos((TILT * Math.PI) / 180) * (g.perspective + g.radius) < g.radius;
+    return {
+      ...look,
+      transform:
+        `translateZ(${-g.radius}px) rotateX(${-TILT}deg) rotateY(${angle}deg) translateZ(${g.radius}px)` +
+        (inside ? ' scaleX(-1)' : ''),
+    };
+  }
+  const raise = 1 + RAISE * Math.max(0, 1 - a / g.step);
+  return {
+    ...look,
+    transform:
+      `translate3d(${g.radius * sin}px, ${-LIFT * g.card * (1 - cos)}px, ${g.radius * (cos - 1)}px) ` +
+      `rotateY(${TURN * sin}deg) scale(${raise * Math.max(1 - behind * SHRINK_PER_STEP, 0.6)})`,
   };
 }
 
@@ -109,13 +142,37 @@ function measure(width, mode, count) {
   const card = Math.round(Math.min(width * c.card, window.innerHeight * c.maxCardVh, c.maxCard));
   const step = 360 / count;
   const stepRad = (Math.min(step, 90) * Math.PI) / 180;
-  const radius = (c.radius * card * Math.sin((2 * Math.PI) / 7)) / Math.sin(stepRad);
+  const polygon = SHAPE === 'polygon';
+  const radius = polygon
+    // Distance from the prism's axis to the middle of a side, so neighbouring
+    // sides meet edge to edge (two posters: back to back)
+    ? (count > 2 ? card / (2 * Math.tan(Math.PI / count)) : 0)
+    : (c.radius * card * Math.sin((2 * Math.PI) / 7)) / Math.sin(stepRad);
+  const raise = polygon ? 0 : RAISE;
   const perspective = PERSPECTIVE * card;
   const depth = (z) => perspective / (perspective - z);
-  // Room above the front poster for the back of the ring to rise into
+  // Ring: room above the front poster for the back of the ring to rise into
   const backTop = (2 * LIFT * card + (card / 2) * 0.6) * depth(-2 * radius);
-  const headroom = Math.max(0, Math.round(backTop - (card * (1 + RAISE)) / 2));
+  const headroom = Math.max(0, Math.round(backTop - (card * (1 + raise)) / 2));
+  // Polygon: how far above and below the posters' centre line the tipped
+  // prism reaches on screen (the back sides rise, the front ones dip)
+  let top = -card / 2;
+  let bottom = card / 2;
+  if (polygon) {
+    const t = (TILT * Math.PI) / 180;
+    for (let deg = 0; deg < 360; deg += 5) {
+      const zOnRing = radius * Math.cos((deg * Math.PI) / 180);
+      for (const y of [-card / 2, card / 2]) {
+        const yTipped = y * Math.cos(t) + zOnRing * Math.sin(t);
+        const zTipped = -y * Math.sin(t) + zOnRing * Math.cos(t) - radius;
+        top = Math.min(top, yTipped * depth(zTipped));
+        bottom = Math.max(bottom, yTipped * depth(zTipped));
+      }
+    }
+  }
+  const cardTop = polygon ? Math.ceil(-top - card / 2) : headroom + Math.round((card * raise) / 2);
   return {
+    polygon,
     card,
     step,
     radius,
@@ -123,8 +180,8 @@ function measure(width, mode, count) {
     sharpEdge: ((c.sharp - 1) / 2) * step,
     // How far a drag must go to move the ring one position
     pxPerStep: Math.max(card * 0.5, radius * Math.sin(stepRad) * depth(radius * (Math.cos(stepRad) - 1))),
-    cardTop: headroom + Math.round((card * RAISE) / 2),
-    height: headroom + Math.round(card * (1 + RAISE)),
+    cardTop,
+    height: polygon ? Math.ceil(cardTop + card / 2 + bottom) : headroom + Math.round(card * (1 + raise)),
     ...cableCar(FULL_SPEED_AT * step),
   };
 }
@@ -244,7 +301,11 @@ export default function PromoCarousel({ className }) {
     const frame = (now) => {
       const t = Math.min(1, (now - start) / duration);
       const p = ease(t);
-      r.angles = t < 1 ? u0.map((u, i) => g.Winv(u + (u1[i] - u) * p)) : to;
+      // Ring: each poster at its own cable-car speed. Polygon: every side
+      // turns by the same angle so the shape holds together.
+      if (t >= 1) r.angles = to;
+      else if (g.polygon) r.angles = from.map((a, i) => a + (to[i] - a) * p);
+      else r.angles = u0.map((u, i) => g.Winv(u + (u1[i] - u) * p));
       paint();
       r.raf = t < 1 ? requestAnimationFrame(frame) : 0;
     };
@@ -403,7 +464,7 @@ export default function PromoCarousel({ className }) {
                 aria-label={`${i + 1} of ${count}`}
                 className={cn(
                   cardShape,
-                  'overflow-hidden bg-background-alt shadow-poster [backface-visibility:hidden]',
+                  'overflow-hidden bg-background-alt shadow-poster',
                   reduced ? 'transition-opacity duration-300 ease-out' : 'will-change-transform',
                   i === idx ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'
                 )}
